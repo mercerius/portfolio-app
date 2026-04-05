@@ -305,7 +305,7 @@ export default function Home() {
                 <Separator />
                 <div className="flex flex-col gap-1 text-xs text-muted-foreground">
                   <p className="font-medium text-foreground">Certifications</p>
-                  <p>AWS Solutions Architect – Associate</p>
+                  <p>AWS Solutions Architect - Associate</p>
                   <p>Google Cloud Professional Developer</p>
                 </div>
               </CardContent>
