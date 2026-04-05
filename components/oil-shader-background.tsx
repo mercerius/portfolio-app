@@ -210,7 +210,9 @@ export default function OilShaderBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl2");
+    const gl = canvas.getContext("webgl2", {
+      powerPreference: "high-performance",
+    });
     if (!gl) return; // graceful no-op on unsupported browsers
 
     // ── Compile a shader, throw on error ──────────────────────────────────
@@ -373,7 +375,7 @@ export default function OilShaderBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 h-full w-full"
+      className="fixed inset-0 h-full w-full bg-[oklch(0.08_0.008_280)]"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     />
