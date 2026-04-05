@@ -287,32 +287,6 @@ export default function Home() {
               </Card>
             ))}
 
-            {/* ── Stats ────────────────────────────── col-span-1 */}
-            <Card>
-              <CardHeader>
-                <CardTitle>By the numbers</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <dl className="grid grid-cols-2 gap-4">
-                  {[
-                    { value: "5+", label: "Years exp." },
-                    { value: "20+", label: "Projects shipped" },
-                    { value: "1.4k", label: "GitHub stars" },
-                    { value: "3", label: "Open source libs" },
-                  ].map(({ value, label }) => (
-                    <div key={label} className="flex flex-col gap-0.5">
-                      <span className="text-lg font-semibold tabular-nums text-foreground">
-                        {value}
-                      </span>
-                      <span className="text-[0.65rem] text-muted-foreground">
-                        {label}
-                      </span>
-                    </div>
-                  ))}
-                </dl>
-              </CardContent>
-            </Card>
-
             {/* ── Education ────────────────────────── col-span-1 */}
             <Card>
               <CardHeader>
