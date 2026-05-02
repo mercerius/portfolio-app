@@ -20,9 +20,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Rivera — Full Stack Engineer",
+  title: "Jesse Neff — Full Stack Engineer",
   description:
-    "Portfolio and resume of Alex Rivera, Full Stack Engineer specializing in TypeScript, React, and distributed systems.",
+    "Portfolio and resume of Jesse Neff, Full Stack Engineer specializing in TypeScript, React, and distributed systems.",
 };
 
 export default function RootLayout({

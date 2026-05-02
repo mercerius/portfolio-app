@@ -93,7 +93,7 @@ export default function Home() {
                 <div className="flex flex-col gap-2">
                   <div>
                     <h1 className="text-base font-semibold tracking-tight text-foreground">
-                      Alex Rivera
+                      Jesse Neff
                     </h1>
                     <p className="text-xs text-muted-foreground">
                       Full Stack Engineer · San Francisco, CA
