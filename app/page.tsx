@@ -344,7 +344,7 @@ export default function Home() {
           </div>
 
           <p className="mt-8 text-center text-[0.65rem] text-muted-foreground">
-            Last updated April 2025 · Built with Next.js & Tailwind CSS
+            Last updated May 2026 · Built with Next.js
           </p>
         </main>
       </div>
