@@ -33,7 +33,7 @@ vec3 f0ToIor(vec3 f0) {
 
 // ── Belcour 2017: XYZ color matching functions evaluated in Fourier space ─────
 // Maps optical path difference (nm) + phase shift directly to linear sRGB.
-// Ref: https://belcour.github.io/blog/research/2017/05/01/brdf-thin-film.html
+// Ref: https://belcour.github.io/blog/research/publication/2017/05/01/brdf-thin-film.html
 // Note: declared as plain mat3 (not const) — Adreno drivers can fail to
 // compile const matrices with large literal initialisers.
 mat3 XYZ_TO_REC709 = mat3(
@@ -129,7 +129,8 @@ float filmThickness(vec2 uv) {
   float fine = sin(w2.x * 22.0 + w2.y * 17.0 + u_time * 0.12) * 0.07;
   float base = sin(w2.x *  7.0 + w2.y *  5.3) * 0.5 + 0.5;
 
-  return 80.0 + 820.0 * clamp(base + fine, 0.0, 1.0); // 80–900 nm (≈2 color cycles)
+  return 140.0 + 480.0 * clamp(base + fine, 0.0, 1.0); // 140–620 nm (≈2 color cycles)
+  // return 80.0 + 820.0 * clamp(base + fine, 0.0, 1.0);
 }
 
 void main() {
@@ -138,13 +139,13 @@ void main() {
 
   // Physically-correct iridescence (Belcour 2017 / KHR_materials_iridescence)
   // baseF0 = 0.45  →  substrate IOR ≈ 3.0 (dark polished surface; maximises contrast)
-  vec3 col = evalIridescence(1.0, 1.474, cosI, d, vec3(0.45));
+  vec3 col = evalIridescence(1.0, 1.474, cosI, d, vec3(0.14));
 
   // Linear sRGB → gamma-encoded sRGB (WebGL canvas is interpreted as sRGB by the browser)
   col = pow(clamp(col, 0.0, 1.0), vec3(1.0 / 2.2));
 
   // Composite over a very dark base
-  col = mix(vec3(0.04, 0.04, 0.06), col, 0.60);
+  col = mix(vec3(0.0), col, 0.38); // mix(vec3(0.04, 0.04, 0.06), col, 0.60)
 
   fragColor = vec4(col, 1.0);
 }
