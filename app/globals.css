@@ -122,9 +122,28 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scrollbar-gutter: stable;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  }
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
+  html::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  html::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground));
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  body[data-scroll-locked] {
+    overflow: hidden;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
   }
 }
