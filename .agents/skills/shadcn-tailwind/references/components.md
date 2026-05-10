@@ -31,6 +31,7 @@ import Link from "next/link"
 ```
 
 **When to use:**
+
 - Wrapping navigation links
 - Custom interactive elements
 - Avoiding nested buttons
@@ -142,6 +143,7 @@ import { ChevronRight, Check, X, AlertCircle, Loader2 } from "lucide-react"
 ```
 
 **Icon sizing reference:**
+
 - `size-3` - Extra small (12px)
 - `size-4` - Small/default (16px)
 - `size-5` - Medium (20px)
@@ -152,13 +154,13 @@ import { ChevronRight, Check, X, AlertCircle, Loader2 } from "lucide-react"
 Complete form example with validation:
 
 ```tsx
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -167,9 +169,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { toast } from "sonner"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 // Define schema
 const formSchema = z.object({
@@ -180,7 +182,7 @@ const formSchema = z.object({
     message: "Please enter a valid email address.",
   }),
   bio: z.string().max(160).min(4),
-})
+});
 
 export function ProfileForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -190,11 +192,11 @@ export function ProfileForm() {
       email: "",
       bio: "",
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    toast.success("Profile updated successfully")
-    console.log(values)
+    toast.success("Profile updated successfully");
+    console.log(values);
   }
 
   return (
@@ -255,7 +257,7 @@ export function ProfileForm() {
         <Button type="submit">Update profile</Button>
       </form>
     </Form>
-  )
+  );
 }
 ```
 
@@ -269,7 +271,7 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui/input-otp"
+} from "@/components/ui/input-otp";
 
 <InputOTP maxLength={6}>
   <InputOTPGroup>
@@ -283,18 +285,18 @@ import {
     <InputOTPSlot index={4} />
     <InputOTPSlot index={5} />
   </InputOTPGroup>
-</InputOTP>
+</InputOTP>;
 ```
 
 ### Input with Icon
 
 ```tsx
-import { Search } from "lucide-react"
+import { Search } from "lucide-react";
 
 <div className="relative">
   <Search className="absolute left-2 top-2.5 size-4 text-muted-foreground" />
   <Input placeholder="Search" className="pl-8" />
-</div>
+</div>;
 ```
 
 ### File Input
@@ -338,23 +340,25 @@ function AccordionItem({
       className={cn("border-b last:border-b-0", className)}
       {...props}
     />
-  )
+  );
 }
 
 // Parent-level styling via data-slot selectors
 <div className="*:data-[slot=avatar]:ring-2 *:data-[slot=description]:text-sm">
   <Avatar data-slot="avatar" />
   <p data-slot="description">Styled by parent</p>
-</div>
+</div>;
 ```
 
 **Key changes from older patterns:**
+
 - `React.forwardRef` removed (React 19 passes ref as regular prop)
 - `React.ComponentPropsWithoutRef` replaced by `React.ComponentProps`
 - `displayName` removed
 - Every primitive gets a `data-slot` attribute
 
 **Common data-slot values:**
+
 - `icon` - Icons within components
 - `button`, `trigger` - Interactive elements
 - `title`, `description` - Text elements
@@ -433,7 +437,7 @@ import {
 
 ```tsx
 // Checkbox
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox";
 
 <div className="flex items-center space-x-2">
   <Checkbox id="terms" />
@@ -443,11 +447,11 @@ import { Checkbox } from "@/components/ui/checkbox"
   >
     Accept terms and conditions
   </label>
-</div>
+</div>;
 
 // Radio Group
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 <RadioGroup defaultValue="comfortable">
   <div className="flex items-center space-x-2">
@@ -462,7 +466,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
     <RadioGroupItem value="compact" id="r3" />
     <Label htmlFor="r3">Compact</Label>
   </div>
-</RadioGroup>
+</RadioGroup>;
 ```
 
 ## Dialog Pattern
@@ -476,7 +480,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 <Dialog>
   <DialogTrigger asChild>
@@ -501,7 +505,7 @@ import {
       <Button type="submit">Save changes</Button>
     </DialogFooter>
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 ## Dropdown Menu
@@ -514,7 +518,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
@@ -528,28 +532,28 @@ import {
     <DropdownMenuItem>Team</DropdownMenuItem>
     <DropdownMenuItem>Subscription</DropdownMenuItem>
   </DropdownMenuContent>
-</DropdownMenu>
+</DropdownMenu>;
 ```
 
 ## Toast Notifications
 
 ```tsx
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 // Success
-toast.success("Event created successfully")
+toast.success("Event created successfully");
 
 // Error
-toast.error("Something went wrong")
+toast.error("Something went wrong");
 
 // Info
-toast.info("Be aware that...")
+toast.info("Be aware that...");
 
 // Warning
-toast.warning("Proceed with caution")
+toast.warning("Proceed with caution");
 
 // Loading
-toast.loading("Uploading...")
+toast.loading("Uploading...");
 
 // Custom
 toast("Event created", {
@@ -558,27 +562,27 @@ toast("Event created", {
     label: "Undo",
     onClick: () => console.log("Undo"),
   },
-})
+});
 
 // Promise
 toast.promise(promise, {
   loading: "Loading...",
   success: (data) => `${data.name} created`,
   error: "Error creating event",
-})
+});
 ```
 
 ## Data Table Pattern
 
 ```tsx
-"use client"
+"use client";
 
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -587,11 +591,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
 export function DataTable<TData, TValue>({
@@ -602,7 +606,7 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-  })
+  });
 
   return (
     <div className="rounded-md border">
@@ -614,7 +618,7 @@ export function DataTable<TData, TValue>({
                 <TableHead key={header.id}>
                   {flexRender(
                     header.column.columnDef.header,
-                    header.getContext()
+                    header.getContext(),
                   )}
                 </TableHead>
               ))}
@@ -642,7 +646,7 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
     </div>
-  )
+  );
 }
 ```
 
@@ -910,8 +914,15 @@ import { Kbd } from "@/components/ui/kbd"
 ## Empty State
 
 ```tsx
-import { Empty, EmptyMedia, EmptyTitle, EmptyDescription, EmptyContent, EmptyHeader } from "@/components/ui/empty"
-import { FileIcon } from "lucide-react"
+import {
+  Empty,
+  EmptyMedia,
+  EmptyTitle,
+  EmptyDescription,
+  EmptyContent,
+  EmptyHeader,
+} from "@/components/ui/empty";
+import { FileIcon } from "lucide-react";
 
 <Empty>
   <EmptyMedia>
@@ -924,7 +935,7 @@ import { FileIcon } from "lucide-react"
   <EmptyContent>
     <Button>Upload File</Button>
   </EmptyContent>
-</Empty>
+</Empty>;
 ```
 
 ## RTL / Direction Support (January 2026)
@@ -955,18 +966,19 @@ Always provide `defaultValues` in `useForm()` - omitting them causes uncontrolle
 const form = useForm({
   resolver: zodResolver(schema),
   defaultValues: { name: "", email: "", age: 0 },
-})
+});
 
 // WRONG - missing defaultValues
-const form = useForm({ resolver: zodResolver(schema) })
+const form = useForm({ resolver: zodResolver(schema) });
 ```
 
 Use `z.coerce.number()` for numeric inputs (HTML inputs always return strings):
+
 ```tsx
 const schema = z.object({
   age: z.coerce.number().min(0).max(150),
   price: z.coerce.number().positive(),
-})
+});
 ```
 
 ### Select and Switch in Forms

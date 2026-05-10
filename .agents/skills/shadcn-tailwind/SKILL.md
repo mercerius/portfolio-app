@@ -14,6 +14,7 @@ Build accessible UIs using Tailwind CSS v4 utility classes and shadcn/ui compone
 ### No `tailwind.config.js` - CSS-First Only
 
 Tailwind v4 configures everything in CSS. Migrate any JS/TS config:
+
 - `theme.extend.colors` → `@theme { --color-*: ... }`
 - `plugins` → `@plugin "..."` or `@utility`
 - `content` → `@source "..."`
@@ -46,6 +47,7 @@ const colorMap = { red: "bg-red-500", blue: "bg-blue-500" } as const
 ### cn() Merge Order
 
 Defaults first, consumer `className` last (tailwind-merge last-wins):
+
 ```tsx
 className={cn(buttonVariants({ variant, size }), className)}  // correct
 className={cn(className, buttonVariants({ variant, size }))}  // wrong
@@ -70,8 +72,12 @@ className={cn(className, buttonVariants({ variant, size }))}  // wrong
 - `@theme inline` - references CSS variables, follows dark mode changes
 
 ```css
-@theme { --color-brand: oklch(0.6 0.2 250); }          /* static */
-@theme inline { --color-primary: var(--primary); }       /* dynamic */
+@theme {
+  --color-brand: oklch(0.6 0.2 250);
+} /* static */
+@theme inline {
+  --color-primary: var(--primary);
+} /* dynamic */
 ```
 
 See [components.md](components.md) for more pitfalls and [theming.md](theming.md) for color system reference.
@@ -112,6 +118,7 @@ shadcn/ui uses semantic CSS variables mapped to Tailwind utilities:
 ```
 
 **Usage in components:**
+
 ```tsx
 // Background colors omit the "-background" suffix
 <div className="bg-primary text-primary-foreground">
@@ -124,16 +131,18 @@ shadcn/ui uses semantic CSS variables mapped to Tailwind utilities:
 Components use plain functions with `data-slot` attributes (React 19 - no `forwardRef`):
 
 ```tsx
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-input bg-background hover:bg-accent",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
@@ -146,8 +155,8 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: { variant: "default", size: "default" },
-  }
-)
+  },
+);
 
 // Plain function with React.ComponentProps (not forwardRef)
 function Button({
@@ -162,14 +171,17 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
-  )
+  );
 }
 
 // Usage
-<Button variant="outline" size="sm">Click me</Button>
+<Button variant="outline" size="sm">
+  Click me
+</Button>;
 ```
 
 **Icon spacing with `data-icon`:**
+
 ```tsx
 <Button>
   <Spinner data-icon="inline-start" />
@@ -270,12 +282,13 @@ const badgeVariants = cva(
       variant: {
         default: "border-transparent bg-primary text-primary-foreground shadow",
         secondary: "border-transparent bg-secondary text-secondary-foreground",
-        destructive: "border-transparent bg-destructive text-destructive-foreground",
+        destructive:
+          "border-transparent bg-destructive text-destructive-foreground",
         outline: "text-foreground",
       },
     },
-  }
-)
+  },
+);
 ```
 
 ## Layout Patterns
@@ -284,9 +297,7 @@ const badgeVariants = cva(
 
 ```tsx
 <div className="flex min-h-screen items-center justify-center">
-  <div className="w-full max-w-md space-y-8 p-8">
-    {/* Content */}
-  </div>
+  <div className="w-full max-w-md space-y-8 p-8">{/* Content */}</div>
 </div>
 ```
 
@@ -481,6 +492,7 @@ pnpm dlx shadcn@latest add button --overwrite
 ### Visual Styles
 
 `npx shadcn create` offers 5 built-in visual styles:
+
 - **Vega** - Classic shadcn/ui look
 - **Nova** - Compact, reduced padding
 - **Maia** - Soft and rounded, generous spacing
@@ -502,6 +514,7 @@ These rewrite component code (not just CSS variables) to match the selected styl
 ## Component Patterns
 
 For detailed component patterns see [components.md](components.md):
+
 - **Composition**: asChild pattern, data-slot attributes
 - **Typography**: Heading scales, prose styles, inline code
 - **Forms**: React Hook Form + Zod, Field component with FieldSet/FieldGroup
@@ -515,6 +528,7 @@ For detailed component patterns see [components.md](components.md):
 ## Resources
 
 See [theming.md](theming.md) for complete color system reference:
+
 - `@theme` vs `@theme inline` (critical for dark mode)
 - Status color extensions (success, warning, info)
 - Z-index scale and animation tokens
@@ -523,6 +537,7 @@ See [theming.md](theming.md) for complete color system reference:
 ## Summary
 
 Key concepts:
+
 - **v4 CSS-first only** - no `tailwind.config.js`, all config in CSS
 - **Semantic colors only** - never use raw palette (`bg-blue-500`), always `bg-primary`
 - **Always pair** `bg-*` with `text-*-foreground`

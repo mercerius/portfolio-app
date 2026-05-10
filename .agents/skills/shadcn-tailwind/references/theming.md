@@ -249,10 +249,9 @@
 ```
 
 Usage:
+
 ```tsx
-<div className="bg-warning text-warning-foreground">
-  Warning message
-</div>
+<div className="bg-warning text-warning-foreground">Warning message</div>
 ```
 
 ## Chart Colors
@@ -311,23 +310,25 @@ Usage:
 - **Alpha** (optional): Transparency, 0 = transparent, 1 = opaque
 
 **Benefits:**
+
 - Perceptually uniform (equal steps look equal)
 - Consistent lightness across all hues
 - Better for programmatic color manipulation
 - Future-proof for modern browsers
 
 **Examples:**
+
 ```css
 /* Pure grayscale (chroma = 0) */
---background: oklch(1 0 0);      /* White */
---foreground: oklch(0.145 0 0);  /* Dark gray */
+--background: oklch(1 0 0); /* White */
+--foreground: oklch(0.145 0 0); /* Dark gray */
 
 /* Colored (chroma > 0) */
---primary: oklch(0.577 0.245 27.325);  /* Red-orange */
---accent: oklch(0.646 0.222 41.116);   /* Yellow-orange */
+--primary: oklch(0.577 0.245 27.325); /* Red-orange */
+--accent: oklch(0.646 0.222 41.116); /* Yellow-orange */
 
 /* With opacity */
---border: oklch(1 0 0 / 10%);  /* 10% opacity white */
+--border: oklch(1 0 0 / 10%); /* 10% opacity white */
 ```
 
 ## Color Naming Convention
@@ -337,6 +338,7 @@ Usage:
 - Always pair background/foreground for accessible contrast
 
 Examples:
+
 - `bg-primary` + `text-primary-foreground`
 - `bg-muted` + `text-muted-foreground`
 - `bg-destructive` + `text-destructive-foreground`
@@ -346,6 +348,7 @@ Examples:
 Critical difference for dark mode and dynamic theming:
 
 **`@theme`** creates static design tokens. Values are baked in at build time and can be overridden by plugins:
+
 ```css
 @theme {
   --color-brand: oklch(0.6 0.2 250);
@@ -354,6 +357,7 @@ Critical difference for dark mode and dynamic theming:
 ```
 
 **`@theme inline`** references CSS variables that change at runtime (dark mode, user preferences):
+
 ```css
 @theme inline {
   --color-primary: var(--primary);
@@ -364,6 +368,7 @@ Critical difference for dark mode and dynamic theming:
 **Rule:** Use `@theme inline` for any color that changes between light/dark mode. Use `@theme` for static values like fonts or fixed brand colors.
 
 **Common mistake:** Using `@theme` (not `inline`) for shadcn/ui colors. This bakes in the light mode value and dark mode never updates:
+
 ```css
 /* WRONG - dark mode won't work */
 @theme {
@@ -410,6 +415,7 @@ shadcn/ui includes `destructive` by default. Add success, warning, and info for 
 ```
 
 Usage:
+
 ```tsx
 <Badge className="bg-success text-success-foreground">Active</Badge>
 <Badge className="bg-warning text-warning-foreground">Pending</Badge>
@@ -452,6 +458,7 @@ Define a named z-index scale to prevent stacking context wars:
 ```
 
 Rules:
+
 - Never use `transition-all` - animate only `colors`, `transform`, `opacity`, or `shadow`
 - Use `motion-safe:` prefix for all non-essential animations
 - Use `motion-reduce:transition-none` as fallback
