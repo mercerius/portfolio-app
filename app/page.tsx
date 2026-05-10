@@ -76,6 +76,12 @@ const projects = [
 export default function Home() {
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded"
+      >
+        Skip to main content
+      </a>
       <DeferredOilShaderBackground />
       <div className="fixed top-4 right-4 z-50">
         <DeferredThemeToggle />
@@ -84,7 +90,7 @@ export default function Home() {
         className="relative min-h-screen px-4 py-10 sm:px-6 lg:px-8"
         style={{ zIndex: 1 }}
       >
-        <main className="mx-auto max-w-5xl">
+        <main id="main-content" className="mx-auto max-w-5xl">
           {/* Bento grid */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {/* ── Hero ─────────────────────────────── col-span-2 */}
@@ -92,18 +98,18 @@ export default function Home() {
               <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
                 {/* Avatar */}
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground ring-2 ring-primary/20">
-                  AR
+                  JN
                 </div>
                 <div className="flex flex-col gap-2">
                   <div>
                     <h1 className="text-base font-semibold tracking-tight text-foreground">
                       Jesse Neff
                     </h1>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       Full Stack Engineer · San Francisco, CA
                     </p>
                   </div>
-                  <p className="text-xs/relaxed text-muted-foreground max-w-prose">
+                  <p className="text-base/relaxed text-muted-foreground max-w-prose">
                     I build fast, reliable web applications with a focus on
                     developer experience and scalable architecture. 5+ years
                     shipping products across fintech, developer tooling, and
@@ -111,11 +117,11 @@ export default function Home() {
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     <Button asChild size="sm" variant="default">
-                      <a href="mailto:alex@example.com">Email me</a>
+                      <a href="mailto:jesseneff@me.com">Email me</a>
                     </Button>
                     <Button asChild size="sm" variant="outline">
                       <a
-                        href="https://github.com"
+                        href="https://github.com/mercerius"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -124,7 +130,7 @@ export default function Home() {
                     </Button>
                     <Button asChild size="sm" variant="outline">
                       <a
-                        href="https://linkedin.com"
+                        href="https://linkedin.com/in/jesse-neff"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -153,10 +159,10 @@ export default function Home() {
               <CardContent className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                   </span>
-                  <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="text-xs font-medium text-primary">
                     Open to opportunities
                   </span>
                 </div>
@@ -201,52 +207,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* ── Experience ───────────────────────── col-span-2 */}
-            <Card className="md:col-span-2 lg:col-span-2">
-              <CardHeader>
-                <CardTitle>Experience</CardTitle>
-                <CardDescription>5 years · 3 companies</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-5">
-                {experience.map((role, i) => (
-                  <div key={i}>
-                    {i > 0 && <Separator className="mb-5" />}
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-xs font-semibold text-foreground">
-                            {role.title}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {role.company}
-                          </p>
-                        </div>
-                        <Badge variant="outline">{role.period}</Badge>
-                      </div>
-                      <ul className="flex flex-col gap-1 pl-3 text-xs/relaxed text-muted-foreground">
-                        {role.highlights.map((h, j) => (
-                          <li
-                            key={j}
-                            className="relative before:absolute before:-left-3 before:content-['·']"
-                          >
-                            {h}
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="flex flex-wrap gap-1 pt-1">
-                        {role.stack.map((s) => (
-                          <Badge key={s} variant="secondary">
-                            {s}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* ── Project 1 ────────────────────────── col-span-1 */}
+            {/* ── Projects ────────────────────────── col-span-1 */}
             {projects.map((project) => (
               <Card
                 key={project.name}
@@ -291,6 +252,51 @@ export default function Home() {
               </Card>
             ))}
 
+            {/* ── Experience ───────────────────────── col-span-2 */}
+            <Card className="md:col-span-2 lg:col-span-2">
+              <CardHeader>
+                <CardTitle>Experience</CardTitle>
+                <CardDescription>5 years · 3 companies</CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-5">
+                {experience.map((role, i) => (
+                  <div key={i}>
+                    {i > 0 && <Separator className="mb-5" />}
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">
+                            {role.title}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {role.company}
+                          </p>
+                        </div>
+                        <Badge variant="outline">{role.period}</Badge>
+                      </div>
+                      <ul className="flex flex-col gap-1 pl-3 text-sm/relaxed text-muted-foreground">
+                        {role.highlights.map((h, j) => (
+                          <li
+                            key={j}
+                            className="relative before:absolute before:-left-3 before:content-['·']"
+                          >
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="flex flex-wrap gap-1 pt-1">
+                        {role.stack.map((s) => (
+                          <Badge key={s} variant="secondary">
+                            {s}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
             {/* ── Education ────────────────────────── col-span-1 */}
             <Card>
               <CardHeader>
@@ -298,10 +304,10 @@ export default function Home() {
               </CardHeader>
               <CardContent className="flex flex-col gap-3">
                 <div className="flex flex-col gap-1">
-                  <p className="text-xs font-semibold text-foreground">
+                  <p className="text-sm font-semibold text-foreground">
                     B.S. Computer Science
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                     University of California, Berkeley
                   </p>
                   <Badge variant="outline">Class of 2019</Badge>
@@ -328,7 +334,7 @@ export default function Home() {
                 ].map(({ topic, progress }) => (
                   <div key={topic} className="flex flex-col gap-1">
                     <div className="flex justify-between">
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-sm text-muted-foreground">
                         {topic}
                       </span>
                       <span className="text-[0.65rem] text-muted-foreground">
@@ -347,9 +353,9 @@ export default function Home() {
             </Card>
           </div>
 
-          <p className="mt-8 text-center text-[0.65rem] text-muted-foreground">
+          <footer className="mt-8 text-center text-[0.65rem] text-muted-foreground">
             Last updated May 2026 · Built with Next.js
-          </p>
+          </footer>
         </main>
       </div>
     </>
