@@ -8,8 +8,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ModeToggle } from "@/components/ui/theme-toggle";
-import OilShaderBackground from "@/components/oil-shader-background";
+import DeferredOilShaderBackground from "@/components/deferred-oil-shader-background";
+import DeferredThemeToggle from "@/components/deferred-theme-toggle";
 
 const skills = {
   Languages: ["TypeScript", "Python", "Go", "SQL", "Bash"],
@@ -76,9 +76,9 @@ const projects = [
 export default function Home() {
   return (
     <>
-      <OilShaderBackground />
+      <DeferredOilShaderBackground />
       <div className="fixed top-4 right-4 z-50">
-        <ModeToggle />
+        <DeferredThemeToggle />
       </div>
       <div
         className="relative min-h-screen px-4 py-10 sm:px-6 lg:px-8"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 import FRAG from "@/lib/shaders/oil-shader.frag";
@@ -13,19 +13,56 @@ const DEFAULT_ACCENT: Rgb = [0.42, 0.28, 0.9];
 const LIGHT_THEME_MIX = 0.98;
 const DARK_THEME_MIX = 0.48;
 const MIX_EASING = 0.08;
+const STARTUP_DELAY_MS = 450;
+
+let cssColorParserCtx: CanvasRenderingContext2D | null = null;
+
+const getCssColorParserContext = (): CanvasRenderingContext2D | null => {
+  if (cssColorParserCtx) return cssColorParserCtx;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+  cssColorParserCtx = canvas.getContext("2d");
+
+  return cssColorParserCtx;
+};
+
+const parseHexToRgb = (value: string): Rgb | null => {
+  const hex = value.slice(1).trim();
+  if (hex.length === 3) {
+    const r = Number.parseInt(hex[0] + hex[0], 16);
+    const g = Number.parseInt(hex[1] + hex[1], 16);
+    const b = Number.parseInt(hex[2] + hex[2], 16);
+    return [r / 255, g / 255, b / 255];
+  }
+
+  if (hex.length === 6) {
+    const r = Number.parseInt(hex.slice(0, 2), 16);
+    const g = Number.parseInt(hex.slice(2, 4), 16);
+    const b = Number.parseInt(hex.slice(4, 6), 16);
+    return [r / 255, g / 255, b / 255];
+  }
+
+  return null;
+};
 
 const parseColorToRgb = (value: string): Rgb | null => {
   const normalized = value.trim();
   if (!normalized) return null;
 
-  const probe = document.createElement("span");
-  probe.style.color = "rgb(0 0 0)";
-  probe.style.color = normalized;
-  if (!probe.style.color) return null;
+  const parser = getCssColorParserContext();
+  if (!parser) return null;
 
-  document.body.appendChild(probe);
-  const computed = getComputedStyle(probe).color;
-  probe.remove();
+  parser.fillStyle = "rgb(0 0 0)";
+  parser.fillStyle = normalized;
+
+  const computed = parser.fillStyle;
+  if (!computed) return null;
+
+  if (computed.startsWith("#")) {
+    return parseHexToRgb(computed);
+  }
 
   const rgbaContent = computed.match(/rgba?\(([^)]+)\)/i)?.[1];
   if (!rgbaContent) return null;
@@ -60,16 +97,59 @@ const resolveIsDark = (resolvedTheme?: string): boolean => {
   return document.documentElement.classList.contains("dark");
 };
 
+type OilShaderBackgroundProps = {
+  onReady?: () => void;
+};
+
 // ── Component ─────────────────────────────────────────────────────────────────────────────
-export default function OilShaderBackground() {
+export default function OilShaderBackground({
+  onReady,
+}: OilShaderBackgroundProps) {
   const { resolvedTheme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [canAnimate, setCanAnimate] = useState(false);
   const themeColorsRef = useRef<{ base: Rgb; accent: Rgb }>({
     base: DEFAULT_BASE,
     accent: DEFAULT_ACCENT,
   });
   const themeMixTargetRef = useRef(DARK_THEME_MIX);
   const themeMixCurrentRef = useRef(DARK_THEME_MIX);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const navWithConnection = navigator as Navigator & {
+      connection?: { saveData?: boolean };
+    };
+    const isSaveDataEnabled = Boolean(navWithConnection.connection?.saveData);
+
+    if (prefersReducedMotion || isSaveDataEnabled) {
+      return;
+    }
+
+    let timeoutId = 0;
+    let idleId = 0;
+
+    const start = () => setCanAnimate(true);
+    const supportsRequestIdleCallback = "requestIdleCallback" in window;
+
+    timeoutId = window.setTimeout(() => {
+      if (supportsRequestIdleCallback) {
+        idleId = window.requestIdleCallback(start, { timeout: 1200 });
+      } else {
+        start();
+      }
+    }, STARTUP_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (supportsRequestIdleCallback && idleId) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!document.body) return;
@@ -83,14 +163,19 @@ export default function OilShaderBackground() {
     };
 
     syncColors();
-    const rafId = requestAnimationFrame(syncColors);
 
-    return () => {
-      cancelAnimationFrame(rafId);
-    };
+    const observer = new MutationObserver(syncColors);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "style"],
+    });
+
+    return () => observer.disconnect();
   }, [resolvedTheme]);
 
   useEffect(() => {
+    if (!canAnimate) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -163,6 +248,7 @@ export default function OilShaderBackground() {
     // ── Render loop ────────────────────────────────────────────────────
     let rafId = 0;
     let paused = false;
+    let hasNotifiedReady = false;
 
     const render = () => {
       if (!paused) {
@@ -191,6 +277,11 @@ export default function OilShaderBackground() {
         }
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        if (!hasNotifiedReady) {
+          hasNotifiedReady = true;
+          onReady?.();
+        }
       }
       rafId = requestAnimationFrame(render);
     };
@@ -210,7 +301,7 @@ export default function OilShaderBackground() {
       gl.deleteBuffer(buf);
       gl.deleteProgram(prog);
     };
-  }, []);
+  }, [canAnimate, onReady]);
 
   return (
     <canvas
