@@ -16,18 +16,18 @@ Jesse Neff's portfolio — a Next.js 16 App Router SPA deployed on **AWS Amplify
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16.2 / React 19 — **App Router only** (no `pages/`) |
-| Language | TypeScript 5 — strict mode |
-| Styling | Tailwind CSS v4 + `tw-animate-css` |
-| UI Components | shadcn/ui + Radix UI |
-| Class utilities | `cn()` from `@/lib/utils` (clsx + tailwind-merge) |
-| Component variants | `class-variance-authority` (CVA) |
-| Theming | `next-themes` — dark mode default |
-| Icons | `lucide-react` |
-| Fonts | Geist (sans), Geist Mono, JetBrains Mono via `next/font/google` |
-| Shaders | GLSL `.vert`/`.frag` imported as raw strings via Turbopack `raw-loader` |
+| Layer              | Technology                                                              |
+| ------------------ | ----------------------------------------------------------------------- |
+| Framework          | Next.js 16.2 / React 19 — **App Router only** (no `pages/`)             |
+| Language           | TypeScript 5 — strict mode                                              |
+| Styling            | Tailwind CSS v4 + `tw-animate-css`                                      |
+| UI Components      | shadcn/ui + Radix UI                                                    |
+| Class utilities    | `cn()` from `@/lib/utils` (clsx + tailwind-merge)                       |
+| Component variants | `class-variance-authority` (CVA)                                        |
+| Theming            | `next-themes` — dark mode default                                       |
+| Icons              | `lucide-react`                                                          |
+| Fonts              | Geist (sans), Geist Mono, JetBrains Mono via `next/font/google`         |
+| Shaders            | GLSL `.vert`/`.frag` imported as raw strings via Turbopack `raw-loader` |
 
 ## Architecture
 
@@ -44,26 +44,31 @@ public/           # Static assets
 ## Conventions
 
 ### Components
+
 - Add `"use client"` at the top of any component that uses hooks, event handlers, or browser APIs
 - New shadcn/ui primitives → `components/ui/`; custom components → `components/`
 - Use `cn()` for **all** dynamic className merging — never string concatenation
 - Default theme is `dark`; always verify dark mode appearance when adding new UI
 
 ### Styling
+
 - **Tailwind v4** — tokens are defined with the `@theme` directive in `app/globals.css`, not in a config file. Do not create `tailwind.config.*`
 - Follow mobile-first responsive breakpoints: `sm:` (640px) → `md:` (768px) → `lg:` (1024px)
 - Use CSS custom properties (`--color-*`, `--radius-*`) for semantic values; these are mapped in `@theme`
 
 ### TypeScript
+
 - Strict mode is on — no implicit `any`, all component props must be typed
 - Use the `@/` path alias (resolves to workspace root) for all project imports
 - Prefer explicit return types on exported functions
 
 ### Shaders
+
 - GLSL source lives in `lib/shaders/` — do not inline shader strings in TypeScript files
 - Import shader files at the top of the component file as: `import frag from "@/lib/shaders/oil-shader.frag"`
 
 ### AWS Amplify Deployment
+
 - Amplify supports SSR — Server Components and Server Actions are valid
 - Avoid hardcoding environment-specific values; use `process.env.*` with `NEXT_PUBLIC_` prefix for client-accessible config
 - Do not commit secrets; use Amplify environment variable configuration for sensitive values
