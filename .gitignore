@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore agent session state and logs
+.agents/logs/
+.agents/sessions/
+.agents/cache/
+.agents/*.log
+
+# Keep the rules and instructions
+!.agents/rules.md
+!.agents/instructions/
