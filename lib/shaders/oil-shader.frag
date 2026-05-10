@@ -2,6 +2,9 @@
 precision highp float;
 
 uniform float u_time;
+uniform vec3 u_theme_base;
+uniform vec3 u_theme_accent;
+uniform float u_theme_mix;
 
 in  vec2 v_uv;
 out vec4 fragColor;
@@ -144,8 +147,9 @@ void main() {
   // Linear sRGB → gamma-encoded sRGB (WebGL canvas is interpreted as sRGB by the browser)
   col = pow(clamp(col, 0.0, 1.0), vec3(1.0 / 2.2));
 
-  // Composite over a very dark base
-  col = mix(vec3(0.0), col, 0.38); // mix(vec3(0.04, 0.04, 0.06), col, 0.60)
+  // Composite over a theme-reactive base so light/dark changes affect output.
+  vec3 themedBase = mix(u_theme_base, u_theme_accent, 0.06);
+  col = mix(themedBase, col, clamp(u_theme_mix, 0.0, 1.0));
 
   fragColor = vec4(col, 1.0);
 }

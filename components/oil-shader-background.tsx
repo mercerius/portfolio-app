@@ -1,13 +1,94 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 import FRAG from "@/lib/shaders/oil-shader.frag";
 import VERT from "@/lib/shaders/oil-shader.vert";
 
+type Rgb = [number, number, number];
+
+const DEFAULT_BASE: Rgb = [0.06, 0.06, 0.08];
+const DEFAULT_ACCENT: Rgb = [0.42, 0.28, 0.9];
+const LIGHT_THEME_MIX = 0.98;
+const DARK_THEME_MIX = 0.48;
+const MIX_EASING = 0.08;
+
+const parseColorToRgb = (value: string): Rgb | null => {
+  const normalized = value.trim();
+  if (!normalized) return null;
+
+  const probe = document.createElement("span");
+  probe.style.color = "rgb(0 0 0)";
+  probe.style.color = normalized;
+  if (!probe.style.color) return null;
+
+  document.body.appendChild(probe);
+  const computed = getComputedStyle(probe).color;
+  probe.remove();
+
+  const rgbaContent = computed.match(/rgba?\(([^)]+)\)/i)?.[1];
+  if (!rgbaContent) return null;
+
+  const channels = rgbaContent
+    .replace(/\//g, " ")
+    .replace(/,/g, " ")
+    .trim()
+    .split(/\s+/)
+    .map(Number)
+    .filter((channel) => Number.isFinite(channel));
+
+  if (channels.length < 3) return null;
+
+  return [channels[0] / 255, channels[1] / 255, channels[2] / 255];
+};
+
+const readThemeColors = (): { base: Rgb; accent: Rgb } => {
+  const rootStyles = getComputedStyle(document.documentElement);
+  const base = parseColorToRgb(rootStyles.getPropertyValue("--background"));
+  const accent = parseColorToRgb(rootStyles.getPropertyValue("--primary"));
+
+  return {
+    base: base ?? DEFAULT_BASE,
+    accent: accent ?? DEFAULT_ACCENT,
+  };
+};
+
+const resolveIsDark = (resolvedTheme?: string): boolean => {
+  if (resolvedTheme === "dark") return true;
+  if (resolvedTheme === "light") return false;
+  return document.documentElement.classList.contains("dark");
+};
+
 // ── Component ─────────────────────────────────────────────────────────────────────────────
 export default function OilShaderBackground() {
+  const { resolvedTheme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const themeColorsRef = useRef<{ base: Rgb; accent: Rgb }>({
+    base: DEFAULT_BASE,
+    accent: DEFAULT_ACCENT,
+  });
+  const themeMixTargetRef = useRef(DARK_THEME_MIX);
+  const themeMixCurrentRef = useRef(DARK_THEME_MIX);
+
+  useEffect(() => {
+    if (!document.body) return;
+
+    const syncColors = () => {
+      themeColorsRef.current = readThemeColors();
+      const targetMix = resolveIsDark(resolvedTheme)
+        ? DARK_THEME_MIX
+        : LIGHT_THEME_MIX;
+      themeMixTargetRef.current = targetMix;
+    };
+
+    syncColors();
+    const rafId = requestAnimationFrame(syncColors);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+    };
+  }, [resolvedTheme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -74,6 +155,9 @@ export default function OilShaderBackground() {
 
     // ── Uniform & attribute locations ─────────────────────────────────────
     const uTime = gl.getUniformLocation(prog, "u_time");
+    const uThemeBase = gl.getUniformLocation(prog, "u_theme_base");
+    const uThemeAccent = gl.getUniformLocation(prog, "u_theme_accent");
+    const uThemeMix = gl.getUniformLocation(prog, "u_theme_mix");
     const aPos = gl.getAttribLocation(prog, "a_pos");
 
     // ── Render loop ────────────────────────────────────────────────────
@@ -90,6 +174,21 @@ export default function OilShaderBackground() {
         gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
         gl.uniform1f(uTime, t);
+        const { base, accent } = themeColorsRef.current;
+        const targetMix = themeMixTargetRef.current;
+        const currentMix = themeMixCurrentRef.current;
+        const nextMix = currentMix + (targetMix - currentMix) * MIX_EASING;
+        themeMixCurrentRef.current = nextMix;
+
+        if (uThemeBase) {
+          gl.uniform3f(uThemeBase, base[0], base[1], base[2]);
+        }
+        if (uThemeAccent) {
+          gl.uniform3f(uThemeAccent, accent[0], accent[1], accent[2]);
+        }
+        if (uThemeMix) {
+          gl.uniform1f(uThemeMix, themeMixCurrentRef.current);
+        }
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
       }
