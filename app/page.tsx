@@ -87,29 +87,29 @@ export default function Home() {
         <DeferredThemeToggle />
       </div>
       <div
-        className="relative min-h-screen px-4 py-10 sm:px-6 lg:px-8"
+        className="relative min-h-screen px-4 py-10 sm:px-6 lg:px-10 2xl:px-16"
         style={{ zIndex: 1 }}
       >
-        <main id="main-content" className="mx-auto max-w-5xl">
-          {/* Bento grid */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {/* ── Hero ─────────────────────────────── col-span-2 */}
-            <Card className="md:col-span-2">
-              <CardContent className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
-                {/* Avatar */}
-                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground ring-2 ring-primary/20">
+        <main id="main-content" className="mx-auto max-w-7xl">
+          {/* 12-column bento grid */}
+          <div className="grid grid-cols-12 gap-4 md:gap-5">
+
+            {/* ── Hero ──────────────────────── col 1–8 */}
+            <Card className="col-span-12 md:col-span-8">
+              <CardContent className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-primary text-xl font-black text-primary-foreground ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent">
                   JN
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                   <div>
-                    <h1 className="text-base font-semibold tracking-tight text-foreground">
+                    <h1 className="text-4xl font-black tracking-tight leading-none text-foreground sm:text-5xl">
                       Jesse Neff
                     </h1>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-primary">
                       Full Stack Engineer · San Francisco, CA
                     </p>
                   </div>
-                  <p className="text-base/relaxed text-muted-foreground max-w-prose">
+                  <p className="text-sm/relaxed text-muted-foreground max-w-prose">
                     I build fast, reliable web applications with a focus on
                     developer experience and scalable architecture. 5+ years
                     shipping products across fintech, developer tooling, and
@@ -151,10 +151,12 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* ── Availability ─────────────────────── col-span-1 */}
-            <Card>
+            {/* ── Status ────────────────────── col 9–12 */}
+            <Card className="col-span-12 md:col-span-4">
               <CardHeader>
-                <CardTitle>Status</CardTitle>
+                <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  Status
+                </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
@@ -162,7 +164,7 @@ export default function Home() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                   </span>
-                  <span className="text-xs font-medium text-primary">
+                  <span className="text-xs font-semibold text-primary">
                     Open to opportunities
                   </span>
                 </div>
@@ -170,29 +172,31 @@ export default function Home() {
                 <dl className="flex flex-col gap-1.5 text-xs">
                   <div className="flex justify-between">
                     <dt className="text-muted-foreground">Type</dt>
-                    <dd>Full-time · Contract</dd>
+                    <dd className="font-medium">Full-time · Contract</dd>
                   </div>
                   <div className="flex justify-between">
                     <dt className="text-muted-foreground">Location</dt>
-                    <dd>Remote · SF Bay Area</dd>
+                    <dd className="font-medium">Remote · SF Bay Area</dd>
                   </div>
                   <div className="flex justify-between">
                     <dt className="text-muted-foreground">Notice</dt>
-                    <dd>2 weeks</dd>
+                    <dd className="font-medium">2 weeks</dd>
                   </div>
                 </dl>
               </CardContent>
             </Card>
 
-            {/* ── Skills ───────────────────────────── col-span-1 */}
-            <Card>
+            {/* ── Skills ────────────────────── col 1–4 */}
+            <Card className="col-span-12 md:col-span-4">
               <CardHeader>
-                <CardTitle>Skills</CardTitle>
+                <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  Skills
+                </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-3">
                 {Object.entries(skills).map(([category, items]) => (
                   <div key={category} className="flex flex-col gap-1.5">
-                    <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-muted-foreground">
+                    <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground/60">
                       {category}
                     </span>
                     <div className="flex flex-wrap gap-1">
@@ -207,16 +211,20 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* ── Projects ────────────────────────── col-span-1 */}
+            {/* ── Projects ──────────────────── col 5–8, 9–12 */}
             {projects.map((project) => (
               <Card
                 key={project.name}
-                className="flex flex-col justify-between"
+                className="col-span-12 sm:col-span-6 md:col-span-4 flex flex-col justify-between"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-2">
-                    <CardTitle>{project.name}</CardTitle>
-                    <Badge variant="outline">★ {project.stars}</Badge>
+                    <CardTitle className="text-base font-black tracking-tight text-foreground">
+                      {project.name}
+                    </CardTitle>
+                    <Badge variant="outline" className="font-mono shrink-0">
+                      ★ {project.stars}
+                    </Badge>
                   </div>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
@@ -252,10 +260,12 @@ export default function Home() {
               </Card>
             ))}
 
-            {/* ── Experience ───────────────────────── col-span-2 */}
-            <Card className="md:col-span-2 lg:col-span-2">
+            {/* ── Experience ────────────────── col 1–8 */}
+            <Card className="col-span-12 md:col-span-8">
               <CardHeader>
-                <CardTitle>Experience</CardTitle>
+                <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  Experience
+                </CardTitle>
                 <CardDescription>5 years · 3 companies</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col gap-5">
@@ -265,16 +275,21 @@ export default function Home() {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <p className="text-sm font-semibold text-foreground">
+                          <p className="text-sm font-bold tracking-tight text-foreground">
                             {role.title}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-muted-foreground">
                             {role.company}
                           </p>
                         </div>
-                        <Badge variant="outline">{role.period}</Badge>
+                        <Badge
+                          variant="outline"
+                          className="font-mono shrink-0"
+                        >
+                          {role.period}
+                        </Badge>
                       </div>
-                      <ul className="flex flex-col gap-1 pl-3 text-sm/relaxed text-muted-foreground">
+                      <ul className="flex flex-col gap-1 pl-3 text-xs/relaxed text-muted-foreground">
                         {role.highlights.map((h, j) => (
                           <li
                             key={j}
@@ -297,53 +312,65 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* ── Education ────────────────────────── col-span-1 */}
-            <Card>
+            {/* ── Education ─────────────────── col 9–12 */}
+            <Card className="col-span-12 md:col-span-4">
               <CardHeader>
-                <CardTitle>Education</CardTitle>
+                <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  Education
+                </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-3">
-                <div className="flex flex-col gap-1">
-                  <p className="text-sm font-semibold text-foreground">
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-sm font-bold tracking-tight text-foreground">
                     B.S. Computer Science
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="font-mono text-[0.6rem] uppercase tracking-[0.1em] text-muted-foreground">
                     University of California, Berkeley
                   </p>
-                  <Badge variant="outline">Class of 2019</Badge>
+                  <Badge variant="outline" className="w-fit font-mono">
+                    Class of 2019
+                  </Badge>
                 </div>
                 <Separator />
-                <div className="flex flex-col gap-1 text-xs text-muted-foreground">
-                  <p className="font-medium text-foreground">Certifications</p>
-                  <p>AWS Solutions Architect - Associate</p>
-                  <p>Google Cloud Professional Developer</p>
+                <div className="flex flex-col gap-1.5 text-xs">
+                  <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
+                    Certifications
+                  </p>
+                  <p className="text-muted-foreground">
+                    AWS Solutions Architect — Associate
+                  </p>
+                  <p className="text-muted-foreground">
+                    Google Cloud Professional Developer
+                  </p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* ── Currently learning ───────────────── col-span-1 */}
-            <Card>
+            {/* ── Currently exploring ───────── full width */}
+            <Card className="col-span-12">
               <CardHeader>
-                <CardTitle>Currently exploring</CardTitle>
+                <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  Currently exploring
+                </CardTitle>
               </CardHeader>
-              <CardContent className="flex flex-col gap-2">
+              <CardContent className="grid gap-3 sm:grid-cols-3">
                 {[
                   { topic: "Rust for systems programming", progress: 60 },
                   { topic: "WebAssembly in the browser", progress: 40 },
                   { topic: "LLM fine-tuning & RAG pipelines", progress: 75 },
                 ].map(({ topic, progress }) => (
-                  <div key={topic} className="flex flex-col gap-1">
+                  <div key={topic} className="flex flex-col gap-1.5">
                     <div className="flex justify-between">
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         {topic}
                       </span>
-                      <span className="text-[0.65rem] text-muted-foreground">
+                      <span className="font-mono text-[0.6rem] tabular-nums text-muted-foreground">
                         {progress}%
                       </span>
                     </div>
-                    <div className="h-1 w-full overflow-hidden rounded-full bg-muted">
+                    <div className="h-[3px] w-full overflow-hidden rounded-full bg-muted">
                       <div
-                        className="h-full rounded-full bg-primary"
+                        className="h-full rounded-full bg-gradient-to-r from-primary/60 to-primary"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
@@ -351,9 +378,10 @@ export default function Home() {
                 ))}
               </CardContent>
             </Card>
+
           </div>
 
-          <footer className="mt-8 text-center text-[0.65rem] text-muted-foreground">
+          <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground/50">
             Last updated May 2026 · Built with Next.js
           </footer>
         </main>
