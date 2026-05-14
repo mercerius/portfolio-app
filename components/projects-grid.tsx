@@ -60,7 +60,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
       window.removeEventListener("keydown", onKeyDown);
       delete document.body.dataset.scrollLocked;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   return (

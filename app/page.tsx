@@ -95,7 +95,6 @@ export default function Home() {
         <main id="main-content" className="mx-auto max-w-7xl">
           {/* 12-column bento grid */}
           <div className="grid grid-cols-12 gap-4 md:gap-5">
-
             {/* ── Hero ──────────────────────── col 1–8 */}
             <BentoCard className="col-span-12 md:col-span-8" index={0}>
               <Card className="h-full">
@@ -346,7 +345,6 @@ export default function Home() {
                 </CardContent>
               </Card>
             </BentoCard>
-
           </div>
 
           <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
