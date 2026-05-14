@@ -33,6 +33,12 @@
       "type": "shell",
       "command": "npm run start",
       "inAgents": true
+    },
+    {
+      "label": "Format",
+      "type": "shell",
+      "command": "npm run format",
+      "inAgents": true
     }
   ]
 }
