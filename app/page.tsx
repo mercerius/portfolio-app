@@ -33,14 +33,14 @@ export default function Home() {
         Skip to main content
       </a>
       <DeferredOilShaderBackground />
-      <div className="fixed top-4 right-4 z-50">
-        <DeferredThemeToggle />
-      </div>
       <div
         className="relative min-h-screen px-4 py-10 sm:px-6 lg:px-10 2xl:px-16"
         style={{ zIndex: 1 }}
       >
         <main id="main-content" className="mx-auto max-w-7xl">
+          <div className="flex justify-end mb-4">
+            <DeferredThemeToggle />
+          </div>
           {/* 12-column bento grid */}
           <div className="grid grid-cols-12 gap-4 md:gap-5">
             {/* ── Hero ──────────────────────── col 1–8 */}
