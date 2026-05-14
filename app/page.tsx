@@ -12,68 +12,16 @@ import DeferredOilShaderBackground from "@/components/deferred-oil-shader-backgr
 import DeferredThemeToggle from "@/components/deferred-theme-toggle";
 import { BentoCard } from "@/components/bento-card";
 import { ProjectsGrid } from "@/components/projects-grid";
-
-const skills = {
-  Languages: ["TypeScript", "Python", "Go", "SQL", "Bash"],
-  Frontend: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-  Backend: ["Node.js", "FastAPI", "PostgreSQL", "Redis", "GraphQL"],
-  DevOps: ["Docker", "AWS", "GitHub Actions", "Terraform", "Kubernetes"],
-};
-
-const experience = [
-  {
-    title: "Senior Software Engineer",
-    company: "Acme Corp",
-    period: "2022 - Present",
-    highlights: [
-      "Led migration from monolith to microservices, reducing API latency by 40%",
-      "Mentored team of 4 engineers and drove adoption of TypeScript across 12 services",
-      "Designed event-driven architecture processing 3M+ events/day",
-    ],
-    stack: ["Next.js", "Go", "Kafka", "PostgreSQL"],
-  },
-  {
-    title: "Software Engineer",
-    company: "Beta Inc",
-    period: "2020 - 2022",
-    highlights: [
-      "Built real-time analytics dashboard serving 50k+ concurrent users",
-      "Reduced build times by 60% by rearchitecting CI/CD pipeline",
-    ],
-    stack: ["React", "Node.js", "Redis", "AWS"],
-  },
-  {
-    title: "Junior Developer",
-    company: "Gamma Studio",
-    period: "2019 - 2020",
-    highlights: [
-      "Shipped 3 client-facing web apps from design to production",
-      "Integrated third-party APIs including Stripe, Twilio, and Mapbox",
-    ],
-    stack: ["React", "Django", "PostgreSQL"],
-  },
-];
-
-const projects = [
-  {
-    name: "OpenMetrics",
-    description:
-      "Open-source observability platform for distributed systems. Self-hostable alternative to Datadog with sub-second query performance.",
-    stack: ["Next.js", "Go", "ClickHouse", "Docker"],
-    stars: "1.2k",
-    href: "https://github.com",
-    live: "https://openmetrics.dev",
-  },
-  {
-    name: "Taskflow",
-    description:
-      "AI-powered project management tool that auto-prioritizes your backlog based on team velocity and deadlines.",
-    stack: ["React", "FastAPI", "OpenAI API", "Supabase"],
-    stars: "340",
-    href: "https://github.com",
-    live: "https://taskflow.app",
-  },
-];
+import {
+  personal,
+  status,
+  skills,
+  experience,
+  projects,
+  education,
+  exploring,
+  footer,
+} from "@/lib/data";
 
 export default function Home() {
   return (
@@ -100,30 +48,27 @@ export default function Home() {
               <Card className="h-full">
                 <CardContent className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
                   <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-primary text-xl font-black text-primary-foreground ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent">
-                    JN
+                    {personal.initials}
                   </div>
                   <div className="flex flex-col gap-3">
                     <div>
                       <h1 className="text-4xl font-black tracking-tight leading-none text-foreground sm:text-5xl">
-                        Jesse Neff
+                        {personal.name}
                       </h1>
                       <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-primary">
-                        Full Stack Engineer · San Francisco, CA
+                        {personal.title} · {personal.location}
                       </p>
                     </div>
                     <p className="text-sm/relaxed text-muted-foreground max-w-prose">
-                      I build fast, reliable web applications with a focus on
-                      developer experience and scalable architecture. 5+ years
-                      shipping products across fintech, developer tooling, and
-                      SaaS.
+                      {personal.bio}
                     </p>
                     <div className="flex flex-wrap gap-2 pt-1">
                       <Button asChild size="sm" variant="default">
-                        <a href="mailto:jesseneff@me.com">Email me</a>
+                        <a href={`mailto:${personal.email}`}>Email me</a>
                       </Button>
                       <Button asChild size="sm" variant="outline">
                         <a
-                          href="https://github.com/mercerius"
+                          href={personal.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -132,7 +77,7 @@ export default function Home() {
                       </Button>
                       <Button asChild size="sm" variant="outline">
                         <a
-                          href="https://linkedin.com/in/jesse-neff"
+                          href={personal.links.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -141,7 +86,7 @@ export default function Home() {
                       </Button>
                       <Button asChild size="sm" variant="ghost">
                         <a
-                          href="/resume.pdf"
+                          href={personal.links.resume}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -169,22 +114,22 @@ export default function Home() {
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                     </span>
                     <span className="text-xs font-semibold text-primary">
-                      Open to opportunities
+                      {status.label}
                     </span>
                   </div>
                   <Separator />
                   <dl className="flex flex-col gap-1.5 text-xs">
                     <div className="flex justify-between">
                       <dt className="text-muted-foreground">Type</dt>
-                      <dd className="font-medium">Full-time · Contract</dd>
+                      <dd className="font-medium">{status.type}</dd>
                     </div>
                     <div className="flex justify-between">
                       <dt className="text-muted-foreground">Location</dt>
-                      <dd className="font-medium">Remote · SF Bay Area</dd>
+                      <dd className="font-medium">{status.location}</dd>
                     </div>
                     <div className="flex justify-between">
                       <dt className="text-muted-foreground">Notice</dt>
-                      <dd className="font-medium">2 weeks</dd>
+                      <dd className="font-medium">{status.notice}</dd>
                     </div>
                   </dl>
                 </CardContent>
@@ -228,7 +173,9 @@ export default function Home() {
                   <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Experience
                   </CardTitle>
-                  <CardDescription>5 years · 3 companies</CardDescription>
+                  <CardDescription>
+                    {experience.length} years · {experience.length} companies
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-5">
                   {experience.map((role, i) => (
@@ -286,13 +233,13 @@ export default function Home() {
                 <CardContent className="flex flex-col gap-3">
                   <div className="flex flex-col gap-1.5">
                     <p className="text-sm font-bold tracking-tight text-foreground">
-                      B.S. Computer Science
+                      {education.degree}
                     </p>
                     <p className="font-mono text-[0.6rem] uppercase tracking-[0.1em] text-muted-foreground">
-                      University of California, Berkeley
+                      {education.institution}
                     </p>
                     <Badge variant="outline" className="w-fit font-mono">
-                      Class of 2019
+                      {education.year}
                     </Badge>
                   </div>
                   <Separator />
@@ -300,12 +247,11 @@ export default function Home() {
                     <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
                       Certifications
                     </p>
-                    <p className="text-muted-foreground">
-                      AWS Solutions Architect — Associate
-                    </p>
-                    <p className="text-muted-foreground">
-                      Google Cloud Professional Developer
-                    </p>
+                    {education.certifications.map((cert) => (
+                      <p key={cert} className="text-muted-foreground">
+                        {cert}
+                      </p>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
@@ -320,11 +266,7 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-3 sm:grid-cols-3">
-                  {[
-                    { topic: "Rust for systems programming", progress: 60 },
-                    { topic: "WebAssembly in the browser", progress: 40 },
-                    { topic: "LLM fine-tuning & RAG pipelines", progress: 75 },
-                  ].map(({ topic, progress }) => (
+                  {exploring.map(({ topic, progress }) => (
                     <div key={topic} className="flex flex-col gap-1.5">
                       <div className="flex justify-between">
                         <span className="text-xs text-muted-foreground">
@@ -348,7 +290,7 @@ export default function Home() {
           </div>
 
           <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
-            Last updated May 2026 · Built with Next.js
+            Last updated {footer.lastUpdated} · Built with {footer.builtWith}
           </footer>
         </main>
       </div>
