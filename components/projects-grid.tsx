@@ -13,15 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
-export interface Project {
-  name: string;
-  description: string;
-  stack: string[];
-  stars: string;
-  href: string;
-  live: string;
-}
+import type { Project } from "@/lib/data";
 
 interface ProjectsGridProps {
   projects: Project[];
