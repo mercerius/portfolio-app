@@ -6,7 +6,9 @@
       "type": "shell",
       "command": "npm install",
       "inAgents": true,
-      "runOptions": { "runOn": "worktreeCreated" }
+      "runOptions": {
+        "runOn": "worktreeCreated"
+      }
     },
     {
       "label": "Dev server",
@@ -24,6 +26,12 @@
       "label": "Lint",
       "type": "shell",
       "command": "npm run lint",
+      "inAgents": true
+    },
+    {
+      "label": "Start",
+      "type": "shell",
+      "command": "npm run start",
       "inAgents": true
     }
   ]

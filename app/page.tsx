@@ -203,7 +203,7 @@ export default function Home() {
                 <CardContent className="flex flex-col gap-3">
                   {Object.entries(skills).map(([category, items]) => (
                     <div key={category} className="flex flex-col gap-1.5">
-                      <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground/60">
+                      <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                         {category}
                       </span>
                       <div className="flex flex-wrap gap-1">
@@ -298,7 +298,7 @@ export default function Home() {
                   </div>
                   <Separator />
                   <div className="flex flex-col gap-1.5 text-xs">
-                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
+                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
                       Certifications
                     </p>
                     <p className="text-muted-foreground">
@@ -349,7 +349,7 @@ export default function Home() {
 
           </div>
 
-          <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground/50">
+          <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
             Last updated May 2026 · Built with Next.js
           </footer>
         </main>

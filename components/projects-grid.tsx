@@ -105,7 +105,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                     </Badge>
                   ))}
                 </div>
-                <p className="text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground/40">
+                <p className="text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground/70">
                   Tap / click to expand
                 </p>
               </CardContent>
@@ -164,7 +164,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
 
                   <CardContent className="flex flex-col gap-4">
                     <div>
-                      <p className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground/60 mb-2">
+                      <p className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground mb-2">
                         Stack
                       </p>
                       <div className="flex flex-wrap gap-1.5">

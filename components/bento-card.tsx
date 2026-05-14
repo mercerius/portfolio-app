@@ -70,8 +70,8 @@ export function BentoCard({
     // Outer div: participates in the CSS grid (col-span classes) + entrance animation
     <motion.div
       className={cn(className)}
-      initial={prefersReduced ? false : { opacity: 0, y: 18, scale: 0.97 }}
-      whileInView={prefersReduced ? undefined : { opacity: 1, y: 0, scale: 1 }}
+      initial={prefersReduced ? false : { y: 18, scale: 0.97 }}
+      whileInView={prefersReduced ? undefined : { y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-20px" }}
       transition={{
         type: "spring",
