@@ -83,7 +83,7 @@ export default function DeferredOilShaderBackground() {
     return (
       <div
         aria-hidden="true"
-        className="fixed inset-0 bg-[oklch(0.145_0_0)] dark:bg-[oklch(0.145_0_0)]"
+        className="fixed top-0 left-0 right-0 h-lvh bg-[oklch(0.145_0_0)] dark:bg-[oklch(0.145_0_0)]"
       />
     );
   }
@@ -93,7 +93,7 @@ export default function DeferredOilShaderBackground() {
       <div
         aria-hidden="true"
         className={cn(
-          "pointer-events-none fixed inset-0 transition-opacity duration-1400 ease-out motion-reduce:transition-none",
+          "pointer-events-none fixed top-0 left-0 right-0 h-lvh transition-opacity duration-1400 ease-out motion-reduce:transition-none",
           isShaderReady ? "opacity-100" : "opacity-0",
         )}
       >
@@ -102,7 +102,7 @@ export default function DeferredOilShaderBackground() {
       <div
         aria-hidden="true"
         className={cn(
-          "pointer-events-none fixed inset-0 bg-[oklch(0.145_0_0)] dark:bg-[oklch(0.145_0_0)] transition-opacity duration-500 ease-out motion-reduce:transition-none",
+          "pointer-events-none fixed top-0 left-0 right-0 h-lvh bg-[oklch(0.145_0_0)] dark:bg-[oklch(0.145_0_0)] transition-opacity duration-500 ease-out motion-reduce:transition-none",
           isShaderReady ? "opacity-0" : "opacity-100",
         )}
       />

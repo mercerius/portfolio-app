@@ -223,11 +223,14 @@ export default function OilShaderBackground({
     );
 
     // ── Resize: render at half CSS-pixel resolution for performance ────────
+    // Uses visualViewport when available so canvas tracks the true visible
+    // area on mobile even as the browser chrome (address bar) shows/hides.
     let W = 1,
       H = 1;
     const resize = () => {
-      W = Math.max(1, Math.floor(window.innerWidth / 2));
-      H = Math.max(1, Math.floor(window.innerHeight / 2));
+      const vv = window.visualViewport;
+      W = Math.max(1, Math.floor((vv?.width ?? window.innerWidth) / 2));
+      H = Math.max(1, Math.floor((vv?.height ?? window.innerHeight) / 2));
       canvas.width = W;
       canvas.height = H;
       gl.viewport(0, 0, W, H);
@@ -235,6 +238,7 @@ export default function OilShaderBackground({
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(document.documentElement);
+    window.visualViewport?.addEventListener("resize", resize);
 
     const startMs = performance.now();
 
@@ -297,6 +301,7 @@ export default function OilShaderBackground({
     return () => {
       cancelAnimationFrame(rafId);
       ro.disconnect();
+      window.visualViewport?.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVisibility);
       gl.deleteBuffer(buf);
       gl.deleteProgram(prog);
@@ -306,7 +311,7 @@ export default function OilShaderBackground({
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 h-full w-full bg-[oklch(0.08_0.008_280)]"
+      className="fixed top-0 left-0 right-0 h-lvh w-full bg-[oklch(0.08_0.008_280)]"
       style={{ zIndex: 0 }}
       aria-hidden="true"
     />
