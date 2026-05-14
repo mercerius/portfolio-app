@@ -24,7 +24,7 @@ const experience = [
   {
     title: "Senior Software Engineer",
     company: "Acme Corp",
-    period: "2022 – Present",
+    period: "2022 - Present",
     highlights: [
       "Led migration from monolith to microservices, reducing API latency by 40%",
       "Mentored team of 4 engineers and drove adoption of TypeScript across 12 services",
@@ -35,7 +35,7 @@ const experience = [
   {
     title: "Software Engineer",
     company: "Beta Inc",
-    period: "2020 – 2022",
+    period: "2020 - 2022",
     highlights: [
       "Built real-time analytics dashboard serving 50k+ concurrent users",
       "Reduced build times by 60% by rearchitecting CI/CD pipeline",
@@ -45,7 +45,7 @@ const experience = [
   {
     title: "Junior Developer",
     company: "Gamma Studio",
-    period: "2019 – 2020",
+    period: "2019 - 2020",
     highlights: [
       "Shipped 3 client-facing web apps from design to production",
       "Integrated third-party APIs including Stripe, Twilio, and Mapbox",
