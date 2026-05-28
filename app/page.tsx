@@ -266,21 +266,13 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-3 sm:grid-cols-3">
-                  {exploring.map(({ topic, progress }) => (
+                  {exploring.map(({ topic }) => (
                     <div key={topic} className="flex flex-col gap-1.5">
-                      <div className="flex justify-between">
-                        <span className="text-xs text-muted-foreground">
-                          {topic}
-                        </span>
-                        <span className="font-mono text-[0.6rem] tabular-nums text-muted-foreground">
-                          {progress}%
-                        </span>
-                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {topic}
+                      </span>
                       <div className="h-[3px] w-full overflow-hidden rounded-full bg-muted">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-primary/60 to-primary"
-                          style={{ width: `${progress}%` }}
-                        />
+                        <div className="h-full w-2/5 animate-pulse rounded-full bg-gradient-to-r from-primary/50 via-primary to-primary/70" />
                       </div>
                     </div>
                   ))}
