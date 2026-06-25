@@ -235,7 +235,7 @@ export default function Home() {
                     <p className="text-sm font-bold tracking-tight text-foreground">
                       {education.degree}
                     </p>
-                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.1em] text-muted-foreground">
+                    <p className="font-mono text-[0.6rem] uppercase tracking-widest text-muted-foreground">
                       {education.institution}
                     </p>
                     <Badge variant="outline" className="w-fit font-mono">
@@ -271,8 +271,8 @@ export default function Home() {
                       <span className="text-xs text-muted-foreground">
                         {topic}
                       </span>
-                      <div className="h-[3px] w-full overflow-hidden rounded-full bg-muted">
-                        <div className="h-full w-2/5 animate-pulse rounded-full bg-gradient-to-r from-primary/50 via-primary to-primary/70" />
+                      <div className="h-0.75 w-full overflow-hidden rounded-full bg-muted">
+                        <div className="h-full w-2/5 animate-pulse rounded-full bg-linear-to-r from-primary/50 via-primary to-primary/70" />
                       </div>
                     </div>
                   ))}
