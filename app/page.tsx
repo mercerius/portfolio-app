@@ -77,6 +77,7 @@ export default function Home() {
                           href={personal.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label="GitHub"
                         >
                           <Image
                             src="/github-color.svg"
@@ -91,6 +92,7 @@ export default function Home() {
                           href={personal.links.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label="LinkedIn"
                         >
                           <Image
                             src="/linkedin-color.svg"
@@ -163,12 +165,16 @@ export default function Home() {
                 <CardContent className="flex flex-col gap-3">
                   {Object.entries(skills).map(([category, items]) => (
                     <div key={category} className="flex flex-col gap-1.5">
-                      <span className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                      <span className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                         {category}
                       </span>
-                      <div className="flex flex-wrap gap-1">
+                      <div className="flex flex-wrap gap-1 pl-8">
                         {items.map((skill) => (
-                          <Badge key={skill} variant="outline">
+                          <Badge
+                            key={skill}
+                            variant="outline"
+                            className="text-sm font-thin"
+                          >
                             {skill}
                           </Badge>
                         ))}
@@ -187,28 +193,41 @@ export default function Home() {
                     Education
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-3">
+                <CardContent className="flex flex-1 flex-col justify-evenly gap-4">
+                  <div className="flex-row flex items-center justify-between gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <p className="text-sm font-bold tracking-tight text-foreground">
+                        {education.degree}
+                      </p>
+                      <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
+                        {education.institution}
+                      </p>
+                      <Badge variant="outline" className="w-fit font-mono">
+                        {education.year}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center justify-between rounded-lg px-4 py-3 gap-4">
+                      <span className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        GPA
+                      </span>
+                      <span className="font-mono font-bold tabular-nums text-foreground">
+                        {education.gpa.toFixed(1)}
+                      </span>
+                    </div>
+                  </div>
                   <div className="flex flex-col gap-1.5">
-                    <p className="text-sm font-bold tracking-tight text-foreground">
-                      {education.degree}
+                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                      Planned
                     </p>
-                    <p className="font-mono text-[0.6rem] uppercase tracking-widest text-muted-foreground">
-                      {education.institution}
+                    <p className="text-sm font-bold tracking-tight text-muted-foreground">
+                      B.S. Computer Science
+                    </p>
+                    <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
+                      Western Governors University, Online
                     </p>
                     <Badge variant="outline" className="w-fit font-mono">
-                      {education.year}
+                      By 2027
                     </Badge>
-                  </div>
-                  <Separator />
-                  <div className="flex flex-col gap-1.5 text-xs">
-                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                      Certifications
-                    </p>
-                    {education.certifications.map((cert) => (
-                      <p key={cert} className="text-muted-foreground">
-                        {cert}
-                      </p>
-                    ))}
                   </div>
                 </CardContent>
               </Card>
