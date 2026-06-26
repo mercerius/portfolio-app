@@ -43,7 +43,7 @@ export default function RootLayout({
         jetbrainsMono.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-y-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
