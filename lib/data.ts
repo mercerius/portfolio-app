@@ -42,6 +42,7 @@ export interface EducationEntry {
   degree: string;
   institution: string;
   year: string;
+  gpa: number;
   certifications: string[];
 }
 
@@ -98,7 +99,6 @@ export const skills: Record<string, string[]> = {
     "Vercel Functions",
     "Express",
     "PostgreSQL",
-    "Redis",
     "GraphQL",
   ],
   DevOps: ["Docker", "AWS", "GitHub Actions", "Terraform", "Kubernetes"],
@@ -109,7 +109,7 @@ export const experience: ExperienceEntry[] = [
   {
     title: "Senior Software Engineer",
     company: "Acme Corp",
-    period: "2022 – Present",
+    period: "2022 - Present",
     highlights: [
       "Led migration from monolith to microservices, reducing API latency by 40%",
       "Mentored team of 4 engineers and drove adoption of TypeScript across 12 services",
@@ -120,17 +120,17 @@ export const experience: ExperienceEntry[] = [
   {
     title: "Software Engineer",
     company: "Beta Inc",
-    period: "2020 – 2022",
+    period: "2020 - 2022",
     highlights: [
       "Built real-time analytics dashboard serving 50k+ concurrent users",
       "Reduced build times by 60% by rearchitecting CI/CD pipeline",
     ],
-    stack: ["React", "Node.js", "Redis", "AWS"],
+    stack: ["React", "Node.js", "AWS", "Vercel"],
   },
   {
     title: "Junior Developer",
     company: "Gamma Studio",
-    period: "2019 – 2020",
+    period: "2019 - 2020",
     highlights: [
       "Shipped 3 client-facing web apps from design to production",
       "Integrated third-party APIs including Stripe, Twilio, and Mapbox",
@@ -173,12 +173,13 @@ export const projects: Project[] = [
 ];
 
 export const education: EducationEntry = {
-  degree: "B.S. Computer Science",
-  institution: "University of California, Berkeley",
-  year: "Class of 2019",
+  degree: "A.S. Computer Science",
+  institution: "Palomar College, San Marcos, CA",
+  year: "Class of 2026",
+  gpa: 4.0,
   certifications: [
-    "AWS Solutions Architect — Associate",
-    "Google Cloud Professional Developer",
+    "Google Cybersecurity Professional Certificate",
+    "AWS Cloud Practitioner (In Progress)",
   ],
 };
 
