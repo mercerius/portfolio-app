@@ -210,13 +210,16 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-3 sm:grid-cols-3">
-                  {exploring.map(({ topic }) => (
+                  {exploring.map(({ topic, progress }) => (
                     <div key={topic} className="flex flex-col gap-1.5">
                       <span className="text-xs text-muted-foreground">
                         {topic}
                       </span>
                       <div className="h-0.75 w-full overflow-hidden rounded-full bg-muted">
-                        <div className="h-full w-2/5 animate-pulse rounded-full bg-linear-to-r from-primary/50 via-primary to-primary/70" />
+                        <div
+                          className="h-full animate-pulse rounded-full bg-linear-to-r from-primary/50 via-primary to-primary/70"
+                          style={{ width: `${progress}%` }}
+                        />
                       </div>
                     </div>
                   ))}

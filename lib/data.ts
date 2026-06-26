@@ -185,7 +185,7 @@ export const education: EducationEntry = {
 
 export const exploring: ExploringEntry[] = [
   { topic: "Embedded robotics control loops", progress: 78 },
-  { topic: "Chrome extension architecture (Manifest V3)", progress: 84 },
+  { topic: "Chrome Extension APIs (MV3)", progress: 84 },
   { topic: "Serverless API hardening on Vercel", progress: 80 },
 ];
 
