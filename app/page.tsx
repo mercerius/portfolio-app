@@ -48,12 +48,12 @@ export default function Home() {
             <BentoCard className="col-span-12 md:col-span-8" index={0}>
               <Card className="h-full">
                 <CardContent className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
-                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent overflow-hidden">
+                  <div className="flex h-40 w-40 shrink-0 items-center justify-center rounded-full ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent overflow-hidden">
                     <Image
                       src="/icon.svg"
                       alt={personal.name}
-                      width={80}
-                      height={80}
+                      width={160}
+                      height={160}
                     />
                   </div>
                   <div className="flex flex-col gap-3">
@@ -61,7 +61,7 @@ export default function Home() {
                       <h1 className="text-4xl font-black tracking-tight leading-none text-foreground sm:text-5xl">
                         {personal.name}
                       </h1>
-                      <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-primary">
+                      <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.25em] text-primary">
                         {personal.title} · {personal.location}
                       </p>
                     </div>
@@ -119,7 +119,7 @@ export default function Home() {
             <BentoCard className="col-span-12 md:col-span-4" index={1}>
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Status
                   </CardTitle>
                 </CardHeader>
@@ -156,7 +156,7 @@ export default function Home() {
             <BentoCard className="col-span-12 md:col-span-8" index={2}>
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Skills
                   </CardTitle>
                 </CardHeader>
@@ -183,7 +183,7 @@ export default function Home() {
             <BentoCard className="col-span-12 md:col-span-4" index={3}>
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Education
                   </CardTitle>
                 </CardHeader>
@@ -221,7 +221,7 @@ export default function Home() {
             <BentoCard className="col-span-12" index={4 + projects.length}>
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Currently exploring
                   </CardTitle>
                 </CardHeader>
@@ -247,7 +247,7 @@ export default function Home() {
             <BentoCard className="col-span-12" index={5 + projects.length}>
               <Card className="h-full">
                 <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Experience
                   </CardTitle>
                   <CardDescription>
