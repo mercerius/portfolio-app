@@ -65,7 +65,7 @@ export default function Home() {
                         {personal.title} · {personal.location}
                       </p>
                     </div>
-                    <p className="text-sm/relaxed text-muted-foreground max-w-prose">
+                    <p className="text-sm/relaxed max-w-prose">
                       {personal.bio}
                     </p>
                     <div className="flex flex-wrap gap-2 pt-1">
@@ -273,11 +273,11 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-5">
                   <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 pl-4">
                       {background.narrative.map((paragraph) => (
                         <p
                           key={paragraph}
-                          className="max-w-3xl text-sm/relaxed text-muted-foreground"
+                          className="max-w-3xl text-sm/relaxed"
                         >
                           {paragraph}
                         </p>
