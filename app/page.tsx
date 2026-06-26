@@ -136,8 +136,8 @@ export default function Home() {
               </Card>
             </BentoCard>
 
-            {/* ── Skills ────────────────────── col 1–4 */}
-            <BentoCard className="col-span-12 md:col-span-4" index={2}>
+            {/* ── Skills ────────────────────── col 1–8 */}
+            <BentoCard className="col-span-12 md:col-span-8" index={2}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -163,11 +163,72 @@ export default function Home() {
               </Card>
             </BentoCard>
 
-            {/* ── Projects ──────────────────── col 5–8, 9–12 */}
-            <ProjectsGrid projects={projects} startIndex={3} />
+            {/* ── Education ─────────────────── col 9–12 */}
+            <BentoCard className="col-span-12 md:col-span-4" index={3}>
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                    Education
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-1.5">
+                    <p className="text-sm font-bold tracking-tight text-foreground">
+                      {education.degree}
+                    </p>
+                    <p className="font-mono text-[0.6rem] uppercase tracking-widest text-muted-foreground">
+                      {education.institution}
+                    </p>
+                    <Badge variant="outline" className="w-fit font-mono">
+                      {education.year}
+                    </Badge>
+                  </div>
+                  <Separator />
+                  <div className="flex flex-col gap-1.5 text-xs">
+                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                      Certifications
+                    </p>
+                    {education.certifications.map((cert) => (
+                      <p key={cert} className="text-muted-foreground">
+                        {cert}
+                      </p>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </BentoCard>
 
-            {/* ── Experience ────────────────── col 1–8 */}
-            <BentoCard className="col-span-12 md:col-span-8" index={5}>
+            {/* ── Projects ──────────────────── wide cards */}
+            <ProjectsGrid projects={projects} startIndex={4} />
+
+            {/* ── Currently exploring ───────── full width */}
+            <BentoCard className="col-span-12" index={4 + projects.length}>
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
+                    Currently exploring
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="grid gap-3 sm:grid-cols-3">
+                  {exploring.map(({ topic }) => (
+                    <div key={topic} className="flex flex-col gap-1.5">
+                      <span className="text-xs text-muted-foreground">
+                        {topic}
+                      </span>
+                      <div className="h-0.75 w-full overflow-hidden rounded-full bg-muted">
+                        <div className="h-full w-2/5 animate-pulse rounded-full bg-linear-to-r from-primary/50 via-primary to-primary/70" />
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </BentoCard>
+
+            {/* ── Experience ────────────────── last row */}
+            <BentoCard
+              className="col-span-12"
+              index={5 + projects.length}
+            >
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -215,64 +276,6 @@ export default function Home() {
                             </Badge>
                           ))}
                         </div>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </BentoCard>
-
-            {/* ── Education ─────────────────── col 9–12 */}
-            <BentoCard className="col-span-12 md:col-span-4" index={6}>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
-                    Education
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-3">
-                  <div className="flex flex-col gap-1.5">
-                    <p className="text-sm font-bold tracking-tight text-foreground">
-                      {education.degree}
-                    </p>
-                    <p className="font-mono text-[0.6rem] uppercase tracking-widest text-muted-foreground">
-                      {education.institution}
-                    </p>
-                    <Badge variant="outline" className="w-fit font-mono">
-                      {education.year}
-                    </Badge>
-                  </div>
-                  <Separator />
-                  <div className="flex flex-col gap-1.5 text-xs">
-                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                      Certifications
-                    </p>
-                    {education.certifications.map((cert) => (
-                      <p key={cert} className="text-muted-foreground">
-                        {cert}
-                      </p>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </BentoCard>
-
-            {/* ── Currently exploring ───────── full width */}
-            <BentoCard className="col-span-12" index={7}>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
-                    Currently exploring
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid gap-3 sm:grid-cols-3">
-                  {exploring.map(({ topic }) => (
-                    <div key={topic} className="flex flex-col gap-1.5">
-                      <span className="text-xs text-muted-foreground">
-                        {topic}
-                      </span>
-                      <div className="h-0.75 w-full overflow-hidden rounded-full bg-muted">
-                        <div className="h-full w-2/5 animate-pulse rounded-full bg-linear-to-r from-primary/50 via-primary to-primary/70" />
                       </div>
                     </div>
                   ))}

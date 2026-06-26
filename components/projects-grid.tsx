@@ -64,7 +64,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
       {projects.map((project, i) => (
         <BentoCard
           key={project.name}
-          className="col-span-12 sm:col-span-6 md:col-span-4"
+          className="col-span-12 md:col-span-4"
           index={startIndex + i}
         >
           {/*
