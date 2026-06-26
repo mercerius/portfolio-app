@@ -173,7 +173,7 @@ export default function Home() {
                           <Badge
                             key={skill}
                             variant="outline"
-                            className="text-sm font-thin"
+                            className="text-sm font-light"
                           >
                             {skill}
                           </Badge>
@@ -199,7 +199,7 @@ export default function Home() {
                       <p className="text-sm font-bold tracking-tight text-foreground">
                         {education.degree}
                       </p>
-                      <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
+                      <p className="font-mono text-[0.65rem] uppercase tracking-widest">
                         {education.institution}
                       </p>
                       <Badge variant="outline" className="w-fit font-mono">
