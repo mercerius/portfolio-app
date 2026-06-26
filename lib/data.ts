@@ -57,8 +57,8 @@ export const personal: PersonalInfo = {
   name: "Jesse Neff",
   initials: "JN",
   title: "Full Stack Engineer",
-  location: "San Francisco, CA",
-  bio: "I build fast, reliable web applications with a focus on developer experience and scalable architecture. 5+ years shipping products across fintech, developer tooling, and SaaS.",
+  location: "San Diego, CA",
+  bio: "I build fast, reliable web applications with a focus on developer experience and scalable architecture.",
   email: "jesseneff@me.com",
   links: {
     github: "https://github.com/mercerius",
@@ -71,7 +71,7 @@ export const status: StatusInfo = {
   available: true,
   label: "Open to opportunities",
   type: "Full-time · Contract",
-  location: "Remote · SF Bay Area",
+  location: "Remote · San Diego, CA",
   notice: "2 weeks",
 };
 
