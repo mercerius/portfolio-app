@@ -34,7 +34,6 @@ export interface Project {
   name: string;
   description: string;
   stack: string[];
-  stars: string;
   href: string;
   live: string;
 }
@@ -58,7 +57,7 @@ export const personal: PersonalInfo = {
   initials: "JN",
   title: "Full Stack Engineer",
   location: "San Diego, CA",
-  bio: "I build fast, reliable web applications with a focus on developer experience and scalable architecture.",
+  bio: "I build reliable products across web, serverless APIs, and embedded systems with a focus on clean architecture and practical DX.",
   email: "jesseneff@me.com",
   links: {
     github: "https://github.com/mercerius",
@@ -76,10 +75,34 @@ export const status: StatusInfo = {
 };
 
 export const skills: Record<string, string[]> = {
-  Languages: ["TypeScript", "Python", "Go", "SQL", "Bash"],
-  Frontend: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-  Backend: ["Node.js", "FastAPI", "PostgreSQL", "Redis", "GraphQL"],
+  Languages: [
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "Go",
+    "C",
+    "ARM Assembly",
+    "SQL",
+    "Bash",
+  ],
+  Frontend: [
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Chrome Extensions (MV3)",
+  ],
+  Backend: [
+    "Node.js",
+    "FastAPI",
+    "Vercel Functions",
+    "Express",
+    "PostgreSQL",
+    "Redis",
+    "GraphQL",
+  ],
   DevOps: ["Docker", "AWS", "GitHub Actions", "Terraform", "Kubernetes"],
+  Testing: ["Jest", "Vitest", "Playwright"],
 };
 
 export const experience: ExperienceEntry[] = [
@@ -118,22 +141,34 @@ export const experience: ExperienceEntry[] = [
 
 export const projects: Project[] = [
   {
-    name: "OpenMetrics",
+    name: "yet-another-image-converter",
     description:
-      "Open-source observability platform for distributed systems. Self-hostable alternative to Datadog with sub-second query performance.",
-    stack: ["Next.js", "Go", "ClickHouse", "Docker"],
-    stars: "1.2k",
-    href: "https://github.com",
-    live: "https://openmetrics.dev",
+      "Chrome Extension (Manifest V3) that adds a right-click image conversion flow (JPEG, PNG, WebP, AVIF, BMP, ICO) with tested offscreen conversion pipelines.",
+    stack: [
+      "JavaScript",
+      "Chrome Extensions (MV3)",
+      "Canvas API",
+      "Playwright",
+      "Vitest",
+    ],
+    href: "https://github.com/mercerius/yet-another-image-converter",
+    live: "",
   },
   {
-    name: "Taskflow",
+    name: "slot_machine_api",
     description:
-      "AI-powered project management tool that auto-prioritizes your backlog based on team velocity and deadlines.",
-    stack: ["React", "FastAPI", "OpenAI API", "Supabase"],
-    stars: "340",
-    href: "https://github.com",
-    live: "https://taskflow.app",
+      "TypeScript slot machine API architected for Vercel Serverless Functions with tested core game logic, local adapters, and deployment workflows.",
+    stack: ["TypeScript", "Vercel Functions", "Express", "Jest", "pnpm"],
+    href: "https://github.com/mercerius/slot_machine_api",
+    live: "",
+  },
+  {
+    name: "arm-assembly-robot-follower",
+    description:
+      "Raspberry Pi leader-follower robot implemented in ARM assembly with C hardware drivers, using custom ultrasonic sensor algorithms.",
+    stack: ["ARM Assembly", "C", "Raspberry Pi", "wiringPi", "PCA9685"],
+    href: "https://github.com/mercerius/arm-assembly-robot-follower",
+    live: "",
   },
 ];
 
@@ -148,12 +183,12 @@ export const education: EducationEntry = {
 };
 
 export const exploring: ExploringEntry[] = [
-  { topic: "Rust for systems programming", progress: 60 },
-  { topic: "WebAssembly in the browser", progress: 40 },
-  { topic: "LLM fine-tuning & RAG pipelines", progress: 75 },
+  { topic: "Embedded robotics control loops", progress: 78 },
+  { topic: "Chrome extension architecture (Manifest V3)", progress: 84 },
+  { topic: "Serverless API hardening on Vercel", progress: 80 },
 ];
 
 export const footer = {
-  lastUpdated: "May 2026",
+  lastUpdated: "June 2026",
   builtWith: "Next.js",
 };
