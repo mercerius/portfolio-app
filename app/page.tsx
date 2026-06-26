@@ -12,6 +12,7 @@ import DeferredOilShaderBackground from "@/components/deferred-oil-shader-backgr
 import DeferredThemeToggle from "@/components/deferred-theme-toggle";
 import { BentoCard } from "@/components/bento-card";
 import { ProjectsGrid } from "@/components/projects-grid";
+import Image from "next/image";
 import {
   personal,
   status,
@@ -47,8 +48,13 @@ export default function Home() {
             <BentoCard className="col-span-12 md:col-span-8" index={0}>
               <Card className="h-full">
                 <CardContent className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
-                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-primary text-xl font-black text-primary-foreground ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent">
-                    {personal.initials}
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent overflow-hidden">
+                    <Image
+                      src="/icon.svg"
+                      alt={personal.name}
+                      width={80}
+                      height={80}
+                    />
                   </div>
                   <div className="flex flex-col gap-3">
                     <div>
@@ -228,10 +234,7 @@ export default function Home() {
             </BentoCard>
 
             {/* ── Experience ────────────────── last row */}
-            <BentoCard
-              className="col-span-12"
-              index={5 + projects.length}
-            >
+            <BentoCard className="col-span-12" index={5 + projects.length}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
