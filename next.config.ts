@@ -29,6 +29,19 @@ const nextConfig: NextConfig = {
       "*.frag": { loaders: ["raw-loader"], as: "*.js" },
     },
   },
+  compiler: {
+    // Strip console.log/warn/debug calls from production builds.
+    // console.error is preserved for runtime error visibility.
+    removeConsole: {
+      exclude: ["error"],
+    },
+  },
+  experimental: {
+    // lucide-react is already in Next.js's default optimizePackageImports list.
+    // radix-ui and framer-motion are not, so we add them here to ensure only
+    // the imported modules are included in the bundle rather than the full package.
+    optimizePackageImports: ["radix-ui", "framer-motion"],
+  },
   allowedDevOrigins: ["192.168.0.170"],
   async headers() {
     return [
