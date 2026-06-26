@@ -72,25 +72,35 @@ export default function Home() {
                       <Button asChild size="sm" variant="default">
                         <a href={`mailto:${personal.email}`}>Email me</a>
                       </Button>
-                      <Button asChild size="sm" variant="outline">
+                      <Button asChild size="icon-sm" variant="outline">
                         <a
                           href={personal.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          GitHub
+                          <Image
+                            src="/github-color.svg"
+                            alt=""
+                            width={16}
+                            height={16}
+                          />
                         </a>
                       </Button>
-                      <Button asChild size="sm" variant="outline">
+                      <Button asChild size="icon-sm" variant="outline">
                         <a
                           href={personal.links.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          LinkedIn
+                          <Image
+                            src="/linkedin-color.svg"
+                            alt=""
+                            width={16}
+                            height={16}
+                          />
                         </a>
                       </Button>
-                      <Button asChild size="sm" variant="ghost">
+                      <Button asChild size="sm" variant="secondary">
                         <a
                           href={personal.links.resume}
                           target="_blank"
@@ -113,18 +123,18 @@ export default function Home() {
                     Status
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-3">
+                <CardContent className="flex flex-col justify-between gap-4 h-full pb-6">
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                     </span>
-                    <span className="text-xs font-semibold text-primary">
+                    <span className="text-sm font-semibold text-primary">
                       {status.label}
                     </span>
                   </div>
                   <Separator />
-                  <dl className="flex flex-col gap-1.5 text-xs">
+                  <dl className="flex flex-col gap-3 text-sm">
                     <div className="flex justify-between">
                       <dt className="text-muted-foreground">Type</dt>
                       <dd className="font-medium">{status.type}</dd>
