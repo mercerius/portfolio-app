@@ -13,7 +13,7 @@ const baseHeaders = [
 // These headers are only meaningful (and only accepted by browsers) on HTTPS.
 // Sending them over plain HTTP causes console errors that tank Lighthouse
 // Best Practices in dev. They are applied via the `has` condition so they
-// only fire when the request already arrived over HTTPS (e.g. on Vercel).
+// only fire when the request already arrived over HTTPS.
 const httpsOnlyHeaders = [
   {
     key: "Strict-Transport-Security",

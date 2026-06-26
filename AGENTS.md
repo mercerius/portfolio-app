@@ -12,7 +12,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Overview
 
-Jesse Neff's portfolio — a Next.js 16 App Router SPA deployed on **AWS Amplify** (SSR-capable). Server Components, Server Actions, and API routes are all supported.
+Jesse Neff's portfolio — a Next.js 16 App Router SPA deployed on **Vercel** (SSR-capable). Server Components, Server Actions, and API routes are all supported.
 
 ## Stack
 
@@ -67,11 +67,11 @@ public/           # Static assets
 - GLSL source lives in `lib/shaders/` — do not inline shader strings in TypeScript files
 - Import shader files at the top of the component file as: `import frag from "@/lib/shaders/oil-shader.frag"`
 
-### AWS Amplify Deployment
+### Vercel Deployment
 
-- Amplify supports SSR — Server Components and Server Actions are valid
+- Vercel supports SSR — Server Components and Server Actions are valid
 - Avoid hardcoding environment-specific values; use `process.env.*` with `NEXT_PUBLIC_` prefix for client-accessible config
-- Do not commit secrets; use Amplify environment variable configuration for sensitive values
+- Do not commit secrets; use Vercel environment variable configuration for sensitive values
 
 ## Build & Lint
 
