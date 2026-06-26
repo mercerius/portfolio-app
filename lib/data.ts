@@ -22,12 +22,16 @@ export interface StatusInfo {
   notice: string;
 }
 
-export interface ExperienceEntry {
+export interface BackgroundStrength {
   title: string;
-  company: string;
-  period: string;
-  highlights: string[];
-  stack: string[];
+  description: string;
+}
+
+export interface BackgroundInfo {
+  title: string;
+  description: string;
+  narrative: string[];
+  strengths: BackgroundStrength[];
 }
 
 export interface Project {
@@ -56,9 +60,9 @@ export interface ExploringEntry {
 export const personal: PersonalInfo = {
   name: "Jesse Neff",
   initials: "JN",
-  title: "Full Stack Engineer",
+  title: "Software Engineer",
   location: "San Diego, CA",
-  bio: "I build reliable products across web, serverless APIs, and embedded systems with a focus on clean architecture and practical DX.",
+  bio: "Software engineer with a foundation in networking, technical operations, and customer-facing problem solving. I build practical TypeScript products across web, APIs, and embedded systems with a focus on reliability and clean architecture.",
   email: "jesseneff@me.com",
   links: {
     github: "https://github.com/mercerius",
@@ -70,8 +74,8 @@ export const personal: PersonalInfo = {
 export const status: StatusInfo = {
   available: true,
   label: "Open to opportunities",
-  type: "Full-time · Contract",
-  location: "Remote · San Diego, CA",
+  type: "FT · Contract · Internship",
+  location: "Remote · San Diego",
   notice: "2 weeks",
 };
 
@@ -105,39 +109,38 @@ export const skills: Record<string, string[]> = {
   Testing: ["Jest", "Vitest", "Playwright"],
 };
 
-export const experience: ExperienceEntry[] = [
-  {
-    title: "Senior Software Engineer",
-    company: "Acme Corp",
-    period: "2022 - Present",
-    highlights: [
-      "Led migration from monolith to microservices, reducing API latency by 40%",
-      "Mentored team of 4 engineers and drove adoption of TypeScript across 12 services",
-      "Designed event-driven architecture processing 3M+ events/day",
-    ],
-    stack: ["Next.js", "Go", "Kafka", "PostgreSQL"],
-  },
-  {
-    title: "Software Engineer",
-    company: "Beta Inc",
-    period: "2020 - 2022",
-    highlights: [
-      "Built real-time analytics dashboard serving 50k+ concurrent users",
-      "Reduced build times by 60% by rearchitecting CI/CD pipeline",
-    ],
-    stack: ["React", "Node.js", "AWS", "Vercel"],
-  },
-  {
-    title: "Junior Developer",
-    company: "Gamma Studio",
-    period: "2019 - 2020",
-    highlights: [
-      "Shipped 3 client-facing web apps from design to production",
-      "Integrated third-party APIs including Stripe, Twilio, and Mapbox",
-    ],
-    stack: ["React", "Django", "PostgreSQL"],
-  },
-];
+export const background: BackgroundInfo = {
+  title: "About Me",
+  description:
+    "I am following my passion for software engineering, combining customer-facing experience with technical expertise.",
+  narrative: [
+    "After years working in high-pressure customer operations, I learned how to stay accurate, communicate clearly, and keep systems moving when the room is loud and the stakes are real.",
+    "That discipline carried into technical roles as a commercial installation technician and administrative support, where I worked with TCP/IP networking, routing, CCTV systems, SQL-backed workflows, and day-to-day operational troubleshooting.",
+    "Now I bring that same grit and problem-solving mindset into software engineering through computer science study and hands-on projects in TypeScript, APIs, testing, and systems-oriented development, with the goal of joining a team to ship reliable and impactful software.",
+  ],
+  strengths: [
+    {
+      title: "User empathy",
+      description:
+        "Years of front-line customer-facing work built strong communication, client care, and calm conflict resolution.",
+    },
+    {
+      title: "Accuracy under pressure",
+      description:
+        "Used to handling high-volume transactions, compliance rules, and fast decisions without losing precision.",
+    },
+    {
+      title: "Technical troubleshooting",
+      description:
+        "Hands-on experience with networking, routing, CCTV, low-voltage systems, and diagnosing hardware integration issues.",
+    },
+    {
+      title: "Operational ownership",
+      description:
+        "Comfortable learning new systems quickly, supporting workflows, and being part of a team.",
+    },
+  ],
+};
 
 export const projects: Project[] = [
   {

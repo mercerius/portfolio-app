@@ -17,7 +17,7 @@ import {
   personal,
   status,
   skills,
-  experience,
+  background,
   projects,
   education,
   exploring,
@@ -262,58 +262,48 @@ export default function Home() {
               </Card>
             </BentoCard>
 
-            {/* ── Experience ────────────────── last row */}
+            {/* ── About Me ──────────────────── last row */}
             <BentoCard className="col-span-12" index={5 + projects.length}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
-                    Experience
+                    {background.title}
                   </CardTitle>
-                  <CardDescription>
-                    {experience.length} years · {experience.length} companies
-                  </CardDescription>
+                  <CardDescription>{background.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-5">
-                  {experience.map((role, i) => (
-                    <div key={i}>
-                      {i > 0 && <Separator className="mb-5" />}
-                      <div className="flex flex-col gap-2">
-                        <div className="flex items-start justify-between gap-4">
-                          <div>
-                            <p className="text-sm font-bold tracking-tight text-foreground">
-                              {role.title}
+                  <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+                    <div className="flex flex-col gap-4">
+                      {background.narrative.map((paragraph) => (
+                        <p
+                          key={paragraph}
+                          className="max-w-3xl text-sm/relaxed text-muted-foreground"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                        What my experience brings
+                      </p>
+                      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                        {background.strengths.map((strength) => (
+                          <div
+                            key={strength.title}
+                            className="rounded-xl border border-border/60 bg-background/40 p-4"
+                          >
+                            <p className="text-sm font-semibold tracking-tight text-foreground">
+                              {strength.title}
                             </p>
-                            <p className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-muted-foreground">
-                              {role.company}
+                            <p className="mt-1 text-xs/relaxed text-muted-foreground">
+                              {strength.description}
                             </p>
                           </div>
-                          <Badge
-                            variant="outline"
-                            className="font-mono shrink-0"
-                          >
-                            {role.period}
-                          </Badge>
-                        </div>
-                        <ul className="flex flex-col gap-1 pl-3 text-xs/relaxed text-muted-foreground">
-                          {role.highlights.map((h, j) => (
-                            <li
-                              key={j}
-                              className="relative before:absolute before:-left-3 before:content-['·']"
-                            >
-                              {h}
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="flex flex-wrap gap-1 pt-1">
-                          {role.stack.map((s) => (
-                            <Badge key={s} variant="secondary">
-                              {s}
-                            </Badge>
-                          ))}
-                        </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
+                  </div>
                 </CardContent>
               </Card>
             </BentoCard>
