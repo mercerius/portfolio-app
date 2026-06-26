@@ -31,19 +31,24 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const selectedProject = projects.find((p) => p.name === selected) ?? null;
 
+  function hasLiveDemo(live: string, href: string): boolean {
+    if (!live.trim()) return false;
+    if (live === href) return false;
+    return !live.includes("github.com");
+  }
+
   function open(name: string) {
     setSelected(name);
-    document.body.dataset.scrollLocked = "true";
   }
 
   function close() {
     setSelected(null);
-    delete document.body.dataset.scrollLocked;
   }
 
   // Close on Escape; also clean up scroll lock on unmount
   useEffect(() => {
     if (!selected) return;
+    document.body.dataset.scrollLocked = "true";
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") close();
     }
@@ -52,7 +57,6 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
       window.removeEventListener("keydown", onKeyDown);
       delete document.body.dataset.scrollLocked;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   return (
@@ -78,14 +82,9 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
           >
             <Card className="h-full flex flex-col justify-between">
               <CardHeader>
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-base font-black tracking-tight text-foreground">
-                    {project.name}
-                  </CardTitle>
-                  <Badge variant="outline" className="font-mono shrink-0">
-                    ★ {project.stars}
-                  </Badge>
-                </div>
+                <CardTitle className="text-base font-black tracking-tight text-foreground">
+                  {project.name}
+                </CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
 
@@ -134,20 +133,15 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                       <CardTitle className="text-xl font-black tracking-tight text-foreground">
                         {selectedProject.name}
                       </CardTitle>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <Badge variant="outline" className="font-mono">
-                          ★ {selectedProject.stars}
-                        </Badge>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-7 w-7 p-0"
-                          onClick={close}
-                          aria-label="Close"
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </div>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 w-7 p-0 shrink-0"
+                        onClick={close}
+                        aria-label="Close"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
                     </div>
                     <CardDescription className="text-sm/relaxed mt-1">
                       {selectedProject.description}
@@ -178,15 +172,20 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                           View Source ↗
                         </a>
                       </Button>
-                      <Button asChild size="sm" variant="default">
-                        <a
-                          href={selectedProject.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Live Demo ↗
-                        </a>
-                      </Button>
+                      {hasLiveDemo(
+                        selectedProject.live,
+                        selectedProject.href,
+                      ) && (
+                        <Button asChild size="sm" variant="default">
+                          <a
+                            href={selectedProject.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Live Demo ↗
+                          </a>
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
