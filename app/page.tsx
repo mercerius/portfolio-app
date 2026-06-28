@@ -47,60 +47,73 @@ export default function Home() {
             {/* ── Hero ──────────────────────── col 1–8 */}
             <BentoCard className="col-span-12 md:col-span-8" index={0}>
               <Card className="h-full">
-                <CardContent className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
-                  <div className="flex h-40 w-40 shrink-0 items-center justify-center rounded-full ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent overflow-hidden">
-                    <Image
-                      src="/icon.svg"
-                      alt={personal.name}
-                      width={160}
-                      height={160}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <div>
-                      <h1 className="text-4xl font-black tracking-tight leading-none text-foreground sm:text-5xl">
+                <CardContent className="flex flex-col gap-4">
+                  {/* Identity row: lg → icon + name + title all inline; below lg → icon + stacked name/title */}
+                  <div className="flex flex-row items-center gap-5 sm:gap-8">
+                    <div className="flex h-24 w-24 sm:h-40 sm:w-40 shrink-0 items-center justify-center rounded-full ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent overflow-hidden">
+                      <Image
+                        src="/icon.svg"
+                        alt={personal.name}
+                        width={160}
+                        height={160}
+                        loading="eager"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1 lg:flex-row lg:items-baseline lg:gap-4">
+                      <h1 className="text-4xl font-black tracking-tight leading-none text-foreground sm:text-5xl sm:whitespace-nowrap">
                         {personal.name}
                       </h1>
-                      <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.25em] text-primary">
-                        {personal.title} · {personal.location}
+                      <p className="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-primary">
+                        <span className="whitespace-nowrap">
+                          {personal.title}
+                        </span>
+                        {" · "}
+                        <span className="whitespace-nowrap">
+                          {personal.location}
+                        </span>
                       </p>
                     </div>
+                  </div>
+                  {/* Bio + buttons: lg → two columns; smaller → stacked */}
+                  <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-start">
                     <p className="text-sm/relaxed max-w-prose">
                       {personal.bio}
                     </p>
-                    <div className="flex flex-wrap gap-2 pt-1">
+                    <div className="flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap">
+                      <div className="flex flex-row gap-2 lg:justify-end">
+                        <Button asChild size="icon-sm" variant="outline">
+                          <a
+                            href={personal.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub"
+                          >
+                            <Image
+                              src="/github-color.svg"
+                              alt=""
+                              width={16}
+                              height={16}
+                            />
+                          </a>
+                        </Button>
+                        <Button asChild size="icon-sm" variant="outline">
+                          <a
+                            href={personal.links.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn"
+                          >
+                            <Image
+                              src="/linkedin-color.svg"
+                              alt=""
+                              width={16}
+                              height={16}
+                            />
+                          </a>
+                        </Button>
+                      </div>
                       <Button asChild size="sm" variant="default">
                         <a href={`mailto:${personal.email}`}>Email me</a>
-                      </Button>
-                      <Button asChild size="icon-sm" variant="outline">
-                        <a
-                          href={personal.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="GitHub"
-                        >
-                          <Image
-                            src="/github-color.svg"
-                            alt=""
-                            width={16}
-                            height={16}
-                          />
-                        </a>
-                      </Button>
-                      <Button asChild size="icon-sm" variant="outline">
-                        <a
-                          href={personal.links.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="LinkedIn"
-                        >
-                          <Image
-                            src="/linkedin-color.svg"
-                            alt=""
-                            width={16}
-                            height={16}
-                          />
-                        </a>
                       </Button>
                       <Button asChild size="sm" variant="secondary">
                         <a
@@ -125,10 +138,10 @@ export default function Home() {
                     Status
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col justify-between gap-4 h-full pb-6">
+                <CardContent className="flex flex-col gap-4 pb-6">
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 opacity-75" />
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                     </span>
                     <span className="text-sm font-semibold text-primary">
@@ -137,17 +150,23 @@ export default function Home() {
                   </div>
                   <Separator />
                   <dl className="flex flex-col gap-3 text-sm">
-                    <div className="flex justify-between">
-                      <dt className="text-muted-foreground">Type</dt>
-                      <dd className="font-medium">{status.type}</dd>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-muted-foreground shrink-0">Type</dt>
+                      <dd className="font-medium text-right">{status.type}</dd>
                     </div>
-                    <div className="flex justify-between">
-                      <dt className="text-muted-foreground">Location</dt>
-                      <dd className="font-medium">{status.location}</dd>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-muted-foreground shrink-0">
+                        Location
+                      </dt>
+                      <dd className="font-medium text-right">
+                        {status.location}
+                      </dd>
                     </div>
-                    <div className="flex justify-between">
-                      <dt className="text-muted-foreground">Notice</dt>
-                      <dd className="font-medium">{status.notice}</dd>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-muted-foreground shrink-0">Notice</dt>
+                      <dd className="font-medium text-right">
+                        {status.notice}
+                      </dd>
                     </div>
                   </dl>
                 </CardContent>
@@ -196,28 +215,33 @@ export default function Home() {
                     Education
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col justify-evenly gap-0">
-                  <div className="flex-row flex items-center justify-between gap-4">
+                <CardContent className="flex flex-col gap-5 pb-6">
+                  {/* Current degree */}
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex flex-col gap-1.5">
                       <p className="text-sm font-bold tracking-tight text-foreground">
                         {education.degree}
                       </p>
-                      <p className="font-mono text-[0.65rem] uppercase tracking-widest">
+                      <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
                         {education.institution}
                       </p>
                       <Badge variant="outline" className="w-fit font-mono">
                         {education.year}
                       </Badge>
                     </div>
-                    <div className="flex items-center justify-between rounded-lg px-4 py-3 gap-4">
-                      <span className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                    <div className="flex flex-col items-center shrink-0 rounded-lg border border-border/60 bg-background/40 px-3 py-2 gap-0.5">
+                      <span className="text-[0.5rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
                         GPA
                       </span>
-                      <span className="font-mono font-bold tabular-nums text-foreground">
+                      <span className="font-mono font-bold tabular-nums text-foreground text-lg leading-none">
                         {education.gpa.toFixed(1)}
                       </span>
                     </div>
                   </div>
+
+                  <Separator />
+
+                  {/* Planned */}
                   <div className="flex flex-col gap-1.5">
                     <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
                       Planned
@@ -231,6 +255,25 @@ export default function Home() {
                     <Badge variant="outline" className="w-fit font-mono">
                       By 2027
                     </Badge>
+                  </div>
+
+                  <Separator />
+
+                  {/* Certifications */}
+                  <div className="flex flex-col gap-2">
+                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                      Certifications
+                    </p>
+                    <div className="flex flex-col gap-1.5">
+                      {education.certifications.map((cert) => (
+                        <div key={cert} className="flex items-start gap-2">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                          <span className="text-xs/relaxed text-muted-foreground">
+                            {cert}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -247,7 +290,7 @@ export default function Home() {
                     Currently exploring
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="grid gap-3 sm:grid-cols-3">
+                <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {exploring.map(({ topic, progress }) => (
                     <div key={topic} className="flex flex-col gap-1.5">
                       <span className="text-xs text-muted-foreground">
@@ -275,9 +318,9 @@ export default function Home() {
                   <CardDescription>{background.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-5">
-                  <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-                    <div className="flex flex-col gap-4 pl-4">
-                      <p className="max-w-3xl text-sm/relaxed">
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
+                    <div className="flex flex-col gap-4 pl-4 bg-background/40 rounded-xl border border-border/60 p-4">
+                      <p className="max-w-3xl text-prose indent-4 font-light">
                         {background.narrative}
                       </p>
                     </div>
@@ -285,7 +328,7 @@ export default function Home() {
                       <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                         What my experience brings
                       </p>
-                      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                         {background.strengths.map((strength) => (
                           <div
                             key={strength.title}
