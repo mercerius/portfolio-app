@@ -162,13 +162,16 @@ export default function Home() {
                     Skills
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-3">
+                <CardContent className="columns-1 sm:columns-2 lg:columns-3 gap-3">
                   {Object.entries(skills).map(([category, items]) => (
-                    <div key={category} className="flex flex-col gap-1.5">
+                    <div
+                      key={category}
+                      className="break-inside-avoid mb-3 flex flex-col gap-2 rounded-xl border border-border/60 bg-background/40 p-3"
+                    >
                       <span className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                         {category}
                       </span>
-                      <div className="flex flex-wrap gap-1 pl-8">
+                      <div className="flex flex-wrap gap-1">
                         {items.map((skill) => (
                           <Badge
                             key={skill}
@@ -193,7 +196,7 @@ export default function Home() {
                     Education
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col justify-evenly gap-4">
+                <CardContent className="flex flex-1 flex-col justify-evenly gap-0">
                   <div className="flex-row flex items-center justify-between gap-4">
                     <div className="flex flex-col gap-1.5">
                       <p className="text-sm font-bold tracking-tight text-foreground">

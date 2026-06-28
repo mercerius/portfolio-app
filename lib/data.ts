@@ -80,32 +80,40 @@ export const status: StatusInfo = {
 };
 
 export const skills: Record<string, string[]> = {
-  Languages: [
-    "TypeScript",
-    "JavaScript",
-    "Python",
-    "Go",
+  "Systems & Low-Level": [
     "C",
     "ARM Assembly",
-    "SQL",
+    "Go",
+    "Python",
     "Bash",
+    "SQL",
+    "GLSL",
   ],
-  Frontend: [
+  "Web & UI": [
+    "TypeScript",
+    "JavaScript",
     "React",
     "Next.js",
     "Tailwind CSS",
+    "WebGL",
     "Framer Motion",
     "Chrome Extensions (MV3)",
   ],
-  Backend: [
+  "Backend & APIs": [
     "Node.js",
     "FastAPI",
-    "Vercel Functions",
     "Express",
     "PostgreSQL",
     "GraphQL",
+    "Vercel Functions",
   ],
-  DevOps: ["Docker", "AWS", "GitHub Actions", "Terraform", "Kubernetes"],
+  "Platform & DevOps": [
+    "Docker",
+    "AWS",
+    "GitHub Actions",
+    "Terraform",
+    "Kubernetes",
+  ],
   Testing: ["Jest", "Vitest", "Playwright"],
 };
 
@@ -169,6 +177,23 @@ export const projects: Project[] = [
     stack: ["ARM Assembly", "C", "Raspberry Pi", "wiringPi", "PCA9685"],
     href: "https://github.com/mercerius/arm-assembly-robot-follower",
     live: "",
+  },
+  {
+    name: "portfolio-app",
+    description:
+      "This portfolio — built with Next.js 16, React 19, and a custom WebGL/GLSL oil-slick shader background. Bento-grid layout, dark-mode theming, and Framer Motion animated project cards with a Server-Components-first architecture.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "WebGL",
+      "GLSL",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Framer Motion",
+    ],
+    href: "",
+    live: "/",
   },
 ];
 

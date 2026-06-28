@@ -33,6 +33,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
 
   function hasLiveDemo(live: string, href: string): boolean {
     if (!live.trim()) return false;
+    if (live === "/") return false;
     if (live === href) return false;
     return !live.includes("github.com");
   }
@@ -61,17 +62,14 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
 
   return (
     <>
-      {projects.map((project, i) => (
+      {projects.map((project, i) => {
+        const isLast = i === projects.length - 1;
+        return (
         <BentoCard
           key={project.name}
-          className="col-span-12 md:col-span-4"
+          className={isLast ? "col-span-12" : "col-span-12 md:col-span-4"}
           index={startIndex + i}
         >
-          {/*
-           * The layoutId element must wrap the visible card surface so framer-motion
-           * can animate it from the grid position to the expanded overlay position.
-           * Fading out when selected prevents a "ghost" card underneath the overlay.
-           */}
           <motion.div
             layoutId={`project-card-${project.name}`}
             className="h-full cursor-pointer"
@@ -80,15 +78,17 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
             transition={{ duration: 0.12 }}
             onClick={() => open(project.name)}
           >
-            <Card className="h-full flex flex-col justify-between">
-              <CardHeader>
-                <CardTitle className="text-base font-black tracking-tight text-foreground">
-                  {project.name}
-                </CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
+            <Card className={`h-full ${isLast ? "flex flex-col md:flex-row md:items-start md:gap-8" : "flex flex-col justify-between"}`}>
+              <div className={isLast ? "flex flex-col flex-1 min-w-0" : "contents"}>
+                <CardHeader>
+                  <CardTitle className={`font-black tracking-tight text-foreground ${isLast ? "text-xl" : "text-base"}`}>
+                    {project.name}
+                  </CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+              </div>
 
-              <CardContent className="flex flex-col gap-3">
+              <CardContent className={`flex flex-col gap-3 ${isLast ? "md:min-w-70 md:border-l md:border-border/40 md:pl-8" : ""}`}>
                 <div className="flex flex-wrap gap-1">
                   {project.stack.map((s) => (
                     <Badge key={s} variant="secondary">
@@ -96,14 +96,21 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                     </Badge>
                   ))}
                 </div>
-                <p className="text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground/70">
-                  Tap / click to expand
-                </p>
+                {isLast && project.live === "/" ? (
+                  <Badge variant="outline" className="w-fit text-[0.6rem] uppercase tracking-[0.15em] font-normal">
+                    You&apos;re viewing it →
+                  </Badge>
+                ) : (
+                  <p className="text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground/70">
+                    Tap / click to expand
+                  </p>
+                )}
               </CardContent>
             </Card>
           </motion.div>
         </BentoCard>
-      ))}
+        );
+      })}
 
       <AnimatePresence>
         {selected && selectedProject && (
@@ -162,16 +169,18 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 pt-1">
-                      <Button asChild size="sm" variant="outline">
-                        <a
-                          href={selectedProject.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Source ↗
-                        </a>
-                      </Button>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {selectedProject.href && (
+                        <Button asChild size="sm" variant="outline">
+                          <a
+                            href={selectedProject.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View Source ↗
+                          </a>
+                        </Button>
+                      )}
                       {hasLiveDemo(
                         selectedProject.live,
                         selectedProject.href,
@@ -185,6 +194,11 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                             Live Demo ↗
                           </a>
                         </Button>
+                      )}
+                      {selectedProject.live === "/" && (
+                        <Badge variant="outline" className="self-center text-[0.6rem] uppercase tracking-[0.15em] font-normal">
+                          You&apos;re viewing it →
+                        </Badge>
                       )}
                     </div>
                   </CardContent>
