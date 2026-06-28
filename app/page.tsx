@@ -257,24 +257,26 @@ export default function Home() {
                     </Badge>
                   </div>
 
-                  <Separator />
+                  {education.certifications.length > 0 && <Separator />}
 
                   {/* Certifications */}
-                  <div className="flex flex-col gap-2">
-                    <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                      Certifications
-                    </p>
-                    <div className="flex flex-col gap-1.5">
-                      {education.certifications.map((cert) => (
-                        <div key={cert} className="flex items-start gap-2">
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                          <span className="text-xs/relaxed text-muted-foreground">
-                            {cert}
-                          </span>
-                        </div>
-                      ))}
+                  {education.certifications.length > 0 && (
+                    <div className="flex flex-col gap-2">
+                      <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        Certifications
+                      </p>
+                      <div className="flex flex-col gap-1.5">
+                        {education.certifications.map((cert) => (
+                          <div key={cert} className="flex items-start gap-2">
+                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                            <span className="text-xs/relaxed text-muted-foreground">
+                              {cert}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </CardContent>
               </Card>
             </BentoCard>
