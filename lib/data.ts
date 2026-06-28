@@ -258,10 +258,7 @@ export const education: EducationEntry = {
   institution: "Palomar College, San Marcos, CA",
   year: "Class of 2026",
   gpa: 4.0,
-  certifications: [
-    "Google Cybersecurity Professional Certificate",
-    "AWS Cloud Practitioner (In Progress)",
-  ],
+  certifications: [],
 };
 
 export const exploring: ExploringEntry[] = [
