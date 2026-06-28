@@ -30,7 +30,7 @@ export interface BackgroundStrength {
 export interface BackgroundInfo {
   title: string;
   description: string;
-  narrative: string[];
+  narrative: string;
   strengths: BackgroundStrength[];
 }
 
@@ -113,11 +113,8 @@ export const background: BackgroundInfo = {
   title: "About Me",
   description:
     "I am following my passion for software engineering, combining customer-facing experience with technical expertise.",
-  narrative: [
-    "After years working in high-pressure customer operations, I learned how to stay accurate, communicate clearly, and keep systems moving when the room is loud and the stakes are real.",
-    "That discipline carried into technical roles as a commercial installation technician and administrative support, where I worked with TCP/IP networking, routing, CCTV systems, SQL-backed workflows, and day-to-day operational troubleshooting.",
-    "Now I bring that same grit and problem-solving mindset into software engineering through computer science study and hands-on projects in TypeScript, APIs, testing, and systems-oriented development, with the goal of joining a team to ship reliable and impactful software.",
-  ],
+  narrative:
+    "After years working in high-pressure customer operations, I learned how to stay accurate, communicate clearly, and keep operations steady when the pressure is high and people are counting on you. That discipline carried into technical roles like commercial installation and administrative support, where I managed TCP/IP networking, routing, CCTV systems, and SQL-backed workflows. Now, I bring that same grit and problem-solving mindset into software engineering by pairing my formal computer science education with hands-on projects in TypeScript, APIs, testing, and systems-oriented development—with the goal of collaborating with a team to ship reliable, impactful software.",
   strengths: [
     {
       title: "User empathy",

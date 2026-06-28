@@ -274,14 +274,9 @@ export default function Home() {
                 <CardContent className="flex flex-col gap-5">
                   <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
                     <div className="flex flex-col gap-4 pl-4">
-                      {background.narrative.map((paragraph) => (
-                        <p
-                          key={paragraph}
-                          className="max-w-3xl text-sm/relaxed"
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
+                      <p className="max-w-3xl text-sm/relaxed">
+                        {background.narrative}
+                      </p>
                     </div>
                     <div className="flex flex-col gap-3">
                       <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
