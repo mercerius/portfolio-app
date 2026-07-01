@@ -15,5 +15,8 @@
   },
   "[css]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
   }
 }
