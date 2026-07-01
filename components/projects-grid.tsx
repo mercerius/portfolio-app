@@ -34,7 +34,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
             implement, and ship software.
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-2">
           {projects.map((project) => {
             return (
               <motion.div

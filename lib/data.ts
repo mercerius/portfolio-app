@@ -127,7 +127,7 @@ export const background: BackgroundInfo = {
   description:
     "I am following my passion for software engineering, combining customer-facing experience with technical expertise.",
   narrative:
-    "After years working in high-pressure customer operations, I learned how to stay accurate, communicate clearly, and keep operations steady when the pressure is high and people are counting on you. That discipline carried into technical roles like commercial installation and administrative support, where I managed TCP/IP networking, routing, CCTV systems, and SQL-backed workflows. Now, I bring that same grit and problem-solving mindset into software engineering by pairing my formal computer science education with hands-on projects in TypeScript, APIs, testing, and systems-oriented development—with the goal of collaborating with a team to ship reliable, impactful software.",
+    "After years working in high-pressure customer operations, I learned how to stay accurate, communicate clearly, and keep operations steady when the pressure is high and people are counting on you. That discipline carried into technical roles like commercial installation and administrative support, where I managed TCP/IP networking, routing, and SQL-backed workflows. Now, I bring that same grit and problem-solving mindset into software engineering by pairing my formal computer science education with hands-on projects in TypeScript, APIs, testing, and systems-oriented development. I aspire to be a part of a team that collaborates to ship reliable, impactful software.",
   strengths: [
     {
       title: "User empathy",
@@ -167,7 +167,7 @@ export const projects: Project[] = [
       "Vitest unit tests for conversion logic with mock canvas stubs",
       "Context menu dynamically scoped to image elements only",
     ],
-    year: 2025,
+    year: 2026,
     status: "complete",
     stack: [
       "JavaScript",
@@ -236,7 +236,7 @@ export const projects: Project[] = [
       "OKLCH color system for perceptually uniform dark/light theming",
       "Turbopack raw-loader for importing `.vert`/`.frag` shader sources as strings",
     ],
-    year: 2025,
+    year: 2026,
     status: "wip",
     stack: [
       "Next.js",

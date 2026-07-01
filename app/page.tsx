@@ -139,7 +139,7 @@ export default function Home() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4 pb-6">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 place-content-between">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 dark:bg-emerald-400" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
@@ -292,7 +292,7 @@ export default function Home() {
                     Currently exploring
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <CardContent className="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
                   {exploring.map(({ topic, progress }) => (
                     <div key={topic} className="flex flex-col gap-1.5">
                       <span className="text-xs text-muted-foreground">
@@ -321,16 +321,11 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-5">
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
-                    <div className="flex flex-col gap-4 pl-4 bg-background/40 rounded-xl border border-border/60 p-4">
-                      <p className="max-w-3xl text-prose indent-4 font-light">
-                        {background.narrative}
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 lg:order-1">
                       <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                         What my experience brings
                       </p>
-                      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
+                      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-1">
                         {background.strengths.map((strength) => (
                           <div
                             key={strength.title}
@@ -345,6 +340,11 @@ export default function Home() {
                           </div>
                         ))}
                       </div>
+                    </div>
+                    <div className="flex flex-col gap-4 rounded-xl border border-border/60 bg-background/40 p-4 pl-4 lg:order-2">
+                      <p className="text-sm indent-4 font-light md:leading-relaxed md:text-base">
+                        {background.narrative}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
