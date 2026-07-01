@@ -81,7 +81,7 @@ export default function Home() {
                     </p>
                     <div className="flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap">
                       <div className="flex flex-row gap-2 lg:justify-end">
-                        <Button asChild size="icon-sm" variant="outline">
+                        <Button asChild size="icon-sm" variant="secondary">
                           <a
                             href={personal.links.github}
                             target="_blank"
@@ -96,7 +96,7 @@ export default function Home() {
                             />
                           </a>
                         </Button>
-                        <Button asChild size="icon-sm" variant="outline">
+                        <Button asChild size="icon-sm" variant="secondary">
                           <a
                             href={personal.links.linkedin}
                             target="_blank"
@@ -112,9 +112,6 @@ export default function Home() {
                           </a>
                         </Button>
                       </div>
-                      <Button asChild size="sm" variant="default">
-                        <a href={`mailto:${personal.email}`}>Email me</a>
-                      </Button>
                       <Button asChild size="sm" variant="secondary">
                         <a
                           href={personal.links.resume}
@@ -124,6 +121,9 @@ export default function Home() {
                           Download CV ↓
                         </a>
                       </Button>
+                      <Button asChild size="sm" variant="default">
+                        <a href={`mailto:${personal.email}`}>Email me</a>
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -132,7 +132,7 @@ export default function Home() {
 
             {/* ── Status ────────────────────── col 9–12 */}
             <BentoCard className="col-span-12 md:col-span-4" index={1}>
-              <Card className="h-full">
+              <Card>
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Status
@@ -141,10 +141,10 @@ export default function Home() {
                 <CardContent className="flex flex-col gap-4 pb-6">
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 dark:bg-emerald-400" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
                     </span>
-                    <span className="text-sm font-semibold text-primary">
+                    <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
                       {status.label}
                     </span>
                   </div>
@@ -209,7 +209,7 @@ export default function Home() {
 
             {/* ── Education ─────────────────── col 9–12 */}
             <BentoCard className="col-span-12 md:col-span-4" index={3}>
-              <Card className="h-full">
+              <Card>
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Education
@@ -352,7 +352,7 @@ export default function Home() {
             </BentoCard>
           </div>
 
-          <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
+          <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-background">
             Last updated {footer.lastUpdated} · Built with {footer.builtWith}
           </footer>
         </main>

@@ -262,12 +262,12 @@ export const education: EducationEntry = {
 };
 
 export const exploring: ExploringEntry[] = [
-  { topic: "AI", progress: 78 },
+  { topic: "AI", progress: 22 },
   { topic: "Graphics programming", progress: 33 },
-  { topic: "Serverless and Cloud infrastructure", progress: 72 },
+  { topic: "Serverless and Cloud infrastructure", progress: 54 },
 ];
 
 export const footer = {
-  lastUpdated: "June 2026",
+  lastUpdated: "July 2026",
   builtWith: "Next.js",
 };
