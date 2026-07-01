@@ -285,7 +285,7 @@ export default function Home() {
             <ProjectsGrid projects={projects} startIndex={4} />
 
             {/* ── Currently exploring ───────── full width */}
-            <BentoCard className="col-span-12" index={4 + projects.length}>
+            <BentoCard className="col-span-12" index={5}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -311,7 +311,7 @@ export default function Home() {
             </BentoCard>
 
             {/* ── About Me ──────────────────── last row */}
-            <BentoCard className="col-span-12" index={5 + projects.length}>
+            <BentoCard className="col-span-12" index={6}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">

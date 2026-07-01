@@ -23,95 +23,68 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
   const router = useRouter();
 
   return (
-    <>
-      {projects.map((project, i) => {
-        const isLast = i === projects.length - 1;
-        return (
-          <BentoCard
-            key={project.name}
-            className={
-              isLast ? "col-span-12" : "col-span-12 sm:col-span-6 md:col-span-4"
-            }
-            index={startIndex + i}
-          >
-            <motion.div
-              layoutId={`project-card-${project.name}`}
-              className="h-full cursor-pointer"
-              style={{ borderRadius: "1rem" }}
-              onClick={() => router.push(`/projects/${project.slug}`)}
-            >
-              <Card
-                className={`h-full ${
-                  isLast
-                    ? "flex flex-col md:flex-row md:items-start md:gap-8"
-                    : "flex flex-col justify-between"
-                }`}
+    <BentoCard className="col-span-12" index={startIndex}>
+      <Card className="h-full">
+        <CardHeader>
+          <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
+            Selected Work
+          </CardTitle>
+          <CardDescription>
+            Personal builds and academic projects that show how I design,
+            implement, and ship software.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project) => {
+            return (
+              <motion.div
+                key={project.name}
+                layoutId={`project-card-${project.name}`}
+                className="flex h-full cursor-pointer flex-col gap-3 rounded-xl border border-border/60 bg-background/40 p-4"
+                style={{ borderRadius: "1rem" }}
+                onClick={() => router.push(`/projects/${project.slug}`)}
               >
-                <div
-                  className={
-                    isLast ? "flex flex-col flex-1 min-w-0" : "contents"
-                  }
-                >
-                  <CardHeader>
+                <div className="flex flex-1 flex-col justify-between gap-3">
+                  <div className="flex flex-col gap-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <CardTitle
-                        className={`font-black tracking-tight text-foreground ${
-                          isLast ? "text-xl" : "text-base"
-                        }`}
-                      >
+                      <CardTitle className="text-base font-black tracking-tight text-foreground">
                         {project.name}
                       </CardTitle>
                       <Badge
                         variant="outline"
-                        className={`font-mono text-[0.6rem] shrink-0 ${
+                        className={`shrink-0 font-mono text-[0.6rem] ${
                           project.status === "complete"
-                            ? "text-emerald-500 border-emerald-500/30"
+                            ? "border-emerald-500/30 text-emerald-500"
                             : project.status === "wip"
-                              ? "text-amber-500 border-amber-500/30"
+                              ? "border-amber-500/30 text-amber-500"
                               : "text-muted-foreground"
                         }`}
                       >
                         {project.year}
                       </Badge>
                     </div>
-                    <CardDescription className="line-clamp-3">
+                    <CardDescription className="line-clamp-4">
                       {project.description}
                     </CardDescription>
-                  </CardHeader>
-                </div>
-
-                <CardContent
-                  className={`flex flex-col gap-3 ${
-                    isLast
-                      ? "md:min-w-70 md:border-l md:border-border/40 md:pl-8"
-                      : ""
-                  }`}
-                >
-                  <div className="flex flex-wrap gap-1">
-                    {project.stack.map((s) => (
-                      <Badge key={s} variant="secondary">
-                        {s}
-                      </Badge>
-                    ))}
                   </div>
-                  {isLast && project.live === "/" ? (
-                    <Badge
-                      variant="outline"
-                      className="w-fit text-[0.6rem] uppercase tracking-[0.15em] font-normal"
-                    >
-                      You&apos;re viewing it →
-                    </Badge>
-                  ) : (
+                  <div className="flex flex-col gap-3">
+                    <div className="flex flex-wrap gap-1">
+                      {project.stack.map((item) => (
+                        <Badge key={item} variant="secondary">
+                          {item}
+                        </Badge>
+                      ))}
+                    </div>
                     <p className="text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground/70">
                       Click to expand
                     </p>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </BentoCard>
-        );
-      })}
-    </>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </CardContent>
+      </Card>
+    </BentoCard>
   );
 }
