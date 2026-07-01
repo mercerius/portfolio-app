@@ -247,7 +247,7 @@ export default function Home() {
                       Planned
                     </p>
                     <p className="text-sm font-bold tracking-tight text-muted-foreground">
-                      B.S. Computer Science
+                      B.S. Software Engineering
                     </p>
                     <p className="font-mono text-[0.65rem] uppercase tracking-widest text-muted-foreground">
                       Western Governors University, Online
