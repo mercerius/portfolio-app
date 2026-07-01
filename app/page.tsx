@@ -352,7 +352,7 @@ export default function Home() {
             </BentoCard>
           </div>
 
-          <footer className="mt-8 text-center font-mono text-[0.55rem] uppercase tracking-[0.2em] text-muted-background">
+          <footer className="mt-8 text-center font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-background">
             Last updated {footer.lastUpdated} · Built with {footer.builtWith}
           </footer>
         </main>
