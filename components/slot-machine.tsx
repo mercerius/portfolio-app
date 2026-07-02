@@ -246,10 +246,10 @@ export function SlotMachine() {
   const effectiveBet = Math.min(bet, balance);
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-sm mx-auto py-8 px-4">
+    <div className="flex flex-col items-start gap-6 w-full max-w-sm mx-auto min-h-dvh p-4">
       {/* ── Header ─────────────────────────────────────────────── */}
       <div className="flex items-center justify-between w-full">
-        <p className="text-[0.55rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+        <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
           slot_machine_api — live demo
         </p>
         <div className="flex items-center gap-3">
