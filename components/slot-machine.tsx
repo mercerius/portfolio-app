@@ -500,7 +500,7 @@ export function SlotMachine() {
                     className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/30 bg-card/20 text-xs"
                   >
                     {/* Reels */}
-                    <span className="font-mono text-sm shrink-0 w-[4.5rem]">
+                    <span className="font-mono text-sm shrink-0 w-18">
                       {entry.reels.join("")}
                     </span>
                     {/* Bet */}
