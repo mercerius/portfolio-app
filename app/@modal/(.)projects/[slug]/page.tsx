@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SlotApiPreview } from "@/components/slot-api-preview";
 import { use } from "react";
 
 interface ModalPageProps {
@@ -70,7 +71,7 @@ export default function ProjectModal({ params }: ModalPageProps) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none">
           <motion.div
             layoutId={`project-card-${project.name}`}
-            className="w-full max-w-lg sm:max-w-2xl max-h-[90svh] overflow-y-auto pointer-events-auto"
+            className="w-full max-w-lg sm:max-w-2xl max-h-[90svh] flex flex-col overflow-hidden pointer-events-auto"
             style={{ borderRadius: "1rem" }}
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -80,8 +81,8 @@ export default function ProjectModal({ params }: ModalPageProps) {
             aria-modal="true"
             aria-label={`${project.name} project details`}
           >
-            <Card className="w-full">
-              <CardHeader>
+            <Card className="w-full h-full">
+              <CardHeader className="shrink-0">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex flex-wrap items-center gap-2 min-w-0">
                     <CardTitle className="text-xl font-black tracking-tight text-foreground">
@@ -108,7 +109,7 @@ export default function ProjectModal({ params }: ModalPageProps) {
                 </div>
               </CardHeader>
 
-              <CardContent className="flex flex-col gap-5">
+              <CardContent className="flex flex-col gap-5 overflow-y-auto">
                 {hasLiveDemo ? (
                   <Tabs defaultValue="details">
                     <TabsList className="mb-2">
@@ -124,12 +125,16 @@ export default function ProjectModal({ params }: ModalPageProps) {
                     </TabsContent>
 
                     <TabsContent value="preview" className="mt-0">
-                      <iframe
-                        src={project.live}
-                        title={`${project.name} live demo`}
-                        className="w-full h-96 rounded-xl border border-border/60 bg-muted"
-                        sandbox="allow-scripts allow-same-origin allow-forms"
-                      />
+                      {project.livePreviewMode === "api-json" ? (
+                        <SlotApiPreview />
+                      ) : (
+                        <iframe
+                          src={project.live}
+                          title={`${project.name} live demo`}
+                          className="w-full h-96 rounded-xl border border-border/60 bg-muted"
+                          sandbox="allow-scripts allow-same-origin allow-forms"
+                        />
+                      )}
                     </TabsContent>
                   </Tabs>
                 ) : (

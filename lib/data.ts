@@ -45,6 +45,7 @@ export interface Project {
   stack: string[];
   href: string;
   live: string;
+  livePreviewMode?: "api-json";
 }
 
 export interface EducationEntry {
@@ -104,21 +105,8 @@ export const skills: Record<string, string[]> = {
     "Framer Motion",
     "Chrome Extensions (MV3)",
   ],
-  "Backend & APIs": [
-    "Node.js",
-    "FastAPI",
-    "Express",
-    "PostgreSQL",
-    "GraphQL",
-    "Vercel Functions",
-  ],
-  "Platform & DevOps": [
-    "Docker",
-    "AWS",
-    "GitHub Actions",
-    "Terraform",
-    "Kubernetes",
-  ],
+  "Backend & APIs": ["Node.js", "PostgreSQL", "GraphQL", "Vercel Functions"],
+  "Platform & DevOps": ["Docker", "AWS", "GitHub Actions", "Kubernetes"],
   Testing: ["Jest", "Vitest", "Playwright"],
 };
 
@@ -183,22 +171,31 @@ export const projects: Project[] = [
     name: "slot_machine_api",
     slug: "slot-machine-api",
     description:
-      "TypeScript slot machine API architected for Vercel Serverless Functions with tested core game logic, local adapters, and deployment workflows.",
+      "TypeScript slot machine API architected for Vercel Serverless Functions with Supabase PostgreSQL spin persistence, tested core game logic, and a live interactive frontend demo.",
     longDescription:
-      "A production-ready slot machine engine built as a TypeScript API targeting Vercel Serverless Functions. The core game logic — reel spinning, symbol weighting, payout calculation, and session state — is fully decoupled from the HTTP layer, making it independently testable. A local adapter mirrors the Vercel Functions interface so development and CI run without any cloud dependency. Jest covers unit, integration, and edge-case scenarios. The project demonstrates clean architecture boundaries, disciplined use of pnpm workspaces, and a CI/CD workflow tuned for serverless deployment constraints.",
+      "A production-ready slot machine engine built as a TypeScript API targeting Vercel Serverless Functions. The core game logic — reel spinning, symbol weighting, payout calculation, and session state — is fully decoupled from the HTTP layer, making it independently testable. Every spin is persisted to a Supabase PostgreSQL table with IP hashing for privacy, written as a best-effort fire-and-forget so the database write never blocks the API response. Generated TypeScript types from the Supabase schema keep the data layer fully type-safe. A local adapter mirrors the Vercel Functions interface so development and CI run without any cloud dependency. Jest covers unit, integration, and edge-case scenarios. The project demonstrates clean architecture boundaries and a CI/CD workflow tuned for serverless deployment constraints.",
     highlights: [
       "Pure-function game engine fully decoupled from HTTP transport layer",
+      "Supabase PostgreSQL persistence — every spin recorded with match type, payout, and hashed IP",
+      "Generated database types via Supabase CLI for end-to-end type safety",
+      "Best-effort DB write with 3 s timeout — slow writes never delay the API response",
       "Local function adapter for zero-cloud development and CI runs",
       "Jest test suite covering win logic, edge payouts, and session boundaries",
       "Weighted reel symbol system with configurable paytable",
-      "pnpm workspace structure with isolated core, adapter, and handler packages",
-      "Vercel deployment workflow with environment variable management",
     ],
     year: 2025,
     status: "complete",
-    stack: ["TypeScript", "Vercel Functions", "Express", "Jest", "pnpm"],
+    stack: [
+      "TypeScript",
+      "Vercel Functions",
+      "Supabase",
+      "PostgreSQL",
+      "Jest",
+      "pnpm",
+    ],
     href: "https://github.com/mercerius/slot_machine_api",
     live: "/demos/slot-machine",
+    livePreviewMode: "api-json",
   },
   {
     name: "arm-assembly-robot-follower",
@@ -224,9 +221,9 @@ export const projects: Project[] = [
     name: "portfolio-app",
     slug: "portfolio-app",
     description:
-      "This portfolio — built with Next.js 16, React 19, and a custom WebGL/GLSL oil-slick shader background. Bento-grid layout, dark-mode theming, and Framer Motion animated project cards with a Server-Components-first architecture.",
+      "This portfolio — built with Next.js 16, React 19, and a custom WebGL/GLSL oil-slick shader background. Bento-grid layout, dark-mode theming, Framer Motion animated project cards, and a fully interactive slot machine demo backed by a live Supabase-connected API.",
     longDescription:
-      "This site — the one you're on right now. Built with Next.js 16 App Router and React 19, it uses a Server-Components-first architecture where only interactive islands opt into client rendering. The background is a real-time WebGL shader written in GLSL that simulates an oil-slick iridescence effect, driven by a custom Turbopack raw-loader for `.vert`/`.frag` imports. The layout is a 12-column responsive bento grid with staggered entrance animations, 3D tilt effects on pointer devices, and a parallel-route modal system so each project card has a shareable URL. Theming is handled by `next-themes` with OKLCH color tokens for perceptually uniform dark/light palettes.",
+      "This site — the one you're on right now. Built with Next.js 16 App Router and React 19, it uses a Server-Components-first architecture where only interactive islands opt into client rendering. The background is a real-time WebGL shader written in GLSL that simulates an oil-slick iridescence effect, driven by a custom Turbopack raw-loader for `.vert`/`.frag` imports. The layout is a 12-column responsive bento grid with staggered entrance animations, 3D tilt effects on pointer devices, and a parallel-route modal system so each project card has a shareable URL. Theming is handled by `next-themes` with OKLCH color tokens for perceptually uniform dark/light palettes. The site also hosts a fully featured slot machine demo that proxies to the live slot_machine_api via Next.js Server Actions — complete with animated reels, a configurable pay table, balance tracking, and a spin history log.",
     highlights: [
       "Custom GLSL oil-slick shader rendered via raw WebGL — no Three.js dependency",
       "Next.js parallel routes + route interception for URL-addressable project modals",
@@ -235,6 +232,7 @@ export const projects: Project[] = [
       "Framer Motion shared layout animations connecting grid cards to expanded modals",
       "OKLCH color system for perceptually uniform dark/light theming",
       "Turbopack raw-loader for importing `.vert`/`.frag` shader sources as strings",
+      "Full slot machine frontend with animated reels, pay table, balance tracking, and spin history — powered by Server Actions proxying to the live API",
     ],
     year: 2026,
     status: "wip",
