@@ -205,7 +205,7 @@ function ModalBody({ project }: { project: (typeof projects)[number] }) {
           <Button asChild size="sm" variant="default">
             <a href={project.live} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="h-3 w-3 mr-1.5" />
-              Open Demo
+              {project.liveLabel ?? "Open Demo"}
             </a>
           </Button>
         )}

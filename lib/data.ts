@@ -45,6 +45,7 @@ export interface Project {
   stack: string[];
   href: string;
   live: string;
+  liveLabel?: string;
   livePreviewMode?: "api-json";
 }
 
@@ -69,7 +70,7 @@ export const personal: PersonalInfo = {
   title: "Software Engineer",
   location: "San Diego, CA",
   bio: "Software engineer with a foundation in networking, technical operations, and customer-facing problem solving. I build practical TypeScript products across web, APIs, and embedded systems with a focus on reliability and clean architecture.",
-  email: "jesseneff@me.com",
+  email: "jesseneff@googlegroups.com",
   links: {
     github: "https://github.com/mercerius",
     linkedin: "https://linkedin.com/in/jesse-neff",
@@ -165,7 +166,8 @@ export const projects: Project[] = [
       "Vitest",
     ],
     href: "https://github.com/mercerius/yet-another-image-converter",
-    live: "",
+    live: "https://chromewebstore.google.com/detail/yet-another-image-convert/iicohcoejejkjenpdjgfnkcdlodjoafl",
+    liveLabel: "View in Chrome Web Store",
   },
   {
     name: "slot_machine_api",
