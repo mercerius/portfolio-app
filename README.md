@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio App
 
-## Getting Started
+This repo contains my portfolio site, built with Next.js 16, React 19, TypeScript, Tailwind CSS v4, and shadcn/ui.
 
-First, run the development server:
+The site is meant to do two jobs well:
+
+- introduce me to recruiters, hiring managers, and other engineers
+- show how I build frontends with deliberate architecture, solid UI work, and real interactive features
+
+Instead of treating the portfolio like a static page, I built it as a working product. It includes URL-addressable project modals, a custom GLSL shader background rendered with raw WebGL, dark and light themes, and a live slot machine demo that talks to a real API through Next.js Server Actions.
+
+## Technical Highlights
+
+- Next.js 16 App Router with Server Components as the default rendering model
+- React 19 with small client islands for interactive UI only where needed
+- Tailwind CSS v4 tokens and shadcn/ui components for consistent styling
+- Custom WebGL background using raw GLSL `.vert` and `.frag` shader files
+- Parallel routes and interception for shareable project detail modals
+- Framer Motion for transitions and interaction polish
+- Slot machine demo with animated reels, balance tracking, and spin history
+
+## Project Structure
+
+```text
+app/          App Router pages, layouts, routes, and server actions
+components/   Custom UI components and shadcn/ui primitives
+lib/          Portfolio data, utilities, and GLSL shader source files
+public/       Static assets such as icons and resume files
+```
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other useful commands:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+npm run format
+```
 
-## Learn More
+## Why I Built It This Way
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+I wanted the portfolio to feel like a concise introduction to how I work. The design is meant to be visually distinct without getting in the way of the content. The code is structured to show that I can make intentional decisions about rendering boundaries, interactivity, performance, and maintainability.
