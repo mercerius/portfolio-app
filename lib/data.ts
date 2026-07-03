@@ -69,7 +69,7 @@ export const personal: PersonalInfo = {
   initials: "JN",
   title: "Software Engineer",
   location: "San Diego, CA",
-  bio: "Software engineer with a foundation in networking, technical operations, and customer-facing problem solving. I build practical TypeScript products across web, APIs, and embedded systems with a focus on reliability and clean architecture.",
+  bio: "Software engineer with a background in casino operations and enterprise networking — and a computer science degree earned while working full-time. I build TypeScript applications across web, APIs, and embedded systems, with the same precision I developed handling real-money transactions under pressure.",
   email: "hello@jesseneff.com",
   links: {
     github: "https://github.com/mercerius",
@@ -114,29 +114,29 @@ export const skills: Record<string, string[]> = {
 export const background: BackgroundInfo = {
   title: "About Me",
   description:
-    "I am following my passion for software engineering, combining customer-facing experience with technical expertise.",
+    "My path to software ran through a casino floor, enterprise networking installations, and two computer science degrees earned while working full-time. Here's what that built.",
   narrative:
-    "After years working in high-pressure customer operations, I learned how to stay accurate, communicate clearly, and keep operations steady when the pressure is high and people are counting on you. That discipline carried into technical roles like commercial installation and administrative support, where I managed TCP/IP networking, routing, and SQL-backed workflows. Now, I bring that same grit and problem-solving mindset into software engineering by pairing my formal computer science education with hands-on projects in TypeScript, APIs, testing, and systems-oriented development. I aspire to be a part of a team that collaborates to ship reliable, impactful software.",
+    "Dealing cards at Harrah's for the past several years built something you can't get from a textbook: the discipline to manage real-money transactions, strict compliance protocols, and complex procedures with zero tolerance for error — all while keeping it understandable for anyone across the table. That discipline carried into technical work: enterprise TCP/IP networking and security installation at Protection One, SQL-based CRM and reporting tools at MacKnight Food Group. Now I'm backing that experience with an A.S. in Computer Science (Palomar, 4.0) and a B.S. in Software Engineering in progress at WGU. What drives me is the same thing it always has been: building something that actually works, and understanding why.",
   strengths: [
     {
       title: "User empathy",
       description:
-        "Years of front-line customer-facing work built strong communication, client care, and calm conflict resolution.",
+        "On a casino floor, you explain the same complex rules to a first-timer and a high-roller in the same shift. That range — and the need to get it right every time — built a real instinct for reading people and meeting them where they are.",
     },
     {
       title: "Accuracy under pressure",
       description:
-        "Used to handling high-volume transactions, compliance rules, and fast decisions without losing precision.",
+        "Six years managing real-money transactions under casino cameras and compliance protocols set a specific standard: 100% accuracy, under pressure, every shift. That baseline carries into every system I build.",
     },
     {
       title: "Technical troubleshooting",
       description:
-        "Hands-on experience with networking, routing, low-voltage systems, and diagnosing hardware integration issues.",
+        "At Protection One, I installed and provisioned enterprise TCP/IP networking and physical security systems for commercial clients — and tracked down hardware problems in the field the hard way, without a clean answer waiting.",
     },
     {
       title: "Operational ownership",
       description:
-        "Comfortable learning new systems quickly, supporting workflows, and being part of a team.",
+        "I built SQL-based CRM and reporting tools at MacKnight with minimal direction — that kind of ownership transfers. Fast to get productive, comfortable being the one who figures it out, and I know when to pull others in.",
     },
   ],
 };
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     name: "yet-another-image-converter",
     slug: "yet-another-image-converter",
     description:
-      "Chrome Extension (Manifest V3) that adds a right-click image conversion flow (JPEG, PNG, WebP, AVIF, BMP, ICO) with tested offscreen conversion pipelines.",
+      "A Chrome Extension (MV3) that adds right-click image conversion for six formats — JPEG, PNG, WebP, AVIF, BMP, and ICO — using a sandboxed offscreen pipeline with Playwright E2E tests.",
     longDescription:
       "A Chrome Extension built on Manifest V3 that integrates directly into the browser's context menu. Right-clicking any image surfaces a conversion submenu supporting six formats: JPEG, PNG, WebP, AVIF, BMP, and ICO. The conversion pipeline runs in a sandboxed offscreen document using the Canvas API, keeping the service worker lean and within MV3's strict lifecycle constraints. End-to-end tests written in Playwright validate the full browser interaction flow, while Vitest covers the core conversion logic in isolation.",
     highlights: [
@@ -173,9 +173,9 @@ export const projects: Project[] = [
     name: "slot_machine_api",
     slug: "slot-machine-api",
     description:
-      "TypeScript slot machine API architected for Vercel Serverless Functions with Supabase PostgreSQL spin persistence, tested core game logic, and a live interactive frontend demo.",
+      "A TypeScript slot machine API built for Vercel Serverless, with every spin persisted to Supabase PostgreSQL. Fully tested game logic, clean architecture, and a live interactive demo.",
     longDescription:
-      "A production-ready slot machine engine built as a TypeScript API targeting Vercel Serverless Functions. The core game logic — reel spinning, symbol weighting, payout calculation, and session state — is fully decoupled from the HTTP layer, making it independently testable. Every spin is persisted to a Supabase PostgreSQL table with IP hashing for privacy, written as a best-effort fire-and-forget so the database write never blocks the API response. Generated TypeScript types from the Supabase schema keep the data layer fully type-safe. A local adapter mirrors the Vercel Functions interface so development and CI run without any cloud dependency. Jest covers unit, integration, and edge-case scenarios. The project demonstrates clean architecture boundaries and a CI/CD workflow tuned for serverless deployment constraints.",
+      "A production-ready slot machine engine built as a TypeScript API for Vercel Serverless Functions. The core game logic — reel spinning, symbol weighting, payout calculation, and session state — is fully decoupled from the HTTP layer, making it independently testable. Every spin is persisted to a Supabase PostgreSQL table with IP hashing for privacy, using a non-blocking write with a 3-second timeout so a slow database call never delays the API response. Generated TypeScript types from the Supabase schema keep the data layer end-to-end type-safe. A local adapter mirrors the Vercel Functions interface so development and CI run without any cloud dependency. Jest covers unit, integration, and edge-case scenarios. The project demonstrates clean architecture and a CI/CD workflow tuned for serverless deployment.",
     highlights: [
       "Pure-function game engine fully decoupled from HTTP transport layer",
       "Supabase PostgreSQL persistence — every spin recorded with match type, payout, and hashed IP",
@@ -223,9 +223,9 @@ export const projects: Project[] = [
     name: "portfolio-app",
     slug: "portfolio-app",
     description:
-      "This portfolio — built with Next.js 16, React 19, and a custom WebGL/GLSL oil-slick shader background. Bento-grid layout, dark-mode theming, Framer Motion animated project cards, and a fully interactive slot machine demo backed by a live Supabase-connected API.",
+      "The site you're on. Built with Next.js 16, React 19, and a hand-written WebGL/GLSL oil-slick shader — with a bento grid, dark mode, Framer Motion animations, and a live slot machine demo wired to a real API.",
     longDescription:
-      "This site — the one you're on right now. Built with Next.js 16 App Router and React 19, it uses a Server-Components-first architecture where only interactive islands opt into client rendering. The background is a real-time WebGL shader written in GLSL that simulates an oil-slick iridescence effect, driven by a custom Turbopack raw-loader for `.vert`/`.frag` imports. The layout is a 12-column responsive bento grid with staggered entrance animations, 3D tilt effects on pointer devices, and a parallel-route modal system so each project card has a shareable URL. Theming is handled by `next-themes` with OKLCH color tokens for perceptually uniform dark/light palettes. The site also hosts a fully featured slot machine demo that proxies to the live slot_machine_api via Next.js Server Actions — complete with animated reels, a configurable pay table, balance tracking, and a spin history log.",
+      "This site — the one you're on right now. Built with Next.js 16 App Router and React 19, using React Server Components throughout and opting into client rendering only where there's genuine interactivity. The background is a real-time WebGL shader written in GLSL that simulates an oil-slick iridescence effect, loaded via a custom Turbopack raw-loader for `.vert`/`.frag` imports. The layout is a 12-column responsive bento grid with staggered entrance animations, 3D tilt effects on pointer devices, and a parallel-route modal system so each project card has a shareable URL. Theming is handled by `next-themes` with OKLCH color tokens for perceptually uniform dark/light palettes. The site also hosts a fully featured slot machine demo that proxies to the live slot_machine_api via Next.js Server Actions — complete with animated reels, a configurable pay table, balance tracking, and a spin history log.",
     highlights: [
       "Custom GLSL oil-slick shader rendered via raw WebGL — no Three.js dependency",
       "Next.js parallel routes + route interception for URL-addressable project modals",
@@ -248,7 +248,7 @@ export const projects: Project[] = [
       "shadcn/ui",
       "Framer Motion",
     ],
-    href: "",
+    href: "https://github.com/mercerius/portfolio-app",
     live: "/",
   },
 ];
