@@ -38,11 +38,6 @@ export default function ProjectModal({ params }: ModalPageProps) {
 
   if (!project) return null;
 
-  const hasLiveDemo =
-    !!project.live.trim() &&
-    project.live !== "/" &&
-    !project.live.includes("github.com");
-
   const statusLabel: Record<typeof project.status, string> = {
     complete: "Complete",
     wip: "In Progress",
