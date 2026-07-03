@@ -280,8 +280,11 @@ export default function Home() {
               </Card>
             </BentoCard>
 
-            {/* ── About Me ──────────────────── last row */}
-            <BentoCard className="col-span-12" index={4}>
+            {/* ── Projects ──────────────────── wide cards */}
+            <ProjectsGrid projects={projects} startIndex={5} />
+
+            {/* ── About Me ──────────────────── after projects */}
+            <BentoCard className="col-span-12" index={projects.length + 5}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -311,7 +314,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                    <div className="flex flex-col gap-4 rounded-xl border border-border/60 bg-background/40 p-4 pl-4 lg:order-2">
+                    <div className="flex flex-col items-center gap-4 rounded-xl border border-border/60 bg-background/40 p-4 pl-4 lg:order-2">
                       <p className="text-sm indent-4 font-light md:leading-relaxed md:text-base">
                         {background.narrative}
                       </p>
@@ -321,8 +324,81 @@ export default function Home() {
               </Card>
             </BentoCard>
 
-            {/* ── Projects ──────────────────── wide cards */}
-            <ProjectsGrid projects={projects} startIndex={5} />
+            {/* ── CTA ───────────────────────── footer call-to-action */}
+            <BentoCard className="col-span-12" index={projects.length + 6}>
+              <Card className="h-full">
+                <CardContent className="flex flex-col items-center justify-center gap-6 py-12 text-center">
+                  <div className="flex flex-col gap-2">
+                    <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl">
+                      Get in touch
+                    </h2>
+                    <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                      Open to full-time, contract, and internship opportunities
+                      — remote or San Diego.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 dark:bg-emerald-400" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                    </span>
+                    <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                      {status.label}
+                    </span>
+                  </div>
+
+                  <a
+                    href={`mailto:${personal.email}`}
+                    className="font-mono text-2xl font-semibold text-primary hover:underline underline-offset-4 transition-colors sm:text-3xl"
+                  >
+                    {personal.email}
+                  </a>
+
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    <Button asChild size="icon-sm" variant="secondary">
+                      <a
+                        href={personal.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                      >
+                        <Image
+                          src="/github-color.svg"
+                          alt=""
+                          width={16}
+                          height={16}
+                        />
+                      </a>
+                    </Button>
+                    <Button asChild size="icon-sm" variant="secondary">
+                      <a
+                        href={personal.links.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                      >
+                        <Image
+                          src="/linkedin-color.svg"
+                          alt=""
+                          width={16}
+                          height={16}
+                        />
+                      </a>
+                    </Button>
+                    <Button asChild size="sm" variant="secondary">
+                      <a
+                        href={personal.links.resume}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Download CV ↓
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </BentoCard>
           </div>
 
           <footer className="mt-8 text-center font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-background font-thin">
