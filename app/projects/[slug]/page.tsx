@@ -57,6 +57,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <Badge variant="outline" className="font-mono">
                 {project.year}
               </Badge>
+              {project.published && (
+                <Badge
+                  variant="outline"
+                  className="font-mono text-sky-400 border-sky-400/40"
+                >
+                  Published
+                </Badge>
+              )}
               <span
                 className={`text-[0.65rem] font-bold uppercase tracking-[0.2em] ${statusColor[project.status]}`}
               >
@@ -69,7 +77,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </CardHeader>
 
           <CardContent className="flex flex-col gap-6">
-            {hasLiveDemo ? (
+            {!!project.livePreviewMode ? (
               <ProjectPageTabs project={project}>
                 <ProjectDetails project={project} hasLiveDemo={hasLiveDemo} />
               </ProjectPageTabs>

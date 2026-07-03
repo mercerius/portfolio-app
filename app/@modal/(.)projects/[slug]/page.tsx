@@ -91,6 +91,14 @@ export default function ProjectModal({ params }: ModalPageProps) {
                     <Badge variant="outline" className="font-mono shrink-0">
                       {project.year}
                     </Badge>
+                    {project.published && (
+                      <Badge
+                        variant="outline"
+                        className="font-mono shrink-0 text-sky-400 border-sky-400/40"
+                      >
+                        Published
+                      </Badge>
+                    )}
                     <span
                       className={`text-[0.6rem] font-bold uppercase tracking-[0.2em] shrink-0 ${statusClass[project.status]}`}
                     >
@@ -110,7 +118,7 @@ export default function ProjectModal({ params }: ModalPageProps) {
               </CardHeader>
 
               <CardContent className="flex flex-col gap-5 overflow-y-auto">
-                {hasLiveDemo ? (
+                {!!project.livePreviewMode ? (
                   <Tabs defaultValue="details">
                     <TabsList className="mb-2">
                       <TabsTrigger value="details">Details</TabsTrigger>

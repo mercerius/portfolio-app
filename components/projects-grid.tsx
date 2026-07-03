@@ -52,6 +52,12 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                       </CardTitle>
                       <Badge
                         variant="outline"
+                        className="shrink-0 font-mono text-[0.6rem]"
+                      >
+                        {project.year}
+                      </Badge>
+                      <Badge
+                        variant="outline"
                         className={`shrink-0 font-mono text-[0.6rem] ${
                           project.status === "complete"
                             ? "border-emerald-500/30 text-emerald-500"
@@ -60,8 +66,20 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                               : "text-muted-foreground"
                         }`}
                       >
-                        {project.year}
+                        {project.status === "complete"
+                          ? "COMPLETE"
+                          : project.status === "wip"
+                            ? "WIP"
+                            : "ARCHIVED"}
                       </Badge>
+                      {project.published && (
+                        <Badge
+                          variant="outline"
+                          className="shrink-0 font-mono text-[0.6rem] text-sky-400 border-sky-400/40"
+                        >
+                          Published
+                        </Badge>
+                      )}
                     </div>
                     <CardDescription className="line-clamp-4">
                       {project.description}
