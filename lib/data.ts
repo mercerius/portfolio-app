@@ -47,6 +47,7 @@ export interface Project {
   live: string;
   liveLabel?: string;
   livePreviewMode?: "api-json";
+  published?: boolean;
 }
 
 export interface EducationEntry {
@@ -168,6 +169,7 @@ export const projects: Project[] = [
     href: "https://github.com/mercerius/yet-another-image-converter",
     live: "https://chromewebstore.google.com/detail/yet-another-image-convert/iicohcoejejkjenpdjgfnkcdlodjoafl",
     liveLabel: "View in Chrome Web Store",
+    published: true,
   },
   {
     name: "slot_machine_api",
@@ -250,6 +252,7 @@ export const projects: Project[] = [
     ],
     href: "https://github.com/mercerius/portfolio-app",
     live: "/",
+    published: true,
   },
 ];
 
