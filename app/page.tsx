@@ -20,7 +20,6 @@ import {
   background,
   projects,
   education,
-  exploring,
   footer,
 } from "@/lib/data";
 
@@ -281,37 +280,8 @@ export default function Home() {
               </Card>
             </BentoCard>
 
-            {/* ── Projects ──────────────────── wide cards */}
-            <ProjectsGrid projects={projects} startIndex={4} />
-
-            {/* ── Currently exploring ───────── full width */}
-            <BentoCard className="col-span-12" index={5}>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
-                    Currently exploring
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
-                  {exploring.map(({ topic, progress }) => (
-                    <div key={topic} className="flex flex-col gap-1.5">
-                      <span className="text-xs text-muted-foreground">
-                        {topic}
-                      </span>
-                      <div className="h-0.75 w-full overflow-hidden rounded-full bg-muted">
-                        <div
-                          className="h-full animate-pulse rounded-full bg-linear-to-r from-primary/50 via-primary to-primary/70"
-                          style={{ width: `${progress}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </BentoCard>
-
             {/* ── About Me ──────────────────── last row */}
-            <BentoCard className="col-span-12" index={6}>
+            <BentoCard className="col-span-12" index={4}>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="text-[0.7rem] uppercase tracking-[0.2em] text-muted-foreground">
@@ -350,9 +320,12 @@ export default function Home() {
                 </CardContent>
               </Card>
             </BentoCard>
+
+            {/* ── Projects ──────────────────── wide cards */}
+            <ProjectsGrid projects={projects} startIndex={5} />
           </div>
 
-          <footer className="mt-8 text-center font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-background">
+          <footer className="mt-8 text-center font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-background font-thin">
             Last updated {footer.lastUpdated} · Built with {footer.builtWith}
           </footer>
         </main>
