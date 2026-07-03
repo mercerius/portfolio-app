@@ -70,7 +70,7 @@ export const personal: PersonalInfo = {
   title: "Software Engineer",
   location: "San Diego, CA",
   bio: "Software engineer with a foundation in networking, technical operations, and customer-facing problem solving. I build practical TypeScript products across web, APIs, and embedded systems with a focus on reliability and clean architecture.",
-  email: "jesseneff@googlegroups.com",
+  email: "hello@jesseneff.com",
   links: {
     github: "https://github.com/mercerius",
     linkedin: "https://linkedin.com/in/jesse-neff",
@@ -131,7 +131,7 @@ export const background: BackgroundInfo = {
     {
       title: "Technical troubleshooting",
       description:
-        "Hands-on experience with networking, routing, CCTV, low-voltage systems, and diagnosing hardware integration issues.",
+        "Hands-on experience with networking, routing, low-voltage systems, and diagnosing hardware integration issues.",
     },
     {
       title: "Operational ownership",
