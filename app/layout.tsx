@@ -20,9 +20,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jesse Neff — Full Stack Engineer",
+  title:
+    "Jesse Neff | Software Engineering Student | TypeScript, React, Next.js",
   description:
-    "Portfolio and resume of Jesse Neff, Full Stack Engineer specializing in TypeScript, React, and distributed systems.",
+    "Portfolio of Jesse Neff, a software engineering student building TypeScript, React, and Next.js projects across web, APIs, and embedded systems. Open to software engineering internships and early-career roles.",
 };
 
 export default function RootLayout({

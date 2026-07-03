@@ -296,7 +296,7 @@ export default function Home() {
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
                     <div className="flex flex-col gap-3 lg:order-1">
                       <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-                        What my experience brings
+                        How I work
                       </p>
                       <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-1">
                         {background.strengths.map((strength) => (
@@ -333,8 +333,9 @@ export default function Home() {
                       Get in touch
                     </h2>
                     <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                      Open to full-time, contract, and internship opportunities
-                      — remote or San Diego.
+                      {
+                        "I'm looking for software engineering roles where I can keep learning, ship useful software, and work with a team that cares about quality."
+                      }
                     </p>
                   </div>
 

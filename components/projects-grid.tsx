@@ -30,8 +30,8 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
             Selected Work
           </CardTitle>
           <CardDescription>
-            Personal builds and academic projects that show how I design,
-            implement, and ship software.
+            Personal and academic projects that show how I approach product
+            decisions, technical trade-offs, and shipping.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2 xl:grid-cols-2">
@@ -94,7 +94,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                       ))}
                     </div>
                     <p className="text-[0.6rem] uppercase tracking-[0.15em] text-muted-foreground/70">
-                      Click to expand
+                      Open project details
                     </p>
                   </div>
                 </div>
