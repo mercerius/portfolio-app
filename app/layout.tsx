@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     "Jesse Neff | Software Engineering Student | TypeScript, React, Next.js",
   description:
     "Portfolio of Jesse Neff, a software engineering student building TypeScript, React, and Next.js projects across web, APIs, and embedded systems. Open to software engineering internships and early-career roles.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
