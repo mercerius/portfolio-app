@@ -50,3 +50,6 @@ next-env.d.ts
 # Keep the rules and instructions
 !.agents/rules.md
 !.agents/instructions/
+
+.vercel
+.env*
