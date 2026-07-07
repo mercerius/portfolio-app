@@ -39,9 +39,9 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
             return (
               <motion.div
                 key={project.name}
-                layoutId={`project-card-${project.name}`}
                 className="flex h-full cursor-pointer flex-col gap-3 rounded-xl border border-border/60 bg-background/40 p-4"
                 style={{ borderRadius: "1rem" }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => router.push(`/projects/${project.slug}`)}
               >
                 <div className="flex flex-1 flex-col justify-between gap-3">

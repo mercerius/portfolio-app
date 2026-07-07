@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "record:modal-cdp": "node scripts/record-modal-cdp.mjs"
   },
   "dependencies": {
     "@flags-sdk/vercel": "^1.4.3",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/toolbar": "^0.2.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "flags": "^4.2.0",
@@ -42,6 +44,7 @@
     "eslint-config-next": "16.2.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
+    "playwright-core": "^1.61.1",
     "prettier": "^3.8.1",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^4",

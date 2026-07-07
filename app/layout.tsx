@@ -3,7 +3,9 @@ import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ModalSlotPresence } from "@/components/modal-slot-presence";
 import { Analytics } from "@vercel/analytics/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -39,6 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
+
   return (
     <html
       lang="en"
@@ -60,7 +64,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          {modal}
+          <ModalSlotPresence>{modal}</ModalSlotPresence>
+          {shouldInjectToolbar ? <VercelToolbar /> : null}
           <Analytics />
         </ThemeProvider>
       </body>

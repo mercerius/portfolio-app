@@ -311,6 +311,8 @@ export default function OilShaderBackground({
   return (
     <canvas
       ref={canvasRef}
+      data-shader-canvas=""
+      data-shader-animating={canAnimate ? "true" : "false"}
       className="fixed top-0 left-0 right-0 h-lvh w-full bg-[oklch(0.08_0.008_280)]"
       style={{ zIndex: 0 }}
       aria-hidden="true"

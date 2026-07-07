@@ -80,3 +80,6 @@ npm run dev      # Start dev server (Turbopack)
 npm run build    # Production build
 npm run lint     # ESLint
 ```
+
+## RULES
+- NEVER manually edit `package.json`. Only edit it through npm's cli.
