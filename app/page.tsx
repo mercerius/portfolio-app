@@ -320,32 +320,30 @@ function AboutSection({ index }: { index: number }) {
           <CardDescription>{background.description}</CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-5">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
-            <div className="flex flex-col gap-3 lg:order-1">
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-                How I work
-              </p>
-              <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-1">
-                {background.strengths.map((strength) => (
-                  <div
-                    key={strength.title}
-                    className="rounded-xl border border-border/60 bg-background/40 p-4"
-                  >
-                    <p className="text-sm font-semibold tracking-tight text-foreground">
-                      {strength.title}
-                    </p>
-                    <p className="mt-1 text-xs/relaxed text-muted-foreground">
-                      {strength.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-4 rounded-xl border border-border/60 bg-background/40 p-4 pl-4 lg:order-2">
+          <div className="flex flex-wrap items-start gap-4">
+            <div className="min-w-[min(100%,20rem)] flex-[3_1_34rem]">
               <p className="text-sm indent-4 font-light md:text-base md:leading-relaxed">
                 {background.narrative}
               </p>
             </div>
+            {background.strengths.map((strength, strengthIndex) => (
+              <div
+                key={strength.title}
+                className="min-w-48 flex-[1_1_13rem] rounded-xl border border-border/60 bg-background/40 p-4"
+              >
+                {strengthIndex === 0 ? (
+                  <p className="mb-3 text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                    How I work
+                  </p>
+                ) : null}
+                <p className="text-sm font-semibold tracking-tight text-foreground">
+                  {strength.title}
+                </p>
+                <p className="mt-1 text-xs/relaxed text-muted-foreground">
+                  {strength.description}
+                </p>
+              </div>
+            ))}
           </div>
         </CardContent>
       </Card>
