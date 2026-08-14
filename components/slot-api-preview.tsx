@@ -113,7 +113,7 @@ function StatusBadge({ status }: { status: number }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 font-mono text-[0.65rem] font-bold px-1.5 py-0.5 rounded",
+        "inline-flex items-center gap-1 font-mono text-[0.65rem] font-bold px-1.5 py-0.5",
         ok
           ? "bg-emerald-400/10 text-emerald-400"
           : status === 0
@@ -196,11 +196,11 @@ export function SlotApiPreview() {
   const displayEndpoint = response?.endpoint ?? "…/api/spin";
 
   return (
-    <div className="flex flex-col gap-0 rounded-xl border border-border/50 bg-muted/10 overflow-hidden font-mono text-xs">
+    <div className="flex flex-col gap-0 overflow-hidden border-2 border-border bg-muted/10 font-mono text-xs shadow-[inset_1px_1px_0_oklch(0.18_0.035_48_/_0.25)]">
       {/* ── Request panel ──────────────────────────────────────── */}
       <div className="flex flex-col gap-1 px-3 py-2.5 border-b border-border/40 bg-muted/10">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="shrink-0 px-1.5 py-0.5 rounded bg-blue-400/10 text-blue-400 text-[0.6rem] font-bold uppercase tracking-wide">
+          <span className="shrink-0 px-1.5 py-0.5 bg-blue-400/10 text-blue-400 text-[0.6rem] font-bold uppercase tracking-wide">
             POST
           </span>
           <span className="text-muted-foreground truncate text-[0.65rem]">
@@ -239,7 +239,7 @@ export function SlotApiPreview() {
         <button
           onClick={fetchSpin}
           disabled={loading}
-          className="flex items-center gap-1.5 px-2 py-1 rounded-lg border border-border/50 bg-card hover:bg-muted/40 text-muted-foreground hover:text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed text-[0.6rem] font-sans font-medium normal-case tracking-normal"
+          className="flex items-center gap-1.5 px-2 py-1 border border-border/50 bg-card hover:bg-muted/40 text-muted-foreground hover:text-foreground transition-colors disabled:opacity-40 disabled:cursor-not-allowed text-[0.6rem] font-sans font-medium normal-case tracking-normal"
         >
           <RefreshCw className={cn("w-2.5 h-2.5", loading && "animate-spin")} />
           Spin

@@ -23,7 +23,7 @@ const float CRT_CURVE_Y = 0.24;
 
 // Screen mask: raise SCALE to pull the rounded edge inward, lower EXPONENT for
 // rounder corners, or raise SOFTNESS to make the edge fade over a wider area.
-const float CRT_VIGNETTE_SCALE = 1.79;
+const float CRT_VIGNETTE_SCALE = 1.49;
 const float CRT_VIGNETTE_EXPONENT = 160.0;
 const float CRT_VIGNETTE_SOFTNESS = 0.50;
 

@@ -31,7 +31,7 @@ function HeroSection({ includeStatus }: { includeStatus: boolean }) {
       <Card className="h-full">
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-row items-center gap-5 sm:gap-8">
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full ring-[3px] ring-primary/30 ring-offset-2 ring-offset-transparent sm:h-40 sm:w-40">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden border-2 border-primary bg-background p-1 shadow-[inset_1px_1px_0_oklch(1_0_0_/_0.35),inset_-1px_-1px_0_oklch(0.18_0.035_48_/_0.42),3px_3px_0_oklch(0.18_0.035_48_/_0.5)] sm:h-40 sm:w-40">
               <Image
                 src="/icon.svg"
                 alt={personal.name}
@@ -44,7 +44,7 @@ function HeroSection({ includeStatus }: { includeStatus: boolean }) {
               <h1 className="text-4xl font-black leading-none tracking-tight text-foreground sm:text-5xl sm:whitespace-nowrap">
                 {personal.name}
               </h1>
-              <p className="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-primary">
+              <p className="font-mono text-[0.7rem] font-bold uppercase tracking-[0.25em] text-hero-subtitle">
                 <span className="whitespace-nowrap">{personal.title}</span>
                 {" · "}
                 <span className="whitespace-nowrap">{personal.location}</span>
@@ -103,18 +103,18 @@ function HeroSection({ includeStatus }: { includeStatus: boolean }) {
           </div>
 
           {includeStatus ? (
-            <div className="flex flex-col gap-3 rounded-2xl border border-border/60 bg-background/40 p-4">
+            <div className="flex flex-col gap-3 border-2 border-border bg-background/55 p-4 shadow-[inset_1px_1px_0_oklch(0.18_0.035_48_/_0.22)]">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5 shrink-0">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 dark:bg-emerald-400" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-green opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-signal-green" />
                 </span>
-                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                <span className="text-sm font-semibold text-signal-green">
                   {status.label}
                 </span>
               </div>
               <dl className="grid grid-cols-1 gap-2 text-sm min-[720px]:grid-cols-3">
-                <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-border/50 bg-background/50 px-3 py-2.5">
+                <div className="flex min-w-0 flex-col gap-1 border border-border bg-card/70 px-3 py-2.5">
                   <dt className="text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Type
                   </dt>
@@ -122,7 +122,7 @@ function HeroSection({ includeStatus }: { includeStatus: boolean }) {
                     {status.type}
                   </dd>
                 </div>
-                <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-border/50 bg-background/50 px-3 py-2.5">
+                <div className="flex min-w-0 flex-col gap-1 border border-border bg-card/70 px-3 py-2.5">
                   <dt className="text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Location
                   </dt>
@@ -130,7 +130,7 @@ function HeroSection({ includeStatus }: { includeStatus: boolean }) {
                     {status.location}
                   </dd>
                 </div>
-                <div className="flex min-w-0 flex-col gap-1 rounded-xl border border-border/50 bg-background/50 px-3 py-2.5">
+                <div className="flex min-w-0 flex-col gap-1 border border-border bg-card/70 px-3 py-2.5">
                   <dt className="text-[0.55rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Notice
                   </dt>
@@ -159,10 +159,10 @@ function StatusSection() {
         <CardContent className="flex flex-col gap-4 pb-6">
           <div className="flex items-center place-content-between gap-2">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 dark:bg-emerald-400" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-green opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-green" />
             </span>
-            <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+            <span className="text-sm font-semibold text-signal-green">
               {status.label}
             </span>
           </div>
@@ -211,7 +211,7 @@ function SkillsSection({ compact }: { compact: boolean }) {
           {Object.entries(skills).map(([category, items]) => (
             <div
               key={category}
-              className="mb-3 flex break-inside-avoid flex-col gap-2 rounded-xl border border-border/60 bg-background/40 p-3"
+              className="mb-3 flex break-inside-avoid flex-col gap-2 border border-border/60 bg-background/40 p-3"
             >
               <span className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                 {category}
@@ -257,7 +257,7 @@ function EducationSection({ index }: { index: number }) {
                 {education.year}
               </Badge>
             </div>
-            <div className="flex shrink-0 flex-col items-center gap-0.5 rounded-lg border border-border/60 bg-background/40 px-3 py-2">
+            <div className="flex shrink-0 flex-col items-center gap-0.5 border border-border bg-card/70 px-3 py-2">
               <span className="text-[0.5rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
                 GPA
               </span>
@@ -329,7 +329,7 @@ function AboutSection({ index }: { index: number }) {
             {background.strengths.map((strength, strengthIndex) => (
               <div
                 key={strength.title}
-                className="min-w-48 flex-[1_1_13rem] rounded-xl border border-border/60 bg-background/40 p-4"
+                className="min-w-48 flex-[1_1_13rem] border-2 border-border bg-background/55 p-4 shadow-[inset_1px_1px_0_oklch(1_0_0_/_0.16),inset_-1px_-1px_0_oklch(0.18_0.035_48_/_0.22)]"
               >
                 {strengthIndex === 0 ? (
                   <p className="mb-3 text-[0.6rem] font-bold uppercase tracking-[0.25em] text-muted-foreground">
@@ -369,10 +369,10 @@ function ContactSection({ index }: { index: number }) {
 
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 dark:bg-emerald-400" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-green opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-green" />
             </span>
-            <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <span className="text-xs font-semibold text-signal-green">
               {status.label}
             </span>
           </div>

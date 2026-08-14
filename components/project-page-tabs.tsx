@@ -27,7 +27,7 @@ export function ProjectPageTabs({ project, children }: ProjectPageTabsProps) {
           <iframe
             src={project.live}
             title={`${project.name} live demo`}
-            className="w-full h-96 rounded-xl border border-border/60 bg-muted"
+            className="h-96 w-full rounded-none border-2 border-border bg-muted shadow-[inset_1px_1px_0_oklch(0.18_0.035_48_/_0.25)]"
             sandbox="allow-scripts allow-same-origin allow-forms"
           />
         )}

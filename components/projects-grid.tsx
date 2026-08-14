@@ -39,8 +39,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
             return (
               <motion.div
                 key={project.name}
-                className="flex h-full cursor-pointer flex-col gap-3 rounded-xl border border-border/60 bg-background/40 p-4"
-                style={{ borderRadius: "1rem" }}
+                className="flex h-full cursor-pointer flex-col gap-3 rounded-none border-2 border-border bg-background/55 p-4 shadow-[inset_1px_1px_0_oklch(1_0_0_/_0.22),inset_-1px_-1px_0_oklch(0.18_0.035_48_/_0.28)]"
                 whileTap={{ scale: 0.97 }}
                 onClick={() => router.push(`/projects/${project.slug}`)}
               >
@@ -60,9 +59,9 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                         variant="outline"
                         className={`shrink-0 font-mono text-[0.6rem] ${
                           project.status === "complete"
-                            ? "border-emerald-500/30 text-emerald-500"
+                            ? "border-signal-green/45 text-signal-green"
                             : project.status === "wip"
-                              ? "border-amber-500/30 text-amber-500"
+                              ? "border-primary/55 text-primary"
                               : "text-muted-foreground"
                         }`}
                       >
@@ -75,7 +74,7 @@ export function ProjectsGrid({ projects, startIndex = 0 }: ProjectsGridProps) {
                       {project.published && (
                         <Badge
                           variant="outline"
-                          className="shrink-0 font-mono text-[0.6rem] text-sky-400 border-sky-400/40"
+                          className="shrink-0 border-signal-cyan/45 font-mono text-[0.6rem] text-signal-cyan"
                         >
                           Published
                         </Badge>

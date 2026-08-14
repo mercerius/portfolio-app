@@ -69,8 +69,7 @@ export function ProjectsGridV2({
             return (
               <motion.div
                 key={project.name}
-                className="group relative flex h-full cursor-pointer flex-col gap-4 overflow-hidden rounded-2xl border border-border/60 bg-background/50 p-4 transition-[border-color,background-color,box-shadow] duration-200 hover:border-primary/40 hover:bg-background/80 hover:shadow-[0_0_0_1px_hsl(var(--primary)/0.15)]"
-                style={{ borderRadius: "1rem" }}
+                className="group relative flex h-full cursor-pointer flex-col gap-4 overflow-hidden rounded-none border-2 border-border bg-background/60 p-4 shadow-[inset_1px_1px_0_oklch(1_0_0_/_0.22),inset_-1px_-1px_0_oklch(0.18_0.035_48_/_0.28)] transition-[border-color,background-color] duration-150 hover:border-primary hover:bg-background/85"
                 whileTap={{ scale: 0.97 }}
                 onClick={() => router.push(`/projects/${project.slug}`)}
               >
@@ -98,9 +97,9 @@ export function ProjectsGridV2({
                       className={cn(
                         "shrink-0 font-mono text-[0.6rem]",
                         project.status === "complete"
-                          ? "border-emerald-500/30 text-emerald-500"
+                          ? "border-signal-green/45 text-signal-green"
                           : project.status === "wip"
-                            ? "border-amber-500/30 text-amber-500"
+                            ? "border-primary/55 text-primary"
                             : "text-muted-foreground",
                       )}
                     >
@@ -113,7 +112,7 @@ export function ProjectsGridV2({
                     {project.published ? (
                       <Badge
                         variant="outline"
-                        className="shrink-0 border-sky-400/40 font-mono text-[0.6rem] text-sky-400"
+                        className="shrink-0 border-signal-cyan/45 font-mono text-[0.6rem] text-signal-cyan"
                       >
                         Published
                       </Badge>
@@ -160,7 +159,7 @@ export function ProjectsGridV2({
                     </Button>
                   ) : null}
 
-                  <div className="pointer-events-none ml-auto inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-primary transition-all lg:translate-y-2 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+                  <div className="pointer-events-none ml-auto inline-flex items-center gap-1.5 rounded-none border border-primary bg-primary/10 px-3 py-1.5 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-primary transition-[transform,opacity] lg:translate-y-2 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
                     <span className="lg:hidden">Tap to open</span>
                     <span className="hidden lg:inline">Open project</span>
                     <ArrowRight className="h-3.5 w-3.5" />

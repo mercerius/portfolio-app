@@ -81,7 +81,6 @@ export function ProjectModalShell({
         <motion.div
           className="pointer-events-auto flex max-h-[90svh] w-full max-w-lg flex-col overflow-hidden sm:max-w-2xl"
           data-modal-panel=""
-          style={{ borderRadius: "1rem" }}
           initial={{ opacity: 0, scale: 0.95, y: 12 }}
           animate={{
             opacity: 1,
