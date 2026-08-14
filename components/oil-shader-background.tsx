@@ -247,6 +247,7 @@ export default function OilShaderBackground({
     const uThemeBase = gl.getUniformLocation(prog, "u_theme_base");
     const uThemeAccent = gl.getUniformLocation(prog, "u_theme_accent");
     const uThemeMix = gl.getUniformLocation(prog, "u_theme_mix");
+    const uResolution = gl.getUniformLocation(prog, "u_resolution");
     const aPos = gl.getAttribLocation(prog, "a_pos");
 
     // ── Render loop ────────────────────────────────────────────────────
@@ -278,6 +279,9 @@ export default function OilShaderBackground({
         }
         if (uThemeMix) {
           gl.uniform1f(uThemeMix, themeMixCurrentRef.current);
+        }
+        if (uResolution) {
+          gl.uniform2f(uResolution, W, H);
         }
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
