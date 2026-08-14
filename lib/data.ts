@@ -273,6 +273,6 @@ export const exploring: ExploringEntry[] = [
 ];
 
 export const footer = {
-  lastUpdated: "July 2026",
+  lastUpdated: "August 2026",
   builtWith: "Next.js",
 };
