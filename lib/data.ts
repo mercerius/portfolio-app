@@ -70,7 +70,7 @@ export const personal: PersonalInfo = {
   initials: "JN",
   title: "Software Engineer",
   location: "San Diego, CA",
-  bio: "I'm a software engineering student who builds TypeScript applications across web, APIs, and embedded systems. My background in enterprise networking, internal tools, and operations shaped a practical approach to debugging, communication, and reliable delivery.",
+  bio: "I'm a software engineering student building TypeScript applications across web, APIs, and embedded systems. Through coursework and personal projects, I am developing a practical approach to debugging, clear communication, and reliable delivery.",
   email: "hello@jesseneff.com",
   links: {
     github: "https://github.com/mercerius",
@@ -115,29 +115,29 @@ export const skills: Record<string, string[]> = {
 export const background: BackgroundInfo = {
   title: "About Me",
   description:
-    "I came to software through hands-on technical work, internal tools, and computer science study while working full-time. That mix shaped how I approach systems, trade-offs, and collaboration.",
+    "I am building my software foundation through computer science study and hands-on projects. Each project is an opportunity to learn a new system, weigh trade-offs, and turn unfamiliar requirements into dependable software.",
   narrative:
-    "My technical experience includes installing enterprise TCP/IP networking and physical security systems at Protection One, then building SQL-based CRM and reporting tools at MacKnight Food Group. Alongside that work, I've been completing an A.S. in Computer Science at Palomar and a B.S. in Software Engineering at WGU. I enjoy getting close to a problem, understanding its constraints, and building software that is clear, maintainable, and dependable for the people using it.",
+    "My studies at Palomar College and WGU have given me a growing foundation in software engineering, systems, and problem solving. I reinforce that learning by building projects across browser extensions, APIs, embedded systems, and graphics. From writing ARM assembly for a Raspberry Pi robot to designing a TypeScript API and testing a Chrome extension in a real browser, I enjoy getting close to a problem, understanding its constraints, and building software that is clear, maintainable, and dependable for the people using it.",
   strengths: [
     {
       title: "Clear communication",
       description:
-        "Working across operations and technical roles taught me to adapt explanations to the person in front of me. I bring that same habit to product decisions, documentation, and collaborative debugging.",
+        "Coursework and self-directed projects have taught me to make my reasoning visible: explain trade-offs, document decisions, and write code that another developer can follow. I bring that habit to collaboration and debugging.",
     },
     {
       title: "Reliable execution",
       description:
-        "Operational work established a high bar for accuracy, follow-through, and calm problem-solving. In software, that translates to careful implementation, useful tests, and attention to the details that keep systems dependable.",
+        "Building projects from idea through testing has taught me to break work into small, verifiable steps. I value careful implementation, useful tests, and attention to the details that make software dependable.",
     },
     {
       title: "Technical troubleshooting",
       description:
-        "At Protection One, I installed and provisioned enterprise TCP/IP networking and physical security systems for commercial clients, then traced field issues without a clean answer waiting. I like that kind of hands-on debugging work.",
+        "Projects such as a Raspberry Pi leader-follower robot and a WebGL portfolio have made troubleshooting a core part of my learning. I enjoy tracing behavior across hardware, browser APIs, and application code to find the real cause of a problem.",
     },
     {
       title: "Operational ownership",
       description:
-        "At MacKnight, I built SQL-based CRM and reporting tools with minimal direction. That experience made me comfortable owning problems end to end, getting productive quickly, and knowing when collaboration beats solo effort.",
+        "Personal projects have made me comfortable owning a problem end to end: learning the constraints, choosing an approach, iterating from feedback, and finishing with a working, tested result. I also know when to seek feedback before going further.",
     },
   ],
 };
@@ -261,7 +261,9 @@ export const education: EducationEntry = {
   institution: "Palomar College, San Marcos, CA",
   year: "Class of 2026",
   gpa: 4.0,
-  certifications: [],
+  certifications: [
+    "Certificate of Achievement, Computer Science — Palomar College",
+  ],
 };
 
 export const exploring: ExploringEntry[] = [
