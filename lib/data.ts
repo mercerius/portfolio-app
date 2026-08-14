@@ -70,7 +70,7 @@ export const personal: PersonalInfo = {
   initials: "JN",
   title: "Software Engineer",
   location: "San Diego, CA",
-  bio: "I'm a software engineering student who builds TypeScript applications across web, APIs, and embedded systems. Before software, I worked in casino operations and enterprise networking, which taught me how to stay accurate under pressure, explain complex systems clearly, and treat reliability like part of the job.",
+  bio: "I'm a software engineering student who builds TypeScript applications across web, APIs, and embedded systems. My background in enterprise networking, internal tools, and operations shaped a practical approach to debugging, communication, and reliable delivery.",
   email: "hello@jesseneff.com",
   links: {
     github: "https://github.com/mercerius",
@@ -115,19 +115,19 @@ export const skills: Record<string, string[]> = {
 export const background: BackgroundInfo = {
   title: "About Me",
   description:
-    "My path into software ran through casino operations, networking installs, and earning computer science degrees while working full-time. It shaped how I solve problems and how I work with people.",
+    "I came to software through hands-on technical work, internal tools, and computer science study while working full-time. That mix shaped how I approach systems, trade-offs, and collaboration.",
   narrative:
-    "Working on a casino floor taught me to be precise, calm, and easy to understand in situations where mistakes actually matter. That carried into technical work too, from installing enterprise TCP/IP networking and physical security systems at Protection One to building SQL-based CRM and reporting tools at MacKnight Food Group. Now I'm pairing that experience with an A.S. in Computer Science from Palomar and a B.S. in Software Engineering in progress at WGU. I'm at my best when I can dig into a problem, weigh the trade-offs, and build something dependable enough that other people can trust it.",
+    "My technical experience includes installing enterprise TCP/IP networking and physical security systems at Protection One, then building SQL-based CRM and reporting tools at MacKnight Food Group. Alongside that work, I've been completing an A.S. in Computer Science at Palomar and a B.S. in Software Engineering at WGU. I enjoy getting close to a problem, understanding its constraints, and building software that is clear, maintainable, and dependable for the people using it.",
   strengths: [
     {
-      title: "User empathy",
+      title: "Clear communication",
       description:
-        "Casino work forced me to explain the same complex rules to a first-timer and a high-roller in the same shift. That range built a practical instinct for meeting people where they are and making technical ideas easier to follow.",
+        "Working across operations and technical roles taught me to adapt explanations to the person in front of me. I bring that same habit to product decisions, documentation, and collaborative debugging.",
     },
     {
-      title: "Accuracy under pressure",
+      title: "Reliable execution",
       description:
-        "Managing real-money transactions under compliance rules and constant scrutiny set a clear baseline for me: be accurate, stay calm, and don't hide from responsibility when the stakes are real.",
+        "Operational work established a high bar for accuracy, follow-through, and calm problem-solving. In software, that translates to careful implementation, useful tests, and attention to the details that keep systems dependable.",
     },
     {
       title: "Technical troubleshooting",
