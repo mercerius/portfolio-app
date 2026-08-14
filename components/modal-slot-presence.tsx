@@ -21,7 +21,7 @@ export function ModalSlotPresence({ children }: ModalSlotPresenceProps) {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="sync">
+    <AnimatePresence mode="wait">
       {children != null ? <Fragment key={pathname}>{children}</Fragment> : null}
     </AnimatePresence>
   );

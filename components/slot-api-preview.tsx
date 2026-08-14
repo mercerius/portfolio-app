@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RefreshCw } from "lucide-react";
 import { previewSlotSpin, type ApiPreviewResponse } from "@/app/actions/spin";
@@ -164,6 +164,7 @@ export function SlotApiPreview() {
   const [response, setResponse] = useState<ApiPreviewResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [spinKey, setSpinKey] = useState(0);
+  const initialRequestRef = useRef<Promise<ApiPreviewResponse> | null>(null);
 
   const fetchSpin = useCallback(async () => {
     setLoading(true);
@@ -173,13 +174,14 @@ export function SlotApiPreview() {
     setSpinKey((k) => k + 1);
   }, []);
 
-  // Auto-fetch on mount. The cleanup flag ensures React Strict Mode's
-  // double-invoke discards the first (stale) response and only the
-  // second mount's result is committed to state.
+  // Reuse the request across React Strict Mode's effect replay while keeping
+  // stale results from a closed preview out of component state.
   useEffect(() => {
     let cancelled = false;
 
-    previewSlotSpin().then((result) => {
+    initialRequestRef.current ??= previewSlotSpin();
+
+    initialRequestRef.current.then((result) => {
       if (cancelled) return;
       setResponse(result);
       setLoading(false);
