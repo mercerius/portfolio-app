@@ -12,7 +12,7 @@ const ModeToggle = dynamic(
     loading: () => (
       <div
         aria-hidden="true"
-        className="h-7 w-7 rounded-md border border-border/70 bg-background/80"
+        className="h-7 w-7 border border-border bg-card"
       />
     ),
   },
@@ -48,7 +48,7 @@ export default function DeferredThemeToggle() {
     return (
       <div
         aria-hidden="true"
-        className="h-7 w-7 rounded-md border border-border/70 bg-background/80"
+        className="h-7 w-7 border border-border bg-card"
       />
     );
   }

@@ -70,7 +70,7 @@ export const personal: PersonalInfo = {
   initials: "JN",
   title: "Software Engineer",
   location: "San Diego, CA",
-  bio: "I'm a software engineering student who builds TypeScript applications across web, APIs, and embedded systems. Before software, I worked in casino operations and enterprise networking, which taught me how to stay accurate under pressure, explain complex systems clearly, and treat reliability like part of the job.",
+  bio: "I'm a software engineering student building TypeScript applications across web, APIs, and embedded systems. Through coursework and personal projects, I am developing a practical approach to debugging, clear communication, and reliable software.",
   email: "hello@jesseneff.com",
   links: {
     github: "https://github.com/mercerius",
@@ -108,36 +108,36 @@ export const skills: Record<string, string[]> = {
     "Chrome Extensions (MV3)",
   ],
   "Backend & APIs": ["Node.js", "PostgreSQL", "GraphQL", "Vercel Functions"],
-  "Platform & DevOps": ["Docker", "AWS", "GitHub Actions", "Kubernetes"],
+  "Platform & DevOps": ["Docker", "AWS", "GitHub Actions", "Kubernetes", "Git"],
   Testing: ["Jest", "Vitest", "Playwright"],
 };
 
 export const background: BackgroundInfo = {
   title: "About Me",
   description:
-    "My path into software ran through casino operations, networking installs, and earning computer science degrees while working full-time. It shaped how I solve problems and how I work with people.",
+    "I am building my software foundation through computer science study and hands-on projects. Each project is an opportunity to learn a new system, weigh trade-offs, and turn unfamiliar domains into practical software.",
   narrative:
-    "Working on a casino floor taught me to be precise, calm, and easy to understand in situations where mistakes actually matter. That carried into technical work too, from installing enterprise TCP/IP networking and physical security systems at Protection One to building SQL-based CRM and reporting tools at MacKnight Food Group. Now I'm pairing that experience with an A.S. in Computer Science from Palomar and a B.S. in Software Engineering in progress at WGU. I'm at my best when I can dig into a problem, weigh the trade-offs, and build something dependable enough that other people can trust it.",
+    "My studies at Palomar College and WGU have given me a growing foundation in software engineering, systems, and problem solving. I reinforce that learning by building projects across browser extensions, APIs, embedded systems, and graphics. From writing ARM assembly for a Raspberry Pi robot to designing a TypeScript API and testing a Chrome extension in a real browser, I enjoy getting close to a problem, understanding its constraints, and building software that is clear, maintainable, and dependable for the people using it.",
   strengths: [
     {
-      title: "User empathy",
+      title: "Clear communication",
       description:
-        "Casino work forced me to explain the same complex rules to a first-timer and a high-roller in the same shift. That range built a practical instinct for meeting people where they are and making technical ideas easier to follow.",
+        "Coursework and self-directed projects have taught me to make my reasoning visible: document decisions and write code that another developer can follow. I bring that habit to collaboration and debugging.",
     },
     {
-      title: "Accuracy under pressure",
+      title: "Reliable execution",
       description:
-        "Managing real-money transactions under compliance rules and constant scrutiny set a clear baseline for me: be accurate, stay calm, and don't hide from responsibility when the stakes are real.",
+        "Building projects from idea through testing has taught me to break work into small, easily manageable steps. I value careful implementation, useful tests, and attention to the details that make software dependable.",
     },
     {
       title: "Technical troubleshooting",
       description:
-        "At Protection One, I installed and provisioned enterprise TCP/IP networking and physical security systems for commercial clients, then traced field issues without a clean answer waiting. I like that kind of hands-on debugging work.",
+        "Projects such as a Raspberry Pi leader-follower robot and a WebGL portfolio have made troubleshooting a core part of my learning. I enjoy tracing behavior across hardware, browser APIs, and application code to find the real cause of a problem.",
     },
     {
       title: "Operational ownership",
       description:
-        "At MacKnight, I built SQL-based CRM and reporting tools with minimal direction. That experience made me comfortable owning problems end to end, getting productive quickly, and knowing when collaboration beats solo effort.",
+        "Personal projects have made me comfortable owning a problem end to end: learning the constraints, choosing an approach, iterating from feedback, and finishing with a working, tested result. I also know when to seek feedback before going further.",
     },
   ],
 };
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     description:
       "A Chrome Extension for Manifest V3 that adds right-click image conversion for six formats using an offscreen pipeline and tested browser flows.",
     longDescription:
-      "I built this Chrome Extension around Manifest V3's constraints instead of fighting them. Right-clicking an image opens a conversion menu for JPEG, PNG, WebP, AVIF, BMP, and ICO, while the actual conversion runs in a sandboxed offscreen document through the Canvas API. That keeps the service worker lean, fits MV3's lifecycle rules, and makes the architecture easier to reason about. Playwright covers the real browser interaction flow, and Vitest covers the conversion logic in isolation.",
+      "I built this Chrome Extension around Manifest V3's constraints instead of fighting them. Right-clicking an image opens a conversion menu for JPEG, PNG, WebP, AVIF, BMP, and ICO, while the actual conversion runs in a sandboxed offscreen document through the Canvas API. Playwright covers the real browser interaction flow, and Vitest covers the conversion logic in isolation.",
     highlights: [
       "Offscreen document architecture keeps image conversion out of the service worker",
       "Six output formats via the Canvas API, with quality controls for lossy formats",
@@ -175,9 +175,9 @@ export const projects: Project[] = [
     name: "slot_machine_api",
     slug: "slot-machine-api",
     description:
-      "A TypeScript slot machine API for Vercel with tested game logic, clean separation of concerns, and spin data persisted to Supabase PostgreSQL.",
+      "A TypeScript slot machine API with tested game logic, clean separation of concerns, and spin data persisted to Supabase PostgreSQL.",
     longDescription:
-      "This project started as a game, but I treated it like a backend system. The TypeScript engine that handles reel spinning, symbol weighting, payout calculation, and session state is decoupled from the HTTP layer so it can be tested on its own. Each spin is written to Supabase PostgreSQL with IP hashing for privacy, using a best-effort write and a 3-second timeout so a slow database call never holds up the API response. Generated TypeScript types from the schema keep the data layer honest, and a local adapter mirrors the Vercel Functions interface so development and CI can run without cloud dependencies. Jest covers unit, integration, and edge-case scenarios throughout the stack.",
+      "This project started as a game, but I ended up treating it like a backend system. The TypeScript engine that handles reel spinning, symbol weighting, payout calculation, and session state is decoupled from the HTTP layer so it can be tested on its own. Each spin is written to Supabase PostgreSQL with IP hashing for privacy, using a best-effort write and a 3-second timeout so a slow database call never holds up the API response. Generated TypeScript types from the schema keep the data layer consistent, and a local adapter mirrors the Vercel Functions interface so development and CI can run without cloud dependencies. Jest covers unit, integration, and edge-case scenarios throughout the stack.",
     highlights: [
       "Pure-function game engine is separated from the HTTP transport layer",
       "Supabase PostgreSQL stores each spin with match type, payout, and hashed IP",
@@ -207,7 +207,7 @@ export const projects: Project[] = [
     description:
       "A Raspberry Pi leader-follower robot built mostly in ARM assembly, with C used only for hardware setup and driver access.",
     longDescription:
-      "I built this as a two-robot leader-follower system running on Raspberry Pi hardware, with nearly all of the control logic written in ARM assembly. The leader robot broadcasts its position through a custom ultrasonic ranging protocol, and the follower uses those readings to calculate steering corrections and drive its motors in real time. C only exists as a thin hardware shim for wiringPi GPIO setup and the PCA9685 PWM driver. Everything else, including timing loops and sensor math, lives in hand-written assembly. It was an embedded systems project, but it also became an exercise in working close to the hardware and understanding every trade-off the system made.",
+      "I built this as a two-robot leader-follower system running on Raspberry Pi hardware, with nearly all of the control logic written in ARM assembly. The robot scans for the leader through a custom ultrasonic ranging protocol, and then uses those readings to calculate steering corrections and drive its motors in real time. C only exists as a thin hardware shim for wiringPi GPIO setup and the PCA9685 PWM driver. Everything else, including timing loops and sensor math, lives in hand-written assembly. It was an embedded systems project, but it also became an exercise in working close to the hardware and understanding the limits of what you are working with.",
     highlights: [
       "Leader-follower distance tracking uses a custom ultrasonic ranging protocol in ARM assembly",
       "PCA9685 I2C PWM driver provides precise motor speed control",
@@ -227,7 +227,7 @@ export const projects: Project[] = [
     description:
       "This portfolio is a Next.js 16 and React 19 app with a hand-written WebGL shader, interactive project views, and a live demo backed by a real API.",
     longDescription:
-      "I built this site in Next.js 16 App Router and React 19, keeping Server Components as the default and using client-side interactivity only where it adds something real. The background is a custom WebGL shader written in GLSL and imported directly through Turbopack for `.vert` and `.frag` source files. The rest of the experience is designed to show both product thinking and technical range: a responsive bento layout, parallel-route project modals with shareable URLs, dark and light themes with OKLCH color tokens, and a slot machine demo that talks to the live slot_machine_api through Next.js Server Actions. It is a portfolio, but it is also one more project where I could make deliberate choices about rendering boundaries, interaction design, and performance trade-offs.",
+      "I built this site in Next.js 16 App Router and React 19, keeping Server Components as the default and using client-side interactivity only where it adds something real. The background is a custom WebGL shader written in GLSL and imported directly through Turbopack for `.vert` and `.frag` source files. The rest of the experience is designed to show both product thinking and technical range: a responsive bento layout, parallel-route project modals with shareable URLs, dark and light themes with OKLCH color tokens, and a slot machine demo that talks to the live slot_machine_api through Next.js Server Actions. It is a portfolio, but it is also one more project where I could make deliberate choices about rendering boundaries, interaction design, and performance.",
     highlights: [
       "Custom GLSL oil-slick shader is rendered with raw WebGL, without adding Three.js",
       "Next.js parallel routes and interception power URL-addressable project modals",
@@ -261,7 +261,9 @@ export const education: EducationEntry = {
   institution: "Palomar College, San Marcos, CA",
   year: "Class of 2026",
   gpa: 4.0,
-  certifications: [],
+  certifications: [
+    "Certificate of Achievement, Computer Science — Palomar College",
+  ],
 };
 
 export const exploring: ExploringEntry[] = [
@@ -271,6 +273,6 @@ export const exploring: ExploringEntry[] = [
 ];
 
 export const footer = {
-  lastUpdated: "July 2026",
+  lastUpdated: "August 2026",
   builtWith: "Next.js",
 };

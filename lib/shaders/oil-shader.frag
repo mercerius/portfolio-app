@@ -5,11 +5,69 @@ uniform float u_time;
 uniform vec3 u_theme_base;
 uniform vec3 u_theme_accent;
 uniform float u_theme_mix;
+uniform vec2 u_resolution;
 
 in  vec2 v_uv;
 out vec4 fragColor;
 
 const float PI = 3.14159265358979;
+
+// ── Visual tuning ────────────────────────────────────────────────────────────
+// Keep these independent from the fixed color-science and thin-film constants
+// below. Adjust one control at a time, then check both light and dark themes.
+
+// Increase X/Y for stronger horizontal/vertical barrel curvature; values above
+// 0.30 make the corners leave the virtual CRT screen quickly.
+const float CRT_CURVE_X = 0.16;
+const float CRT_CURVE_Y = 0.24;
+
+// Screen mask: raise SCALE to pull the rounded edge inward, lower EXPONENT for
+// rounder corners, or raise SOFTNESS to make the edge fade over a wider area.
+const float CRT_VIGNETTE_SCALE = 1.49;
+const float CRT_VIGNETTE_EXPONENT = 160.0;
+const float CRT_VIGNETTE_SOFTNESS = 0.50;
+
+// Interference: RATE is line-jitter updates per second; PIXELS is maximum
+// horizontal displacement in drawing-buffer pixels. Keep PIXELS under 8.0 to
+// avoid noisy horizontal tearing on the intentionally half-resolution canvas.
+const float CRT_INTERFERENCE_RATE = 18.0;
+const float CRT_INTERFERENCE_PIXELS = 5.6;
+
+// Interlace: FIELD_RATE is the simulated field cadence and OFFSET_PIXELS is
+// the alternating vertical shift. Set OFFSET_PIXELS to 0.0 for a stable raster.
+const float CRT_FIELD_RATE = 60.0;
+const float CRT_INTERLACE_OFFSET_PIXELS = 0.85;
+
+// Composite bandwidth: larger tap values blur farther horizontally. LUMA_MIX
+// controls detail loss, while CHROMA_MIX controls colored bleed independently.
+const float CRT_LUMA_TAP_PIXELS = 1.4;
+const float CRT_CHROMA_TAP_PIXELS = 5.2;
+const float CRT_LUMA_MIX = 0.34;
+const float CRT_CHROMA_MIX = 0.76;
+
+// NTSC-like chroma: increase PHASE_SWING for more color wobble; raise the two
+// CROSSTALK values for stronger brightness leaking into I/Q color components.
+const float CRT_SUBCARRIER_SPEED = 42.0;
+const float CRT_SUBCARRIER_DENSITY = 860.0;
+const float CRT_PHASE_SWING = 0.36;
+const float CRT_CROSSTALK_I = 0.22;
+const float CRT_CROSSTALK_Q = 0.16;
+
+// Raster: MIN is the darkest scanline level, MAX is its brightest level, and
+// RAMP_START/RAMP_END control line softness. Lower MIN for deeper scanlines.
+const float CRT_SCANLINE_MIN = 0.56;
+const float CRT_SCANLINE_MAX = 0.44;
+const float CRT_SCANLINE_RAMP_START = 0.08;
+const float CRT_SCANLINE_RAMP_END = 0.50;
+
+// Flicker: BASELINE sets average brightness; AMPLITUDE and SPEED pairs create
+// slow analog drift. Keep total amplitude below 0.03 to prevent distraction.
+const float CRT_FLICKER_BASELINE = 0.985;
+const float CRT_FLICKER_AMPLITUDE_A = 0.010;
+const float CRT_FLICKER_SPEED_A = 1.7;
+const float CRT_FLICKER_AMPLITUDE_B = 0.005;
+const float CRT_FLICKER_SPEED_B = 0.37;
+const float CRT_OUTPUT_BRIGHTNESS = 1.0; // Raise cautiously; clipping flattens color.
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 // Note: function overloading is avoided intentionally — Adreno GLSL compilers
@@ -136,20 +194,116 @@ float filmThickness(vec2 uv) {
   // return 80.0 + 820.0 * clamp(base + fine, 0.0, 1.0);
 }
 
-void main() {
-  float d    = filmThickness(v_uv);
-  float cosI = 1.0; // flat surface — perpendicular incidence
+float hash21(vec2 point) {
+  point = fract(point * vec2(123.34, 456.21));
+  point += dot(point, point + 45.32);
+  return fract(point.x * point.y);
+}
 
-  // Physically-correct iridescence (Belcour 2017 / KHR_materials_iridescence)
-  // baseF0 = 0.45  →  substrate IOR ≈ 3.0 (dark polished surface; maximises contrast)
-  vec3 col = evalIridescence(1.0, 1.474, cosI, d, vec3(0.14));
+vec2 curveUv(vec2 uv) {
+  vec2 centered = uv - 0.5;
+  float aspect = u_resolution.x / max(u_resolution.y, 1.0);
+  centered.x *= aspect;
+  centered *= 1.0 + vec2(
+    centered.y * centered.y * CRT_CURVE_X,
+    centered.x * centered.x * CRT_CURVE_Y
+  );
+  centered.x /= aspect;
+  return centered + 0.5;
+}
 
-  // Linear sRGB → gamma-encoded sRGB (WebGL canvas is interpreted as sRGB by the browser)
-  col = pow(clamp(col, 0.0, 1.0), vec3(1.0 / 2.2));
+float screenVignette(vec2 uv) {
+  vec2 screenUv = (uv - 0.5) * CRT_VIGNETTE_SCALE;
+  float roundedEdge = 1.0 - sqrt(
+    pow(abs(screenUv.x), CRT_VIGNETTE_EXPONENT)
+      + pow(abs(screenUv.y), CRT_VIGNETTE_EXPONENT)
+  );
+  return smoothstep(0.0, CRT_VIGNETTE_SOFTNESS, roundedEdge);
+}
 
-  // Composite over a theme-reactive base so light/dark changes affect output.
+vec3 rgbToYiq(vec3 color) {
+  return vec3(
+    dot(color, vec3(0.299, 0.587, 0.114)),
+    dot(color, vec3(0.596, -0.275, -0.321)),
+    dot(color, vec3(0.212, -0.523, 0.311))
+  );
+}
+
+vec3 yiqToRgb(vec3 signal) {
+  return vec3(
+    signal.x + 0.956 * signal.y + 0.621 * signal.z,
+    signal.x - 0.272 * signal.y - 0.647 * signal.z,
+    signal.x - 1.106 * signal.y + 1.704 * signal.z
+  );
+}
+
+vec3 oilColorAt(vec2 uv) {
+  float thickness = filmThickness(uv);
+  vec3 color = evalIridescence(1.0, 1.474, 1.0, thickness, vec3(0.14));
+  color = pow(clamp(color, 0.0, 1.0), vec3(1.0 / 2.2));
+
   vec3 themedBase = mix(u_theme_base, u_theme_accent, 0.06);
-  col = mix(themedBase, col, clamp(u_theme_mix, 0.0, 1.0));
+  return mix(themedBase, color, clamp(u_theme_mix, 0.0, 1.0));
+}
 
-  fragColor = vec4(col, 1.0);
+vec3 applyCrtEffect(vec2 uv) {
+  vec2 curvedUv = curveUv(uv);
+  float field = mod(floor(u_time * CRT_FIELD_RATE), 2.0);
+  float lineNoise = hash21(vec2(
+    floor(u_time * CRT_INTERFERENCE_RATE),
+    floor(gl_FragCoord.y)
+  ));
+  float interference = (lineNoise - 0.5) * CRT_INTERFERENCE_PIXELS
+    / max(u_resolution.x, 1.0);
+  float interlaceOffset = (field - 0.5) * CRT_INTERLACE_OFFSET_PIXELS
+    / max(u_resolution.y, 1.0);
+  vec2 signalUv = curvedUv + vec2(interference, interlaceOffset);
+  float lumaTap = CRT_LUMA_TAP_PIXELS / max(u_resolution.x, 1.0);
+  float chromaTap = CRT_CHROMA_TAP_PIXELS / max(u_resolution.x, 1.0);
+
+  vec3 source = rgbToYiq(oilColorAt(signalUv));
+  vec3 lumaLeft = rgbToYiq(oilColorAt(signalUv - vec2(lumaTap, 0.0)));
+  vec3 lumaRight = rgbToYiq(oilColorAt(signalUv + vec2(lumaTap, 0.0)));
+  vec3 chromaLeft = rgbToYiq(oilColorAt(signalUv - vec2(chromaTap, 0.0)));
+  vec3 chromaRight = rgbToYiq(oilColorAt(signalUv + vec2(chromaTap, 0.0)));
+
+  vec3 signal = source;
+  signal.x = mix(
+    source.x,
+    (lumaLeft.x + source.x + lumaRight.x) / 3.0,
+    CRT_LUMA_MIX
+  );
+  signal.yz = mix(
+    source.yz,
+    (chromaLeft.yz + chromaRight.yz) * 0.5,
+    CRT_CHROMA_MIX
+  );
+
+  float subcarrier = u_time * CRT_SUBCARRIER_SPEED
+    + (signalUv.x + signalUv.y * 0.12) * PI * CRT_SUBCARRIER_DENSITY;
+  float phase = sin(subcarrier) * CRT_PHASE_SWING;
+  float chromaI = signal.y * cos(phase) - signal.z * sin(phase);
+  float chromaQ = signal.y * sin(phase) + signal.z * cos(phase);
+  signal.y = chromaI + signal.x * sin(subcarrier) * CRT_CROSSTALK_I;
+  signal.z = chromaQ + signal.x * cos(subcarrier) * CRT_CROSSTALK_Q;
+
+  float scanPhase = fract((gl_FragCoord.y + field * 0.5) * 0.5);
+  float scanline = CRT_SCANLINE_MIN + CRT_SCANLINE_MAX * smoothstep(
+    CRT_SCANLINE_RAMP_START,
+    CRT_SCANLINE_RAMP_END,
+    scanPhase
+  );
+  float flicker = CRT_FLICKER_BASELINE
+    + CRT_FLICKER_AMPLITUDE_A * sin(u_time * CRT_FLICKER_SPEED_A)
+    + CRT_FLICKER_AMPLITUDE_B * sin(u_time * CRT_FLICKER_SPEED_B + 1.9);
+  float vignette = screenVignette(curvedUv);
+  return clamp(
+    yiqToRgb(signal) * scanline * flicker * vignette * CRT_OUTPUT_BRIGHTNESS,
+    0.0,
+    1.0
+  );
+}
+
+void main() {
+  fragColor = vec4(applyCrtEffect(v_uv), 1.0);
 }

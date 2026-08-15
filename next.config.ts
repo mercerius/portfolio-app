@@ -1,3 +1,4 @@
+import createWithVercelToolbar from "@vercel/toolbar/plugins/next";
 import type { NextConfig } from "next";
 
 const baseHeaders = [
@@ -58,4 +59,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withVercelToolbar = createWithVercelToolbar();
+
+export default withVercelToolbar(nextConfig);

@@ -28,32 +28,17 @@ export default function DeferredOilShaderBackground() {
     };
     const isSaveDataEnabled = Boolean(navWithConnection.connection?.saveData);
 
-    if (prefersReducedMotion || isSaveDataEnabled) {
+    if (prefersReducedMotion || isSaveDataEnabled || canLoadShader) {
       return;
     }
 
     let timeoutId = 0;
     let idleId = 0;
-    let hasStarted = false;
     const supportsRequestIdleCallback = "requestIdleCallback" in window;
 
     const start = () => {
-      if (hasStarted) return;
-      hasStarted = true;
       setCanLoadShader(true);
-      window.removeEventListener("pointerdown", start);
-      window.removeEventListener("keydown", start);
-      window.removeEventListener("touchstart", start);
-      window.removeEventListener("scroll", start);
     };
-
-    window.addEventListener("pointerdown", start, {
-      once: true,
-      passive: true,
-    });
-    window.addEventListener("keydown", start, { once: true });
-    window.addEventListener("touchstart", start, { once: true, passive: true });
-    window.addEventListener("scroll", start, { once: true, passive: true });
 
     timeoutId = window.setTimeout(() => {
       if (supportsRequestIdleCallback) {
@@ -65,15 +50,11 @@ export default function DeferredOilShaderBackground() {
 
     return () => {
       window.clearTimeout(timeoutId);
-      window.removeEventListener("pointerdown", start);
-      window.removeEventListener("keydown", start);
-      window.removeEventListener("touchstart", start);
-      window.removeEventListener("scroll", start);
       if (supportsRequestIdleCallback && idleId) {
         window.cancelIdleCallback(idleId);
       }
     };
-  }, []);
+  }, [canLoadShader]);
 
   const handleShaderReady = () => {
     setIsShaderReady(true);
@@ -83,6 +64,9 @@ export default function DeferredOilShaderBackground() {
     return (
       <div
         aria-hidden="true"
+        data-page-background-layer="fallback"
+        data-shader-mounted="false"
+        data-shader-ready="false"
         className="fixed top-0 left-0 right-0 h-lvh bg-[oklch(0.145_0_0)] dark:bg-[oklch(0.145_0_0)]"
       />
     );
@@ -92,6 +76,9 @@ export default function DeferredOilShaderBackground() {
     <>
       <div
         aria-hidden="true"
+        data-page-background-layer="shader"
+        data-shader-mounted="true"
+        data-shader-ready={isShaderReady ? "true" : "false"}
         className={cn(
           "pointer-events-none fixed top-0 left-0 right-0 h-lvh transition-opacity duration-1400 ease-out motion-reduce:transition-none",
           isShaderReady ? "opacity-100" : "opacity-0",
@@ -101,6 +88,9 @@ export default function DeferredOilShaderBackground() {
       </div>
       <div
         aria-hidden="true"
+        data-page-background-layer="fallback"
+        data-shader-mounted="true"
+        data-shader-ready={isShaderReady ? "true" : "false"}
         className={cn(
           "pointer-events-none fixed top-0 left-0 right-0 h-lvh bg-[oklch(0.145_0_0)] dark:bg-[oklch(0.145_0_0)] transition-opacity duration-500 ease-out motion-reduce:transition-none",
           isShaderReady ? "opacity-0" : "opacity-100",

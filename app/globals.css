@@ -7,6 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-hero-subtitle: var(--hero-subtitle);
+  --color-signal-cyan: var(--signal-cyan);
+  --color-signal-green: var(--signal-green);
+  --color-signal-red: var(--signal-red);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-mono);
   --font-heading: var(--font-mono);
@@ -49,72 +53,88 @@
 }
 
 :root {
-  --background: oklch(0.972 0.037 97); /* warm cream — icon text colour */
-  --foreground: oklch(0.15 0.015 80); /* warm near-black */
-  --card: oklch(0.99 0.018 95);
-  --card-foreground: oklch(0.15 0.015 80);
-  --popover: oklch(1 0.01 95);
-  --popover-foreground: oklch(0.15 0.015 80);
-  --primary: oklch(0.55 0.185 80); /* mid amber — readable on cream */
-  --primary-foreground: oklch(0.972 0.037 97);
-  --secondary: oklch(0.93 0.025 90);
-  --secondary-foreground: oklch(0.2 0.015 80);
-  --muted: oklch(0.94 0.018 90);
-  --muted-foreground: oklch(0.42 0.02 80);
-  --accent: oklch(0.93 0.025 90);
-  --accent-foreground: oklch(0.15 0.015 80);
-  --destructive: oklch(0.475 0.222 25); /* crimson — #d90429 */
-  --border: oklch(0.87 0.022 90);
-  --input: oklch(0.87 0.022 90);
-  --ring: oklch(0.55 0.185 80);
+  --background: oklch(
+    0.94 0.05 92
+  ); /* icon white #fff6d5, aged by screen glow */
+  --foreground: oklch(0.16 0.025 48); /* icon black #000000, warmed for paper */
+  --card: oklch(0.975 0.035 93);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.985 0.03 93);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(
+    0.54 0.13 75
+  ); /* darkened amber for light-surface contrast */
+  --primary-foreground: oklch(0.18 0.025 48);
+  --hero-subtitle: oklch(
+    0.39 0.105 67
+  ); /* burnished amber for light-screen contrast */
+  --secondary: oklch(0.89 0.06 78);
+  --secondary-foreground: oklch(0.22 0.035 48);
+  --muted: oklch(0.9 0.04 85);
+  --muted-foreground: oklch(0.43 0.045 55);
+  --accent: oklch(0.84 0.08 74);
+  --accent-foreground: oklch(0.2 0.03 48);
+  --destructive: oklch(0.49 0.205 25); /* icon signal red #d90429 */
+  --border: oklch(0.67 0.09 67 / 55%);
+  --input: oklch(0.67 0.09 67 / 55%);
+  --ring: var(--primary);
+  --signal-cyan: oklch(0.46 0.13 218);
+  --signal-green: oklch(0.45 0.13 148);
+  --signal-red: var(--destructive);
   --chart-1: oklch(0.784 0.189 83);
   --chart-2: oklch(0.65 0.2 60);
   --chart-3: oklch(0.55 0.21 40);
   --chart-4: oklch(0.475 0.222 25);
   --chart-5: oklch(0.38 0.165 22);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.97 0.025 95);
-  --sidebar-foreground: oklch(0.15 0.015 80);
-  --sidebar-primary: oklch(0.55 0.185 80);
-  --sidebar-primary-foreground: oklch(0.972 0.037 97);
-  --sidebar-accent: oklch(0.93 0.02 90);
-  --sidebar-accent-foreground: oklch(0.15 0.015 80);
-  --sidebar-border: oklch(0.87 0.022 90);
-  --sidebar-ring: oklch(0.55 0.185 80);
+  --radius: 0.5rem;
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 .dark {
-  --background: oklch(0.11 0.008 80); /* warm near-black — icon bg */
-  --foreground: oklch(0.972 0.037 97); /* warm cream — #fff6d5 */
-  --card: oklch(0.18 0.015 80);
-  --card-foreground: oklch(0.972 0.037 97);
-  --popover: oklch(0.16 0.012 80);
-  --popover-foreground: oklch(0.972 0.037 97);
-  --primary: oklch(0.784 0.189 83); /* amber gold — #f2b705 */
-  --primary-foreground: oklch(0.11 0.008 80);
-  --secondary: oklch(0.24 0.018 80);
-  --secondary-foreground: oklch(0.972 0.037 97);
-  --muted: oklch(0.21 0.01 80);
-  --muted-foreground: oklch(0.72 0.028 90);
-  --accent: oklch(0.24 0.018 80);
-  --accent-foreground: oklch(0.972 0.037 97);
-  --destructive: oklch(0.6 0.22 25); /* lighter crimson for dark bg */
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.784 0.189 83);
+  --background: oklch(0.13 0.025 48); /* icon black #000000, CRT tube black */
+  --foreground: oklch(0.97 0.045 94); /* icon white #fff6d5 */
+  --card: oklch(0.2 0.035 48);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.17 0.03 48);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.82 0.17 83); /* icon amber #f2b705 */
+  --primary-foreground: oklch(0.16 0.025 48);
+  --hero-subtitle: oklch(0.84 0.16 83);
+  --secondary: oklch(0.27 0.05 48);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.235 0.035 48);
+  --muted-foreground: oklch(0.76 0.05 86);
+  --accent: oklch(0.31 0.07 57);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(
+    0.65 0.2 25
+  ); /* icon signal red #d90429, brightened for CRT */
+  --border: oklch(0.7 0.12 75 / 24%);
+  --input: oklch(0.7 0.12 75 / 30%);
+  --ring: var(--primary);
+  --signal-cyan: oklch(0.76 0.13 218);
+  --signal-green: oklch(0.77 0.14 148);
+  --signal-red: var(--destructive);
   --chart-1: oklch(0.784 0.189 83);
   --chart-2: oklch(0.65 0.2 60);
   --chart-3: oklch(0.55 0.21 40);
   --chart-4: oklch(0.475 0.222 25);
   --chart-5: oklch(0.38 0.165 22);
-  --sidebar: oklch(0.16 0.012 80);
-  --sidebar-foreground: oklch(0.972 0.037 97);
-  --sidebar-primary: oklch(0.784 0.189 83);
-  --sidebar-primary-foreground: oklch(0.11 0.008 80);
-  --sidebar-accent: oklch(0.24 0.018 80);
-  --sidebar-accent-foreground: oklch(0.972 0.037 97);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.784 0.189 83);
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @layer base {
@@ -124,7 +144,7 @@
   html {
     overflow-y: scroll;
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+    scrollbar-color: var(--muted-foreground) transparent;
   }
   html::-webkit-scrollbar {
     width: 8px;
@@ -133,7 +153,7 @@
     background: transparent;
   }
   html::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--muted-foreground));
+    background-color: var(--muted-foreground);
     border-radius: 4px;
     border: 2px solid transparent;
     background-clip: content-box;
