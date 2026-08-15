@@ -61,7 +61,9 @@
   --card-foreground: var(--foreground);
   --popover: oklch(0.985 0.03 93);
   --popover-foreground: var(--foreground);
-  --primary: oklch(0.77 0.17 83); /* icon amber #f2b705 */
+  --primary: oklch(
+    0.54 0.13 75
+  ); /* darkened amber for light-surface contrast */
   --primary-foreground: oklch(0.18 0.025 48);
   --hero-subtitle: oklch(
     0.39 0.105 67
@@ -76,8 +78,8 @@
   --border: oklch(0.67 0.09 67 / 55%);
   --input: oklch(0.67 0.09 67 / 55%);
   --ring: var(--primary);
-  --signal-cyan: oklch(0.58 0.13 218);
-  --signal-green: oklch(0.55 0.13 148);
+  --signal-cyan: oklch(0.46 0.13 218);
+  --signal-green: oklch(0.45 0.13 148);
   --signal-red: var(--destructive);
   --chart-1: oklch(0.784 0.189 83);
   --chart-2: oklch(0.65 0.2 60);
