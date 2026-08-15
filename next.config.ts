@@ -61,4 +61,6 @@ const nextConfig: NextConfig = {
 
 const withVercelToolbar = createWithVercelToolbar();
 
-export default withVercelToolbar(nextConfig);
+export default process.env.NODE_ENV === "development"
+  ? withVercelToolbar(nextConfig)
+  : nextConfig;
