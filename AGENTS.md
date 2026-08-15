@@ -82,4 +82,5 @@ npm run lint     # ESLint
 ```
 
 ## RULES
+
 - NEVER manually edit `package.json`. Only edit it through npm's cli.
