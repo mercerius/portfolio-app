@@ -70,7 +70,7 @@ export const personal: PersonalInfo = {
   initials: "JN",
   title: "Software Engineer",
   location: "San Diego, CA",
-  bio: "I'm a software engineering student building TypeScript applications across web, APIs, and embedded systems. Through coursework and personal projects, I am developing a practical approach to debugging, clear communication, and reliable software.",
+  bio: "I'm a software engineering student building TypeScript applications across web, APIs, and embedded systems. I've shipped a published Chrome Web Store extension and a live production API, both backed by 45+ automated tests, and I use that same rigor across every project I build.",
   email: "hello@jesseneff.com",
   links: {
     github: "https://github.com/mercerius",
@@ -147,14 +147,15 @@ export const projects: Project[] = [
     name: "yet-another-image-converter",
     slug: "yet-another-image-converter",
     description:
-      "A Chrome Extension for Manifest V3 that adds right-click image conversion for six formats using an offscreen pipeline and tested browser flows.",
+      "A Chrome Extension for Manifest V3, live on the Chrome Web Store, that adds right-click conversion for six image formats, backed by 23 automated tests.",
     longDescription:
-      "I built this Chrome Extension around Manifest V3's constraints instead of fighting them. Right-clicking an image opens a conversion menu for JPEG, PNG, WebP, AVIF, BMP, and ICO, while the actual conversion runs in a sandboxed offscreen document through the Canvas API. Playwright covers the real browser interaction flow, and Vitest covers the conversion logic in isolation.",
+      "I built this Chrome Extension around Manifest V3's constraints instead of fighting them. Right-clicking an image opens a conversion menu for JPEG, PNG, WebP, AVIF, BMP, and ICO, while the actual conversion runs in a sandboxed offscreen document through the Canvas API. The suite runs 23 automated tests: 16 Vitest unit tests covering the conversion pipeline in isolation, plus 7 Playwright end-to-end and memory-regression tests exercising the extension in a real Chromium browser.",
     highlights: [
+      "Published and installable on the Chrome Web Store",
       "Offscreen document architecture keeps image conversion out of the service worker",
       "Six output formats via the Canvas API, with quality controls for lossy formats",
-      "Playwright E2E tests exercise the extension in a real browser environment",
-      "Vitest unit tests cover the core conversion pipeline with canvas stubs",
+      "23 automated tests: 16 Vitest unit tests plus 7 Playwright e2e/memory-regression tests",
+      "Memory-regression suite guards against duplicate offscreen documents during repeated conversions",
       "Context menu is scoped to image elements only, keeping the UI focused",
     ],
     year: 2026,
@@ -175,17 +176,18 @@ export const projects: Project[] = [
     name: "slot_machine_api",
     slug: "slot-machine-api",
     description:
-      "A TypeScript slot machine API with tested game logic, clean separation of concerns, and spin data persisted to Supabase PostgreSQL.",
+      "A TypeScript slot machine API with 22 passing Jest tests, clean separation of concerns, and spin data persisted to Supabase PostgreSQL.",
     longDescription:
-      "This project started as a game, but I ended up treating it like a backend system. The TypeScript engine that handles reel spinning, symbol weighting, payout calculation, and session state is decoupled from the HTTP layer so it can be tested on its own. Each spin is written to Supabase PostgreSQL with IP hashing for privacy, using a best-effort write and a 3-second timeout so a slow database call never holds up the API response. Generated TypeScript types from the schema keep the data layer consistent, and a local adapter mirrors the Vercel Functions interface so development and CI can run without cloud dependencies. Jest covers unit, integration, and edge-case scenarios throughout the stack.",
+      "This project started as a game, but I ended up treating it like a backend system. The TypeScript engine that handles reel spinning, symbol weighting, payout calculation, and session state is decoupled from the HTTP layer so it can be tested on its own. Each spin is written to Supabase PostgreSQL with IP hashing for privacy, using a best-effort write and a 3-second timeout so a slow database call never holds up the API response. Generated TypeScript types from the schema keep the data layer consistent, and a local adapter mirrors the Vercel Functions interface so development and CI can run without cloud dependencies. 22 Jest tests across 3 suites cover unit, integration, and edge-case scenarios throughout the stack.",
     highlights: [
+      "22 Jest tests across 3 suites covering game logic, config, and the Vercel API layer",
       "Pure-function game engine is separated from the HTTP transport layer",
       "Supabase PostgreSQL stores each spin with match type, payout, and hashed IP",
       "Generated database types from the Supabase schema maintain end-to-end type safety",
       "Best-effort write with a 3-second timeout prevents database latency from blocking responses",
       "Local function adapter enables development and CI without cloud dependencies",
-      "Jest covers win logic, edge payouts, and session boundary behavior",
       "Weighted reel system and configurable paytable make the game logic easy to tune",
+      "Live demo below calls the real deployed API, not mock data",
     ],
     year: 2025,
     status: "complete",
